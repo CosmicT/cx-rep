@@ -1,0 +1,75 @@
+<aside class="navsidebar">
+  <div class="company-info">
+    <span class="favicon"><img src="assets/img/favicon.png" alt="favicon"></span>
+    <span class="hiddable">Hitech People Inc.</span>
+  </div>
+  <nav class="mainmenu">
+    <ul class="list-inline">
+      <li class="active"><a routerLink="/dashboard" data-content="Dashboard">
+          <fa-icon [icon]="faTachometerAlt" size="1px"></fa-icon><span class="hiddable">Dashboard</span>
+        </a></li>
+      <li class="dropdown">
+        <a href="#" data-content="Sales" data-toggle="dropdown">
+          <fa-icon [icon]="faStreetView" size="1px"></fa-icon><span class="hiddable">Sales</span>
+        </a>
+        <div class="dropdown-menu menu-dropdown">
+          <a class="dropdown-item" routerLink="/lead/search-lead">Lead</a>
+          <a class="dropdown-item" routerLink="/company/search-company">Company</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#" data-content="Recruitment" data-toggle="dropdown">
+          <fa-icon [icon]="faUsers" size="1px"></fa-icon><span class="hiddable">Recruitment</span>
+        </a>
+        <div class="dropdown-menu menu-dropdown">
+          <a class="dropdown-item" routerLink="/account/search-account">Accounts</a>
+          <a class="dropdown-item" routerLink="/contact/search-contact">Contacts</a>
+          <a class="dropdown-item" routerLink="/job/search-job">Job</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#" data-content="Activities" data-toggle="dropdown">
+          <fa-icon [icon]="faClock" size="1px"></fa-icon><span class="hiddable">Activities</span>
+        </a>
+        <div class="dropdown-menu menu-dropdown">
+          <a class="dropdown-item" href="#">Activities</a>
+          <a class="dropdown-item" href="#">Activities Report</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#" data-content="Candidates" data-toggle="dropdown">
+          <fa-icon [icon]="faUserCircle" size="1px"></fa-icon><span class="hiddable">Candidates</span>
+        </a>
+        <div class="dropdown-menu menu-dropdown">
+          <a class="dropdown-item" href="#">Interview</a>
+          <a class="dropdown-item" href="#">Offer</a>
+          <a class="dropdown-item" href="#">Candidate</a>
+        </div>
+      </li>
+      <li><a href="#" data-content="Agrement">
+          <fa-icon [icon]="faHandshake" size="1px"></fa-icon><span class="hiddable">Agrement</span>
+        </a></li>
+      <li class="dropdown">
+        <a href="#" data-content="Reporting" data-toggle="dropdown">
+          <fa-icon [icon]="faUsers" size="1px"></fa-icon><span class="hiddable">Reporting</span>
+        </a>
+        <div class="dropdown-menu menu-dropdown">
+          <a class="dropdown-item" href="#">Generate MIS</a>
+          <a class="dropdown-item" href="#">Productivity</a>
+          <a class="dropdown-item" href="#">Performance Analysis</a>
+          <a class="dropdown-item" href="#">My Candidate</a>
+          <a class="dropdown-item" href="#">Apply Incentive</a>
+          <a class="dropdown-item" href="#">Incentive Request</a>
+        </div>
+      </li>
+      <li><a href="#" data-content="Internal Search">
+          <fa-icon [icon]="faSearch" size="1px"></fa-icon><span class="hiddable">Internal
+            Search</span>
+        </a></li>
+      <li><a href="#" data-content="Delegated Rights">
+          <fa-icon [icon]="faFileAlt" size="1px"></fa-icon><span class="hiddable">Delegated
+            Rights</span>
+        </a></li>
+    </ul>
+  </nav>
+</aside>

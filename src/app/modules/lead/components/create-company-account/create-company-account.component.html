@@ -1,0 +1,313 @@
+<div class="modal-header">
+    <h4 class="modal-title">Add {{leadName}} Details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeActiveModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body addcompanypanel">
+    <div class="accordion account-information-panel" id="accordionSearch">
+        <div class="card flex-row-reverse">
+            <div class="card-header  compInfoSearch-header float-right" id="headingOne">
+                <ngb-tabset #t="ngbTabset">
+                    <!-- add company tab start -->
+                    <ngb-tab id="tab-selectbyid1" title="Account Information">
+                        <ng-template ngbTabContent class="bg-light ">
+                            <form [formGroup]="createCompanyAndAccountForm" (submit)="createCompanyAndAccountFormSubmit()">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="account">Create Lead Behalf on*</label>
+                                            <fa-icon *ngIf="!!createCompanyAndAccountForm.controls.leadType.invalid && (createCompanyAndAccountFormSubmitted || !!createCompanyAndAccountForm.controls.leadType.touched)"
+                                                class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                                                ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                            <input type="text" class="form-control" formControlName="leadType">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="accountName">{{leadName}} Name*
+                                            </label>
+                                            <fa-icon *ngIf="!!createCompanyAndAccountForm.controls.name.invalid && (createCompanyAndAccountFormSubmitted || !!createCompanyAndAccountForm.controls.name.touched)"
+                                                class="float-right text-danger hover" [icon]="faInfoCircle" size="1px" placement="top"
+                                                ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                            <ng-select [items]="contactModel" id="accountName" bindLabel="name" (click)="searchCompany($event.target.value)" [addTag]="contactModel"
+                                                formControlName="name">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="industrygroup">Industry Group*</label>
+                                            <fa-icon *ngIf="!!createCompanyAndAccountForm.controls.industryGroup.invalid && (createCompanyAndAccountFormSubmitted || !!createCompanyAndAccountForm.controls.industryGroup.touched)"
+                                                class="float-right text-danger hover" [icon]="faInfoCircle" size="1px" placement="top"
+                                                ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                            <ng-select [items]="industryGroup" bindLabel="industryGroup" [multiple]="true" id="industrygroup" formControlName="industryGroup"
+                                                placeholder="Select Industry Group" (keyup)="searchIndustryGroup($event.target.value)">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="industry">Industry*</label>
+                                            <fa-icon *ngIf="!!createCompanyAndAccountForm.controls.industry.invalid && (createCompanyAndAccountFormSubmitted || !!createCompanyAndAccountForm.controls.industry.touched)"
+                                                class="float-right text-danger hover" [icon]="faInfoCircle" size="1px" placement="top"
+                                                ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                            <ng-select [items]="industry" bindLabel="industry" [multiple]="true" formControlName="industry" placeholder="Select Industry"
+                                                id="industry" (keyup)="searchIndustry($event.target.value)">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="leadcategory">Lead Category*</label>
+                                            <select class="custom-select" id="leadcategory" formControlName="leadCategory">
+                                                <option selected value="define">To Be Define</option>
+                                                <option value="must">Must To Have</option>
+                                                <option value="not">Not To Have</option>
+                                                <option value="good">Good To Have</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="website">Website*</label>
+                                            <fa-icon *ngIf="!!createCompanyAndAccountForm.controls.website.invalid && (createCompanyAndAccountFormSubmitted || !!createCompanyAndAccountForm.controls.website.touched)"
+                                                class="float-right text-danger hover" [icon]="faInfoCircle" size="1px" placement="top"
+                                                ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                            <input type="text" class="form-control" formControlName="website">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="boardnumber">Board Number*</label>
+                                            <fa-icon *ngIf="!!createCompanyAndAccountForm.controls.countryCode.invalid && (createCompanyAndAccountFormSubmitted || !!createCompanyAndAccountForm.controls.countryCode.touched)"
+                                                class="float-right text-danger hover" [icon]="faInfoCircle" size="1px" placement="top"
+                                                ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                            <ng-select [items]="country" bindLabel="countrycode" id="boardnumber" placeholder="country code" formControlName="countryCode"
+                                                (keyup)="searchCountryCode($event.target.value)">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label></label>
+                                            <fa-icon *ngIf="!!createCompanyAndAccountForm.controls.boardnumbercitycode.invalid && (createCompanyAndAccountFormSubmitted || !!createCompanyAndAccountForm.controls.boardnumbercitycode.touched)"
+                                                class="float-right text-danger hover" [icon]="faInfoCircle" size="1px" placement="top"
+                                                ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                            <ng-select [items]="cities" bindValue="citycode" bindLabel="citycode" class="ml-2" placeholder="City code" formControlName="boardnumbercitycode"
+                                                (keyup)="searchCityCode($event.target.value,null)">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Board Number*</label>
+                                            <span *ngIf="!!createCompanyAndAccountForm.controls.boardnumber.invalid && (createCompanyAndAccountFormSubmitted || !!createCompanyAndAccountForm.controls.boardnumber.touched)">
+                                                <fa-icon *ngIf="!!createCompanyAndAccountForm.controls.boardnumber.errors.required" class="float-right text-danger hover"
+                                                    [icon]="faInfoCircle" size="1px" placement="top" ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                                <fa-icon *ngIf="!!createCompanyAndAccountForm.controls.boardnumber.errors.maxlength" class="float-right text-danger hover"
+                                                    [icon]="faInfoCircle" size="1px" placement="top" ngbTooltip="Maximum 10 digits"
+                                                    tooltipClass="tooltip-background-color"></fa-icon>
+                                                <fa-icon *ngIf="!!createCompanyAndAccountForm.controls.boardnumber.errors.minlength" class="float-right text-danger hover"
+                                                    [icon]="faInfoCircle" size="1px" placement="top" ngbTooltip="minimum 10 digits"
+                                                    tooltipClass="tooltip-background-color"></fa-icon>
+                                            </span>
+                                            <input type="text" class="form-control" formControlName="boardnumber" placeholder="number">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="website">Description</label>
+                                        <input type="text" class="form-control" formControlName="description">
+                                    </div>
+                                </div>
+                            </form>
+                        </ng-template>
+                    </ngb-tab>
+                    <!-- add company tab end -->
+
+                    <!-- Addrtress tab start -->
+                    <ngb-tab id="tab-selectbyid2">
+                        <ng-template ngbTabTitle>Address Detail</ng-template>
+                        <ng-template ngbTabContent class="bg-light">
+                            <form [formGroup]="addressForm">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Country">Country*</label>
+                                            <fa-icon *ngIf="!!addressForm.controls.country.invalid && (addressFormSubmitted || !!addressForm.controls.country.touched)"
+                                                class="float-right text-danger hover" [icon]="faInfoCircle" size="1px" placement="top"
+                                                ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                            <ng-select [items]="country" id="Country" bindLabel="name" formControlName="country" placeholder="Select Country" (keyup)="searchCountry($event.target.value)">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="State">State*</label>
+                                            <fa-icon *ngIf="!!addressForm.controls.state.invalid && (addressFormSubmitted || !!addressForm.controls.state.touched)" class="float-right text-danger hover"
+                                                [icon]="faInfoCircle" size="1px" placement="top" ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                            <ng-select [items]="states" id="State" bindLabel="name" formControlName="state" placeholder="Select State" (keyup)="searchState($event.target.value,null)">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="City">City*</label>
+                                            <fa-icon *ngIf="!!addressForm.controls.city.invalid && (addressFormSubmitted || !!addressForm.controls.city.touched)" class="float-right text-danger hover"
+                                                [icon]="faInfoCircle" size="1px" placement="top" ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                            <ng-select [items]="cities" id="Country" bindLabel="cityname" formControlName="city" placeholder="Select City" (keyup)="searchCity($event.target.value,null)">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Street">Street*</label>
+                                            <fa-icon *ngIf="!!addressForm.controls.street.invalid && (addressFormSubmitted || !!addressForm.controls.street.touched)"
+                                                class="float-right text-danger hover" [icon]="faInfoCircle" size="1px" placement="top"
+                                                ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                            <input type="text" class="form-control" formControlName="street">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="PinCode">Pin Code*</label>
+                                            <fa-icon *ngIf="!!addressForm.controls.pincode.invalid && (addressFormSubmitted || !!addressForm.controls.pincode.touched)"
+                                                class="float-right text-danger hover" [icon]="faInfoCircle" size="1px" placement="top"
+                                                ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                            <input type="text" class="form-control" formControlName="pincode">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class=" checkbox-list">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="headquater">
+                                                        <fa-icon *ngIf="!!addressForm.controls.headquater.invalid && (addressFormSubmitted || !!addressForm.controls.headquater.touched)"
+                                                            class="float-right text-danger hover" [icon]="faInfoCircle" size="1px"
+                                                            placement="top" ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                                        <label class="custom-control-label pl-1" for="customCheck1">Headquater*
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck2" formControlName="billling">
+                                                        <fa-icon *ngIf="!!addressForm.controls.billling.invalid && (addressFormSubmitted || !!addressForm.controls.billling.touched)"
+                                                            class="float-right text-danger hover" [icon]="faInfoCircle" size="1px"
+                                                            placement="top" ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                                        <label class="custom-control-label pl-1" for="customCheck2">Billing*</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck3" formControlName="shipping">
+                                                        <fa-icon *ngIf="!!addressForm.controls.shipping.invalid && (addressFormSubmitted || !!addressForm.controls.shipping.touched)"
+                                                            class="float-right text-danger hover" [icon]="faInfoCircle" size="1px"
+                                                            placement="top" ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                                        <label class="custom-control-label pl-1" for="customCheck3">Shipping*
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck4" formControlName="site">
+                                                        <fa-icon *ngIf="!!addressForm.controls.site.invalid && (addressFormSubmitted || !!addressForm.controls.site.touched)" class="float-right text-danger hover"
+                                                            [icon]="faInfoCircle" size="1px" placement="top" ngbTooltip="Required"
+                                                            tooltipClass="tooltip-background-color"></fa-icon>
+                                                        <label class="custom-control-label pl-1" for="customCheck4">Project/Site*
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="float-right">
+                                            <button class="compAddButton" title="">
+                                                <fa-icon [icon]="faPlusCircle" size="1x" (click)="setAddress()">
+                                                </fa-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- Editable table -->
+                                    <div class="custom-scrollbar">
+                                        <table class="table table-panel table-bordered table-responsive-md mt-3 table-striped text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Action</th>
+                                                    <th class="text-center">Country</th>
+                                                    <th class="text-center">State</th>
+                                                    <th class="text-center">City</th>
+                                                    <th class="text-center">Street</th>
+                                                    <th class="text-center">Pin Code</th>
+                                                    <th class="text-center">Headquater</th>
+                                                    <th class="text-center">Billing</th>
+                                                    <th class="text-center">Shipping</th>
+                                                    <th class="text-center">Project/Site</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <ng-container *ngIf="createCompanyAndAccountForm.controls.accountaddress.value[0]">
+                                                    <ng-container *ngIf="createCompanyAndAccountForm.controls.accountaddress.value[0].country">
+                                                        <ng-template ngFor let-address [ngForOf]="createCompanyAndAccountForm.controls.accountaddress.value" let-i="index">
+                                                            <tr>
+                                                                <td>
+                                                                    <a class="mr-2 cursor-pointer" (click)="editAddress(i)">
+                                                                        <fa-icon [icon]="faEdit" size="1x"></fa-icon>
+                                                                    </a>
+                                                                    <a class="cursor-pointer" (click)="deleteAddress(i)">
+                                                                        <fa-icon [icon]="faTrashAlt" class="text-danger" size="1x">
+                                                                        </fa-icon>
+                                                                    </a>
+                                                                </td>
+                                                                <td contenteditable="true">{{address.country.name}}</td>
+                                                                <td contenteditable="true">{{address.state.name}}</td>
+                                                                <td contenteditable="true">{{address.city.cityname}}
+                                                                </td>
+                                                                <td contenteditable="true">{{address.street}}</td>
+                                                                <td contenteditable="true">{{address.pincode}}</td>
+                                                                <td contenteditable="true">
+                                                                    {{address.headquater===true ? 'yes':'No'}}</td>
+                                                                <td contenteditable="true">
+                                                                    {{address.billling===true ? 'yes':'No'}}</td>
+                                                                <td contenteditable="true">
+                                                                    {{address.shipping===true ? 'yes':'No'}}</td>
+                                                                <td contenteditable="true">
+                                                                    {{address.site===true ? 'yes':'No'}}</td>
+                                                            </tr>
+                                                        </ng-template>
+                                                    </ng-container>
+                                                </ng-container>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- Editable table -->
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <!-- Address tab end -->
+                </ngb-tabset>
+                <div class="col-md-12">
+                    <button class="btn btn-primary float-right m-2 mt-3" type="submit" (click)="createCompanyAndAccountFormSubmit()" [disabled]="createCompanyAndAccountFormSubmitting">
+                        <ng-container *ngIf="createCompanyAndAccountFormSubmitting; else createCompanyAndAccountFormDone">
+                            <fa-icon [icon]="faSpinner" [pulse]="true"></fa-icon>
+                            Submitting...
+                        </ng-container>
+                        <ng-template #createCompanyAndAccountFormDone>
+                            Submit
+                            <fa-icon [icon]="faArrowRight"></fa-icon>
+                        </ng-template>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

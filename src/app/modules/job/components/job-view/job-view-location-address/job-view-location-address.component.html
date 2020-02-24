@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="container-fluid pl-0 pr-0">
+        <dx-data-grid id="gridContainer" class="data-grid-panel mt-3" [showRowLines]="true" [showBorders]="true">
+            <!-- <dxo-scrolling mode="virtual"></dxo-scrolling> -->
+            <!-- <dxo-sorting mode="multiple"></dxo-sorting> -->
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-paging [pageSize]="5"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+            </dxo-pager>
+            <dxi-column caption="S.No" cellTemplate="NoTemplate"></dxi-column>
+            <dxi-column dataField="City" caption="City"></dxi-column>
+            <dxi-column dataField="FullAddress" caption="FullAddress"></dxi-column>
+            <dxi-column dataField="State" caption="State">
+            </dxi-column>
+            <dxi-column dataField="	Education" caption="	Education">
+            </dxi-column>
+        </dx-data-grid>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="modal-header bg-primary text-white">
+    <h4 class="modal-title" id="modal-basic-title">Qualification Parameter</h4>
+    <button type="button" class="close text-white" (click)="closeActiveTab()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="qualificationParamterForm">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="parameter">Parameters</label>
+
+                    <dx-drop-down-box [(value)]="gridBoxValuePara" valueExpr="id" [deferRendering]="false"
+                        [displayExpr]="gridBox_displayExprPara" placeholder="Select a value..." [showClearButton]="true"
+                        [dataSource]="gridDataSourcePara" formControlName="parameter">
+                        <div *dxTemplate="let data of 'content'">
+                            <dx-data-grid [dataSource]="gridDataSourcePara" [columns]="['subParameters']"
+                                [grouping]="true" [selection]="{ mode: 'single' }" [hoverStateEnabled]="true"
+                                [paging]="{ enabled: true, pageSize: 10 }" [filterRow]="{ visible: true }"
+                                [scrolling]="{ mode: 'infinite' }" height="100%" [(selectedRowKeys)]="gridBoxValuePara"
+                                (onSelectionChanged)="selectionPara($event)">
+                            </dx-data-grid>
+                        </div>
+                    </dx-drop-down-box>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="scale">Scale</label>
+                    <dx-drop-down-box [(value)]="gridBoxValue" valueExpr="id" [deferRendering]="false"
+                        [displayExpr]="gridBox_displayExpr" placeholder="Select a value..." [showClearButton]="true"
+                        [dataSource]="gridDataSource" formControlName="scale">
+                        <div *dxTemplate="let data of 'content'">
+                            <dx-data-grid [dataSource]="gridDataSource" [columns]="['scale','weightage']"
+                                [grouping]="true" [selection]="{ mode: 'single' }" [hoverStateEnabled]="true"
+                                [paging]="{ enabled: true, pageSize: 10 }" [filterRow]="{ visible: true }"
+                                [scrolling]="{ mode: 'infinite' }" height="100%" [(selectedRowKeys)]="gridBoxValue"
+                                (onSelectionChanged)="selectionScale($event)">
+                            </dx-data-grid>
+                        </div>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button float-rigth" class="btn btn-outline-primary"
+        (click)="addQualificationParameter()">Submit</button>
+</div>

@@ -1,0 +1,8 @@
+<div class="position-fixed spinner h-100 w-100 align-items-center justify-content-center"
+    [ngClass]="[isBusy === true ? 'd-flex' : 'd-none']">
+    <div class="text-center">
+        <fa-icon [icon]="faSpinner" size="2x" [pulse]="true"></fa-icon>
+        <div class="clearfix"></div>
+        <span class="d-inline-block mt-3">Please wait... </span>
+    </div>
+</div>

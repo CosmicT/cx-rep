@@ -1,0 +1,1349 @@
+<div class="page-wrapper">
+    <div class="container-fluid pl-0 pr-0">
+        <div class="row page-titles margin-bottom mb-3">
+            <div class="col-md-12 pr-0">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a routerLink="/account/search-account">Search Account</a></li>
+                    <li class="breadcrumb-item"><a routerLink="/account/account-view/{{editAccountId}}">View Account</a>
+                    </li>
+                    <li class="breadcrumb-item active">Edit Account</li>
+                </ol>
+            </div>
+        </div>
+        <!-- Account details start-->
+        <div class="row">
+            <div class="col-md-12 pr-0">
+                <div class="account-info d-flex">
+                    <div class="col-md-2">
+                        <!-- <img src="" alt="responsive image" class="img-fluid"> -->
+                        <fa-icon class="building-icon" [icon]="faBuilding" size="4x"></fa-icon>
+                    </div>
+                    <div class="col-md-10">
+                        <h3 class="mb-2">Nokia Solutions & Networks India Private Limited</h3>
+                        <ul>
+                            <li>
+                                <fa-icon [icon]="faPhoneAlt"></fa-icon><a href="Tel:4504999876">4504999876</a>
+                            </li>
+                            <li>
+                                <fa-icon [icon]="faGlobe"></fa-icon><a href="http://www.nokia.com">
+                                    http://www.nokia.com</a>
+                            </li>
+                            <li>
+                                <fa-icon [icon]="faMapMarkerAlt"></fa-icon><a href="#">N/A</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Account details end-->
+        <div class="row  edit-account equal-height-cols " [ngClass]="[divShow? 'toggled':'']">
+            <!-- collapse Icon -->
+            <a id="show-sidebar" class="btn btn-sm btn-dark" (click)="divShow=!divShow"><span
+                    class="verticle-text">Auxiliary</span></a>
+            <!-- create lead form section start -->
+            <div class="lead-wrap editaccount">
+                <div class="details-datagrid  pl-3">
+                    <div class="bg-white shadow equal-height-coloum rounded mb-5 ">
+                        <div class="p-3 ">
+                            <div class="accordion" id="accordionSearch">
+                                <div class="card p-3 flex-row-reverse">
+                                    <div class="card-header compInfoSearch-header float-right" id="headingOne">
+                                        <ngb-tabset #t="ngbTabset">
+                                            <!-- Account Info tab start -->
+                                            <ngb-tab id="tab-selectbyid1" title="Account Information">
+                                                <ng-template ngbTabContent class="bg-light">
+                                                    <form [formGroup]="editCompanyAndAccountForm">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="dx-fieldset">
+                                                                    <div class="dx-field">
+                                                                        <label>Account Anchor</label>
+                                                                        <div class="dx-field-value">
+                                                                            <dx-drop-down-box [(value)]="gridBoxValue"
+                                                                                [displayExpr]="anchorGridNameExpr"
+                                                                                placeholder="Select a value..."
+                                                                                [showClearButton]="true"
+                                                                                [dataSource]="anchorDataSource"
+                                                                                (valueChange)="valueChange()"
+                                                                                formControlName="anchor">
+                                                                                <div
+                                                                                    *dxTemplate="let data of 'content'">
+                                                                                    <dx-data-grid
+                                                                                        [dataSource]="anchorDataSource"
+                                                                                        [columns]="['username','name']"
+                                                                                        [selection]="{ mode: 'single' }"
+                                                                                        [hoverStateEnabled]="true"
+                                                                                        [paging]="{ enabled: true, pageSize: 10 }"
+                                                                                        [filterRow]="{ visible: true }"
+                                                                                        [scrolling]="{ mode: 'infinite' }"
+                                                                                        [height]="345"
+                                                                                        [(selectedRowKeys)]="gridBoxValue"
+                                                                                        (onSelectionChanged)="anchorSelectionChanged($event)">
+                                                                                    </dx-data-grid>
+                                                                                </div>
+                                                                            </dx-drop-down-box>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <!-- <span href="#" *ngIf="isExistUser" class="alert-danger">User Exist</span> -->
+                                                                <div class="form-group box">
+                                                                    <label for="accountname">Account Name</label>
+                                                                    <fa-icon *ngIf="isExistUser"
+                                                                        class="float-right text-danger hover"
+                                                                        [icon]="faInfoCircle" size="1px" placement="top"
+                                                                        ngbTooltip="Company Or Account Already Exist!"
+                                                                        tooltipClass="tooltip-background-color">
+                                                                    </fa-icon>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                formControlName="account"
+                                                                                id="AccountName"
+                                                                                (blur)="checkUser($event.target.value)">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="dx-fieldset">
+                                                                    <div class="dx-field">
+                                                                        <label>Parent Company</label>
+                                                                        <div class="dx-field-value">
+                                                                            <dx-drop-down-box [(value)]="gridBoxValue1"
+                                                                                valueExpr="id"
+                                                                                [displayExpr]="gridparentCompanyNameExpr"
+                                                                                placeholder="Select a value..."
+                                                                                [showClearButton]="true"
+                                                                                [dataSource]="parentCompanyDataSource"
+                                                                                (valueChange)="valueChange()"
+                                                                                formControlName="parentaccountname">
+                                                                                <div
+                                                                                    *dxTemplate="let data of 'content'">
+                                                                                    <dx-data-grid
+                                                                                        [dataSource]="parentCompanyDataSource"
+                                                                                        [columns]="['name','fulladdress']"
+                                                                                        [selection]="{ mode: 'single' }"
+                                                                                        [hoverStateEnabled]="true"
+                                                                                        [paging]="{ enabled: true, pageSize: 10 }"
+                                                                                        [filterRow]="{ visible: true }"
+                                                                                        [scrolling]="{ mode: 'infinite' }"
+                                                                                        [selection]="{ mode: 'single'}"
+                                                                                        [height]="345"
+                                                                                        [(selectedRowKeys)]="gridBoxValue1"
+                                                                                        (onSelectionChanged)="parentCompanySelection($event)">
+                                                                                    </dx-data-grid>
+                                                                                </div>
+                                                                            </dx-drop-down-box>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group box-wrap">
+                                                                    <label for="GlobalHuntClient">Global Hunt
+                                                                        Client</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="GlobalHuntClient"
+                                                                                formControlName="globalhuntclient">
+                                                                                <option value="Yes">Yes</option>
+                                                                                <option value="No">No</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="dx-fieldset">
+                                                                    <div class="dx-field">
+                                                                        <label>Competition</label>
+                                                                        <div class="dx-field-value">
+                                                                            <dx-drop-down-box
+                                                                                [(value)]="competitionGridBoxValue"
+                                                                                valueExpr="id"
+                                                                                [displayExpr]="accountBlackListExpr"
+                                                                                placeholder="Select a value..."
+                                                                                [showClearButton]="true"
+                                                                                [dataSource]="blackListDataSource"
+                                                                                (valueChange)="valueChange()"
+                                                                                formControlName="competition">
+                                                                                <div
+                                                                                    *dxTemplate="let data of 'content'">
+                                                                                    <dx-data-grid
+                                                                                        [dataSource]="blackListDataSource"
+                                                                                        [columns]="['name', 'fulladdress']"
+                                                                                        [selection]="{ mode: 'multiple'}"
+                                                                                        [hoverStateEnabled]="true"
+                                                                                        [paging]="{ enabled: true, pageSize: 10 }"
+                                                                                        [filterRow]="{ visible: true }"
+                                                                                        [scrolling]="{ mode: 'infinite' }"
+                                                                                        [height]="345"
+                                                                                        [(selectedRowKeys)]="competitionGridBoxValue"
+                                                                                        (onSelectionChanged)="competitionSelection($event)">
+                                                                                    </dx-data-grid>
+                                                                                </div>
+                                                                            </dx-drop-down-box>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="dx-fieldset">
+                                                                    <div class="dx-field">
+                                                                        <label>No Poach</label>
+                                                                        <div class="dx-field-value">
+                                                                            <dx-drop-down-box
+                                                                                [(value)]="noPoachGridBoxValue"
+                                                                                valueExpr="id"
+                                                                                [displayExpr]="gridNopachNameExpr"
+                                                                                placeholder="Select a value..."
+                                                                                [showClearButton]="true"
+                                                                                [dataSource]="noPoachDataSource"
+                                                                                (valueChange)="valueChange()"
+                                                                                formControlName="noPoach">
+                                                                                <div
+                                                                                    *dxTemplate="let data of 'content'">
+                                                                                    <dx-data-grid
+                                                                                        [dataSource]="noPoachDataSource"
+                                                                                        [columns]="['name','fulladdress']"
+                                                                                        [selection]="{ mode: 'multiple' }"
+                                                                                        [hoverStateEnabled]="true"
+                                                                                        [paging]="{ enabled: true, pageSize: 10 }"
+                                                                                        [filterRow]="{ visible: true }"
+                                                                                        [scrolling]="{ mode: 'infinite' }"
+                                                                                        [height]="345"
+                                                                                        [(selectedRowKeys)]="noPoachGridBoxValue"
+                                                                                        (onSelectionChanged)="noPoachSelection($event)">
+                                                                                    </dx-data-grid>
+                                                                                </div>
+                                                                            </dx-drop-down-box>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="dx-fieldset">
+                                                                    <div class="dx-field">
+                                                                        <label>Black List</label>
+                                                                        <div class="dx-field-value">
+                                                                            <dx-drop-down-box
+                                                                                [(value)]="blackListgridBoxValue"
+                                                                                valueExpr="id"
+                                                                                [displayExpr]="accountBlackListExpr"
+                                                                                placeholder="Select a value..."
+                                                                                [showClearButton]="true"
+                                                                                [dataSource]="blackListDataSource"
+                                                                                (valueChange)="valueChange()"
+                                                                                formControlName="blackList">
+                                                                                <div
+                                                                                    *dxTemplate="let data of 'content'">
+                                                                                    <dx-data-grid
+                                                                                        [dataSource]="blackListDataSource"
+                                                                                        [columns]="['name', 'fulladdress']"
+                                                                                        [selection]="{ mode: 'multiple' }"
+                                                                                        [hoverStateEnabled]="true"
+                                                                                        [paging]="{ enabled: true, pageSize: 10 }"
+                                                                                        [filterRow]="{ visible: true }"
+                                                                                        [scrolling]="{ mode: 'infinite' }"
+                                                                                        [height]="345"
+                                                                                        [(selectedRowKeys)]="blackListgridBoxValue"
+                                                                                        (onSelectionChanged)="blackListSelection($event)">
+                                                                                    </dx-data-grid>
+                                                                                </div>
+                                                                            </dx-drop-down-box>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group box-wrap">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <label for="BoardNumber">Board
+                                                                                Number*</label>
+                                                                            <fa-icon
+                                                                                *ngIf="!!editCompanyAndAccountForm.controls.boardnumbercountrycode.invalid && 
+                                                                            (editAccountFormSubmitted || !!editCompanyAndAccountForm.controls.boardnumbercountrycode.touched)"
+                                                                                class="float-right text-danger hover"
+                                                                                [icon]="faInfoCircle" size="1px"
+                                                                                placement="top" ngbTooltip="Required"
+                                                                                tooltipClass="tooltip-background-color">
+                                                                            </fa-icon>
+                                                                            <ng-select [items]="country"
+                                                                                bindLabel="countrycode"
+                                                                                bindValue="countrycode"
+                                                                                formControlName="boardnumbercountrycode"
+                                                                                placeholder="Country Code"
+                                                                                id="BoardNumber"
+                                                                                (keyup)="searchCountry($event.target.value)">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <label for="BoardNumber"></label>
+                                                                            <span class="text-danger"
+                                                                                *ngIf="!!editCompanyAndAccountForm.controls.boardnumber.invalid && (editAccountFormSubmitted || !!editCompanyAndAccountForm.controls.boardnumber.touched)">
+                                                                                <fa-icon class="float-right hover"
+                                                                                    *ngIf="!!editCompanyAndAccountForm.controls.boardnumber.errors.required"
+                                                                                    [icon]="faInfoCircle" size="1px"
+                                                                                    placement="top"
+                                                                                    ngbTooltip="Required"
+                                                                                    tooltipClass="tooltip-background-color">
+                                                                                </fa-icon>
+                                                                                <fa-icon class="float-right hover"
+                                                                                    *ngIf="!!editCompanyAndAccountForm.controls.boardnumber.errors.maxlength"
+                                                                                    [icon]="faInfoCircle" size="1px"
+                                                                                    placement="top"
+                                                                                    ngbTooltip="maximum 10 digits"
+                                                                                    tooltipClass="tooltip-background-color">
+                                                                                </fa-icon>
+                                                                                <fa-icon class="float-right hover"
+                                                                                    *ngIf="!!editCompanyAndAccountForm.controls.boardnumber.errors.minlength"
+                                                                                    [icon]="faInfoCircle" size="1px"
+                                                                                    placement="top"
+                                                                                    ngbTooltip="minimum 10 digits"
+                                                                                    tooltipClass="tooltip-background-color">
+                                                                                </fa-icon>
+                                                                                <fa-icon class="float-right hover"
+                                                                                    *ngIf="!!editCompanyAndAccountForm.controls.boardnumber.errors.pattern"
+                                                                                    [icon]="faInfoCircle" size="1px"
+                                                                                    placement="top" ngbTooltip="number"
+                                                                                    tooltipClass="tooltip-background-color">
+                                                                                </fa-icon>
+                                                                            </span>
+                                                                            <input type="text" class="form-control"
+                                                                                id="BoardNumbertextbox"
+                                                                                formControlName="boardnumber"
+                                                                                placeholder="Board Number">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group box-wrap">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <label for="AccountStage">Status</label>
+                                                                            <select class="custom-select" id="Status"
+                                                                                formControlName="status">
+                                                                                <option value="Active">Active</option>
+                                                                                <option value="Not Active">Not Active
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Industry">Industry*</label>
+                                                                    <fa-icon
+                                                                        *ngIf="!!editCompanyAndAccountForm.controls.industry.invalid && (editAccountFormSubmitted || !!editCompanyAndAccountForm.controls.industry.touched)"
+                                                                        class="float-right text-danger hover"
+                                                                        [icon]="faInfoCircle" size="1px" placement="top"
+                                                                        ngbTooltip="Required"
+                                                                        tooltipClass="tooltip-background-color">
+                                                                    </fa-icon>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="industries"
+                                                                                bindLabel="industry" [multiple]="true"
+                                                                                formControlName="industry"
+                                                                                placeholder="Select Industry"
+                                                                                id="industry"
+                                                                                (keyup)="searchIndustry($event.target.value)">
+                                                                            </ng-select>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="IndustryClassification">Industry
+                                                                        Classification*</label>
+                                                                    <fa-icon class="float-right text-danger hover"
+                                                                        *ngIf="!!editCompanyAndAccountForm.controls.industryClassification.invalid && (editAccountFormSubmitted || !!editCompanyAndAccountForm.controls.industryClassification.touched)"
+                                                                        [icon]="faInfoCircle" size="1px" placement="top"
+                                                                        ngbTooltip="Required"
+                                                                        tooltipClass="tooltip-background-color">
+                                                                    </fa-icon>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="classification"
+                                                                                bindLabel="name"
+                                                                                formControlName="industryClassification"
+                                                                                placeholder="Classification"
+                                                                                (keyup)="serachClassification($event.target.value)"
+                                                                                [multiple]="true">
+                                                                            </ng-select>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="IndustrySubClassification">Industry Sub
+                                                                        Classification</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="subClassification"
+                                                                                bindLabel="name"
+                                                                                formControlName="industrySubClassification"
+                                                                                placeholder="Sub Classification"
+                                                                                (keyup)="searchSubClassifiaction(null,$event.target.value)"
+                                                                                [multiple]="true">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="IndustrySuperClassification">Industry
+                                                                        Super
+                                                                        Classification
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="superClassification"
+                                                                                bindLabel="supclassname"
+                                                                                formControlName="industrySuperClassification"
+                                                                                placeholder="Supper Classification"
+                                                                                (keyup)="searchSupClassifiaction(null,$event.target.value)"
+                                                                                [multiple]="true">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="IndustryGroup">Industry Group*</label>
+                                                                    <fa-icon class="float-right text-danger hover"
+                                                                        *ngIf="!!editCompanyAndAccountForm.controls.industryGroup.invalid && (editAccountFormSubmitted || !!editCompanyAndAccountForm.controls.industryGroup.touched)"
+                                                                        [icon]="faInfoCircle" size="1px" placement="top"
+                                                                        ngbTooltip="Required"
+                                                                        tooltipClass="tooltip-background-color">
+                                                                    </fa-icon>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="industryGroups"
+                                                                                bindLabel="industryGroup"
+                                                                                [multiple]="true"
+                                                                                formControlName="industryGroup"
+                                                                                placeholder="Select Industry Group"
+                                                                                id="industry_group"
+                                                                                (keyup)="searchIndustryGroup($event.target.value)">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group box-wrap">
+                                                                    <label for="Type">Type</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select" id="Type"
+                                                                                formControlName="organizationtype">
+                                                                                <option value="Private">Private</option>
+                                                                                <option value="Public">Public</option>
+                                                                                <option value="Government">Government
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Products">Products</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="products"
+                                                                                bindLabel="productName"
+                                                                                [multiple]="true"
+                                                                                formControlName="product"
+                                                                                placeholder="Select Product"
+                                                                                id="Products"
+                                                                                (keyup)="searchProduct($event.target.value)">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Industry">Services*</label>
+                                                                    <fa-icon class="float-right text-danger hover"
+                                                                        *ngIf="!!editCompanyAndAccountForm.controls.proposedservice.invalid && (editAccountFormSubmitted || !!editCompanyAndAccountForm.controls.proposedservice.touched)"
+                                                                        [icon]="faInfoCircle" size="1px" placement="top"
+                                                                        ngbTooltip="Required"
+                                                                        tooltipClass="tooltip-background-color">
+                                                                    </fa-icon>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="services"
+                                                                                bindLabel="serviceName"
+                                                                                [multiple]="true"
+                                                                                formControlName="services"
+                                                                                placeholder="Services" id="industry"
+                                                                                (keyup)="searchServices($event.target.value)">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="toolsAndTech">Tools &
+                                                                        Technologies</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="toolsAndtech"
+                                                                                bindLabel="toolsTechName"
+                                                                                [multiple]="true"
+                                                                                formControlName="toolsAndtechnology"
+                                                                                placeholder="Select Tools & Technologies"
+                                                                                id="toolsAndTech"
+                                                                                (keyup)="searchToolAndTechnology($event.target.value)">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group box-wrap">
+                                                                    <label for="InternalRecruitmentTeam">Internal
+                                                                        Recruitment
+                                                                        Team
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="InternalRecruitmentTeam"
+                                                                                formControlName="internalrecruitmentteam">
+                                                                                <option value="Yes">Yes</option>
+                                                                                <option value="No">No</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group box-wrap">
+                                                                    <label for=">BoardNumber">Website</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="BoardNumbertextbox"
+                                                                                formControlName="websiteurl">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="dx-fieldset">
+                                                                    <div class="dx-field">
+                                                                        <label>Brand</label>
+                                                                        <div class="dx-field-value">
+                                                                            <dx-drop-down-box
+                                                                                [(value)]="brandDataSourceValue"
+                                                                                valueExpr="id"
+                                                                                [displayExpr]="accountBrandExpr"
+                                                                                placeholder="Select a value..."
+                                                                                [showClearButton]="true"
+                                                                                [dataSource]="brandDataSource"
+                                                                                (valueChange)="valueChange()"
+                                                                                formControlName="brand">
+                                                                                <div
+                                                                                    *dxTemplate="let data of 'content'">
+                                                                                    <dx-data-grid
+                                                                                        [dataSource]="brandDataSource"
+                                                                                        [columns]="['brandname']"
+                                                                                        [selection]="{ mode: 'multiple' }"
+                                                                                        [hoverStateEnabled]="true"
+                                                                                        [paging]="{ enabled: true, pageSize: 10 }"
+                                                                                        [filterRow]="{ visible: true }"
+                                                                                        [scrolling]="{ mode: 'infinite' }"
+                                                                                        [height]="345"
+                                                                                        [(selectedRowKeys)]="brandDataSourceValue"
+                                                                                        (onSelectionChanged)="brandSelectionChanges($event)">
+                                                                                    </dx-data-grid>
+                                                                                </div>
+                                                                            </dx-drop-down-box>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Process">Process</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="process"
+                                                                                bindLabel="name" [multiple]="true"
+                                                                                formControlName="process"
+                                                                                placeholder="Select Process"
+                                                                                id="Process"
+                                                                                (keyup)="searchProcess($event.target.value)">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="AccountCategory">Account
+                                                                        Category</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="AccountCategory"
+                                                                                formControlName="accountcategory">
+                                                                                <option value="Yes">Must To Have
+                                                                                </option>
+                                                                                <option value="No">Good To Have</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group ">
+                                                                    <label for="AccountShortName">Account Short
+                                                                        Name</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="AccountShortName"
+                                                                                formControlName="shortname">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="GlobalHuntCompetitors">Global Hunt
+                                                                        Competitors*</label>
+                                                                    <fa-icon class="float-right text-danger hover"
+                                                                        *ngIf="!!editCompanyAndAccountForm.controls.competitors.invalid && (editAccountFormSubmitted || !!editCompanyAndAccountForm.controls.competitors.touched)"
+                                                                        [icon]="faInfoCircle" size="1px" placement="top"
+                                                                        ngbTooltip="Required"
+                                                                        tooltipClass="tooltip-background-color">
+                                                                    </fa-icon>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="ghCompetitor"
+                                                                                bindLabel="agencyname"
+                                                                                formControlName="competitors"
+                                                                                placeholder="Global Hunt Competitors"
+                                                                                [multiple]="true"
+                                                                                id="GlobalHuntCompetitors"
+                                                                                (keyup)="searchGhCompetetor($event.target.value)">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group ">
+                                                                    <label for="AccountPancardNo">Account Pancard
+                                                                        No.*</label>
+                                                                    <span class="text-danger"
+                                                                        *ngIf="!!editCompanyAndAccountForm.controls.pancardno.invalid && (editAccountFormSubmitted || !!editCompanyAndAccountForm.controls.pancardno.touched)">
+                                                                        <fa-icon class="float-right text-danger hover"
+                                                                            *ngIf="!!editCompanyAndAccountForm.controls.pancardno.errors.required"
+                                                                            [icon]="faInfoCircle" size="1px"
+                                                                            placement="top" ngbTooltip="Required"
+                                                                            tooltipClass="tooltip-background-color">
+                                                                        </fa-icon>
+                                                                        <fa-icon class="float-right text-danger hover"
+                                                                            *ngIf="!!editCompanyAndAccountForm.controls.pancardno.errors.pattern"
+                                                                            [icon]="faInfoCircle" size="1px"
+                                                                            placement="top"
+                                                                            ngbTooltip="Please Enter Valid Formate"
+                                                                            tooltipClass="tooltip-background-color">
+                                                                        </fa-icon>
+
+                                                                    </span>
+                                                                    <input type="text" class="form-control"
+                                                                        id="AccountPancardNo"
+                                                                        formControlName="pancardno">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group ">
+                                                                    <label for="Preferences">
+                                                                        Preferences</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="preference"
+                                                                                bindLabel="name" [multiple]="true"
+                                                                                formControlName="preferences"
+                                                                                placeholder="Select Preferences"
+                                                                                (keyup)="searchCompany($event.target.value)"
+                                                                                id="Preferences">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group ">
+                                                                    <label for="Preferences">
+                                                                        Empanelment Cycle</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="input-group">
+                                                                                <input class="form-control"
+                                                                                    placeholder="yyyy-mm-dd" name="dp"
+                                                                                    ngbDatepicker #dfrom="ngbDatepicker"
+                                                                                    formControlName="empanelmentfromdate">
+                                                                                <div class="input-group-append">
+                                                                                    <button
+                                                                                        class="btn btn-outline-secondary calendar"
+                                                                                        (click)="dfrom.toggle()"
+                                                                                        type="button"></button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="input-group">
+                                                                                <input class="form-control"
+                                                                                    placeholder="yyyy-mm-dd" name="dp"
+                                                                                    ngbDatepicker #dTo="ngbDatepicker"
+                                                                                    formControlName="empanelmenttodate">
+                                                                                <div class="input-group-append">
+                                                                                    <button
+                                                                                        class="btn btn-outline-secondary calendar"
+                                                                                        (click)="dTo.toggle()"
+                                                                                        type="button"></button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group ">
+                                                                    <label for="ProposedService">Proposed
+                                                                        Service</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="proposedServices"
+                                                                                bindLabel="serviceText"
+                                                                                class="custom-select"
+                                                                                id="ProposedService"
+                                                                                formControlName="proposedservice"
+                                                                                placeholder="Proposed Service">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- <div class="col-md-4">
+                                                                <div class="form-group ">
+                                                                    <label for="LocationWise">Location BO City Wise</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="" bindLabel="" formControlName="revenuecurrency" placeholder="Location BO City Wise" id="LocationWise">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div> -->
+                                                            <div class="col-md-4">
+                                                                <div class="form-group ">
+                                                                    <label for="Preferences">
+                                                                        Revenue Potential Period</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="input-group">
+                                                                                <input class="form-control"
+                                                                                    placeholder="yyyy-mm-dd" name="dp"
+                                                                                    ngbDatepicker
+                                                                                    #dfrom1="ngbDatepicker"
+                                                                                    formControlName="revenuefromdate">
+                                                                                <div class="input-group-append">
+                                                                                    <button
+                                                                                        class="btn btn-outline-secondary calendar"
+                                                                                        (click)="dfrom1.toggle()"
+                                                                                        type="button"></button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="input-group">
+                                                                                <input class="form-control"
+                                                                                    placeholder="yyyy-mm-dd" name="dp"
+                                                                                    ngbDatepicker #dTo1="ngbDatepicker"
+                                                                                    formControlName="revenuetodate">
+                                                                                <div class="input-group-append">
+                                                                                    <button
+                                                                                        class="btn btn-outline-secondary calendar"
+                                                                                        (click)="dTo1.toggle()"
+                                                                                        type="button"></button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                                <div class="form-group ">
+                                                                    <label for="AnnualRevenuePotential">
+                                                                        Annual Revenue Potential</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="AnnualRevenuePotential"
+                                                                                formControlName="revenue">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group ">
+                                                                    <label for="currency">Currency</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="currency"
+                                                                                bindLabel="currency"
+                                                                                formControlName="revenuecurrency"
+                                                                                (keyup)="currencySearch($event.target.value)"
+                                                                                id="currency"
+                                                                                placeholder="Select Currency">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group ">
+                                                                    <label for="TotalRevenuePotential">
+                                                                        Total Revenue Potential</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="TotalRevenuePotential"
+                                                                                formControlName="totalcontactrevenue"
+                                                                                readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="form-group ">
+                                                                    <label for="TotalRevenuePotential">
+                                                                        Description</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <span
+                                                                                *ngIf="!!editCompanyAndAccountForm.controls.description.invalid && (editAccountFormSubmitted || !!editCompanyAndAccountForm.controls.description.touched)">
+                                                                                <fa-icon
+                                                                                    class="float-right text-danger hover"
+                                                                                    *ngIf="!!editCompanyAndAccountForm.controls.description.errors.maxlength"
+                                                                                    [icon]="faInfoCircle" size="1px"
+                                                                                    placement="top"
+                                                                                    ngbTooltip="Maximum 500 Characters"
+                                                                                    tooltipClass="tooltip-background-color">
+                                                                                </fa-icon>
+                                                                            </span>
+                                                                            <textarea cols="5" rows="2"
+                                                                                class="w-100 px-3 py-3"
+                                                                                formControlName="description"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="float-right">
+                                                                    <a>
+                                                                        <button class="btn btn-primary"
+                                                                            id="btnJobCancel" type="button"
+                                                                            (click)="accountInformation()">
+                                                                            <i class="fa fa-times"></i>Next</button></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </ng-template>
+                                            </ngb-tab>
+                                            <ngb-tab id="tab-selectbyid3">
+                                                <ng-template ngbTabTitle>Qualification History</ng-template>
+                                                <ng-template ngbTabContent>
+                                                    <form [formGroup]="editCompanyAndAccountQuaForm">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="GlobalTurnover">Global Turnover</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="GlobalTurnover"
+                                                                                formControlName="globalturnover">
+                                                                                <option value="0-50">0-50 Cr</option>
+                                                                                <option value="0-100">0-100 Cr</option>
+                                                                                <option value="100-150">100-150 Cr
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="UsingPortals">Using Portals
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="UsingPortals"
+                                                                                formControlName="usingportal">
+                                                                                <option value="Yes">Yes</option>
+                                                                                <option value="No">No</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="StockExchangeListing">Stock Exchange
+                                                                        Listing
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="StockExchangeListing"
+                                                                                formControlName="stockexchangelisting">
+                                                                                <option value="ExchangeNo">Global Top
+                                                                                    STK
+                                                                                    Exchange No</option>
+                                                                                <option value=" ExchangeYes">Top STK
+                                                                                    Exchange
+                                                                                    Yes
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="AccountSegment">Account Segment
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="AccountSegment"
+                                                                                formControlName="segments">
+                                                                                <option value="Indian">Indian</option>
+                                                                                <option value="Global">Global</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="ModeofBusiness">Mode of Business
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="ModeofBusiness"
+                                                                                formControlName="modeofbussiness">
+                                                                                <option value="B2B">B2B</option>
+                                                                                <option value="B2C">B2C</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="ProductServiceCompany">Product/Service
+                                                                        Company
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="ProductServiceCompany"
+                                                                                formControlName="productcompany">
+                                                                                <option value="ProductCompany">Product
+                                                                                    Company</option>
+                                                                                <option value="ServiceCompany">Service
+                                                                                    Company</option>
+                                                                                <option value="ProductServiceCompany">
+                                                                                    Product
+                                                                                    & Service Company</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="CareerSite">Live Position on Career
+                                                                        Site...
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="CareerSite"
+                                                                                formControlName="liveposition">
+                                                                                <option value="Yes">Yes</option>
+                                                                                <option value="No">No</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="RecruitmentTeamSize">Recruitment Team
+                                                                        Size
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="RecruitmentTeamSize"
+                                                                                formControlName="recruitmentteamsize">
+                                                                                <option value="15-30">15-30</option>
+                                                                                <option value="15-30">30-45</option>
+                                                                                <option value="15-30">45-60</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="SrOpeningClosed">Sr. Opening Closed in
+                                                                        Last..
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="SrOpeningClosed"
+                                                                                formControlName="senioopeningclosed">
+                                                                                <option value="0-3">0-3</option>
+                                                                                <option value="3-6">3-6</option>
+                                                                                <option value="6-10">6-10</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group ">
+                                                                    <label for="EmployeeGlobally">No. of Employee
+                                                                        Globally</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="EmployeeGlobally"
+                                                                                formControlName="globallyemployeeno">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group ">
+                                                                    <label for="EmployeeIndia">No. of Employee
+                                                                        India</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="EmployeeIndia"
+                                                                                formControlName="employeeinindia">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group ">
+                                                                    <label for="Founded">Founded</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="Founded"
+                                                                                formControlName="foundedyear">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="GlobalOffices">Global Offices
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="GlobalOffices"
+                                                                                formControlName="globalofficess">
+                                                                                <option value="Yes">Yes</option>
+                                                                                <option value="No">No</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group ">
+                                                                    <label for="TotalMandatesClosed">Total Mandates
+                                                                        Closed</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="TotalMandatesClosed"
+                                                                                formControlName="totalmendateclosed">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="InhouseAttritionRate">Inhouse Attrition
+                                                                        Rate</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="InhouseAttritionRate"
+                                                                                formControlName="inhouseattirationrate">
+                                                                                <option value="0-3"> 0-3 </option>
+                                                                                <option value="3-6"> 3-6 </option>
+                                                                                <option value="6-10"> 6-10 </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Vendorstheywork">No. of Vendors they
+                                                                        work</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="Vendorstheywork"
+                                                                                formControlName="numberofvendor">
+                                                                                <option value="1-5"> 1-5 </option>
+                                                                                <option value="5-9"> 5-9 </option>
+                                                                                <option value="10-14"> 10-14 </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="CultureOfOrganization">Culture Of
+                                                                        Organization</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="CultureOfOrganization"
+                                                                                formControlName="culteroforganization">
+                                                                                <option value="Very Good">Very Good
+                                                                                </option>
+                                                                                <option value="Good">Good</option>
+                                                                                <option value="Average">Average</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label
+                                                                        for="InfrastructureOfOrganization">Infrastructure
+                                                                        Of Organization</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="InfrastructureOfOrganization"
+                                                                                formControlName="infrastructureoforganization">
+                                                                                <option value="State of the art"> State
+                                                                                    of
+                                                                                    the art </option>
+                                                                                <option value="Average"> Average
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="ApplicationTrackingSystem">Application
+                                                                        Tracking
+                                                                        System
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="applicationTraking"
+                                                                                bindLabel="name" bindValue="name"
+                                                                                formControlName="applicationtrackingsystem"
+                                                                                placeholder="Application Tracking"
+                                                                                (keyup)="serchApptraking($event.target.value)"
+                                                                                id="ApplicationTrackingSystem"
+                                                                                placeholder="Application Tracking System">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Noticebuyout">Notice buy out</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="noitceBuyOut"
+                                                                                bindLabel="noticetext"
+                                                                                bindValue="noticetext"
+                                                                                formControlName="noticebyout"
+                                                                                placeholder="Notice Buy Out"
+                                                                                id="Noticebuyout"
+                                                                                (keyup)="searchNoticeBuyNotice($event.target.value)">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="TypeofCompanies">Type of
+                                                                        Companies</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select"
+                                                                                id="TypeofCompanies"
+                                                                                formControlName="typeofcompany">
+                                                                                <option value="DirectHire"> Direct Hire
+                                                                                </option>
+                                                                                <option value="CorptoCorp">W2 Hire/ Corp
+                                                                                    to Corp</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group ">
+                                                                    <label for="Memberof">Member of</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="Memberof"
+                                                                                formControlName="memberof">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group ">
+                                                                    <label for="VendorCode">Vendor Code</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="VendorCode"
+                                                                                formControlName="vendorcode">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group ">
+                                                                    <label for="SICCode">SIC Code</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="SICCode" formControlName="siccode">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Status">Status</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="custom-select" id="Status"
+                                                                                formControlName="status">
+                                                                                <option value="Active">Active</option>
+                                                                                <option value="Inactive">Inactive
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="float-right">
+                                                                    <button (click)="submitEditAccount()"
+                                                                        class="btn btn-primary mr-2 " id="btnJobsubmit"
+                                                                        type="button">
+                                                                        <ng-container
+                                                                            *ngIf="accountSubmitting; else accountSubmittingDone">
+                                                                            <fa-icon [icon]="faSpinner" [pulse]="true">
+                                                                            </fa-icon>
+                                                                            Submitting....
+                                                                        </ng-container>
+                                                                        <ng-template #accountSubmittingDone>
+                                                                            Submit
+                                                                            <fa-icon [icon]="faArrowRight"></fa-icon>
+                                                                        </ng-template>
+                                                                    </button>
+                                                                    <button class="btn btn-success mr-2 "
+                                                                        id="btnJobsubmit" type="button">
+                                                                        <i class="fa fa-check"></i> Reset</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </ng-template>
+                                            </ngb-tab>
+                                            <!-- Other Details tab end -->
+                                            <!-- Search Keywords tab start -->
+                                        </ngb-tabset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                    <!-- Auxiliary Information section start -->
+                    <div class="sidebar-wrapper equal-height-coloum pl-0 pr-0 ">
+                        <div class="bg-white shadow rounded auxiliary-box"
+                            [ngClass]="[divShow?'display-show':'display-hide']">
+                            <!-- close Icon -->
+                            <div class="bg-white shadow rounded mb-5 ">
+                                <div class="p-3 ">
+                                    <div class="card  flex-row-reverse">
+                                        <div class="card-header">
+                                            <span id="close-sidebar" (click)="divShow=false">
+                                                <fa-icon [icon]="faTimesCircle" class="mb-4 pl-0"></fa-icon>
+                                            </span>
+                                            <div class=" text-primary pt-1 pb-0 pl-2">
+                                                <h5 class="text-primary pt-0 pl-0">Auxiliary Information</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

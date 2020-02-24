@@ -1,0 +1,83 @@
+<div class="page-wrapper">
+    <div class="container-fluid pl-0 pr-0">
+        <div class="row page-titles margin-bottom mb-3">
+            <div class="col-md-12 pr-0">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Contact Search</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="row equal-height-cols edit-account lead-wrapper">
+        <div class="lead-wrap d-inline-flex">
+            <div class="details-datagrid pl-3">
+                <div class="bg-white shadow equal-height-coloum rounded">
+                    <div class="pl-3 border-bottom">
+                        <dx-data-grid id="gridContainer" [dataSource]="dataSourceGrid" [showBorders]="true"
+                            [remoteOperations]="true">
+                            <dxo-scrolling columnRenderingMode="virtual"></dxo-scrolling>
+                            <dxi-column dataField="name" caption="Contact Name" cellTemplate="contactTemplate"
+                                [width]="150"></dxi-column>
+                            <div *dxTemplate="let contact of 'contactTemplate'">
+                                <a [routerLink]="['/contact/contact-view']"
+                                    [queryParams]="{contactId:contact.data.id,accountId:contact.data.accountid}">{{contact.text}}</a>
+                            </div>
+                            <dxi-column dataField="accountname" caption="Account Name" [width]="150"></dxi-column>
+                            <dxi-column dataField="createddate" caption="Created Date" dateType="datetime"
+                                format="M/d/yyyy, HH:mm" [width]="150"></dxi-column>
+                            <dxi-column dataField="createdusername" caption="Created UserName" [width]="150">
+                            </dxi-column>
+                            <dxi-column dataField="lastmodifieddate" caption="Modified Date" dateType="datetime"
+                                format="M/d/yyyy, HH:mm" [width]="150"></dxi-column>
+                            <dxi-column dataField="modifiedusername" caption="Modified UserName" [width]="150">
+                            </dxi-column>
+                            <dxi-column dataField="anchorname" caption="BD Anchor" [width]="150"></dxi-column>
+                            <dxi-column dataField="status" caption="Status" [width]="150"></dxi-column>
+                            <dxi-column dataField="officephone" caption="Office Phone" [width]="150"></dxi-column>
+                            <dxi-column dataField="mobilenumber" caption="Mobile" [width]="150"></dxi-column>
+                            <dxi-column dataField="accountName" caption="Account Shot Name" [width]="150"></dxi-column>
+                            <dxi-column dataField="description" caption="Description" [width]="150"></dxi-column>
+                            <dxi-column dataField="designation" caption="Designation" [width]="150"></dxi-column>
+                            <dxi-column dataField="department" caption="Department" [width]="150"></dxi-column>
+                            <dxi-column dataField="empanelmentcycle" caption="Empanelment Cycle" [width]="150">
+                            </dxi-column>
+                            <dxi-column dataField="leadcategory" caption="Lead Category" [width]="150"></dxi-column>
+                            <dxi-column dataField="leadsource" caption="Lead Source" [width]="150"></dxi-column>
+                            <dxi-column dataField="level" caption="Level" [width]="150"></dxi-column>
+                            <dxi-column dataField="personalmailid" caption="Personal Email" [width]="150"></dxi-column>
+                            <dxi-column dataField="personalmobilenumber" caption="Personal Mobile" [width]="150">
+                            </dxi-column>
+                            <dxi-column dataField="qwalificationweightage" caption="Account Qualification Weightage"
+                                [width]="150"></dxi-column>
+                            <dxi-column dataField="contactqualificationweightage"
+                                caption="Contact Qualification Weightage" [width]="150"></dxi-column>
+                            <dxi-column dataField="recruitmentteam" caption="Recruitment Team" [width]="150">
+                            </dxi-column>
+                            <dxi-column dataField="referedby" caption="Referred By" [width]="150"></dxi-column>
+                            <dxi-column dataField="reporttoname" caption="Report To" [width]="150"></dxi-column>
+                            <dxi-column dataField="industriestext" caption="Contact Industry" [width]="150">
+                            </dxi-column>
+                            <dxi-column dataField="industrygrouptext" caption="Contact Industry Group" [width]="150">
+                            </dxi-column>
+                            <dxi-column dataField="accountindustry" caption="Account Industry" [width]="150">
+                            </dxi-column>
+                            <dxi-column dataField="leadanchor" caption="Lead Anchor" [width]="150"></dxi-column>
+                            <dxi-column dataField="revenuepotential" caption="Revenue Potential" [width]="150">
+                            </dxi-column>
+                            <dxi-column dataField="revenuepotentialinr" caption="Revenue Potential Inr" [width]="150">
+                            </dxi-column>
+                            <dxi-column dataField="pancardnumber" caption="Pancard Number" [width]="150"></dxi-column>
+                            <dxi-column dataField="personaldetail" caption="Personal Detail" [width]="150"></dxi-column>
+                            <dxi-column dataField="ofcphncountrycode" caption="Office Country Code" [width]="150">
+                            </dxi-column>
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10,15, 20]"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

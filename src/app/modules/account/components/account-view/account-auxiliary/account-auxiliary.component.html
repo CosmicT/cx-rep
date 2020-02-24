@@ -1,0 +1,460 @@
+<!-- Auxiliary Information section start -->
+
+<div class="basic-information-list">
+    <!-- <ngb-accordion #acc="ngbAccordion">
+        <ngb-panel id="toggle-1" title="Preference Account">
+            <ng-template ngbPanelContent>
+
+                <ul>
+                    <li></li>
+
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-3" title="Industry">
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let indu of industry">
+                    <li> {{indu.industryname}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-4" title="Industry Classification">
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let class of classification ">
+                    <li>{{class.classificationname}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-5" title="Industry Sub Classification">
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let sub of subClassification">
+                    <li>{{sub.subclassificationname}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-6" title="Industry Super Classification">
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let super of superClassification">
+                    <li>{{super.superclassificationname}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-7" title="Products">
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let pro of product">
+                    <li>{{pro.productname}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-8" title="Tools & Technologies">
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let tool of toolsAndTechnology">
+                    <li>{{tool.tooltechname}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-9" title="Services">
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let service of services">
+                    <li>{{service.servicename}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-10" title="Industry Group">
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let group of industryGroup">
+                    <li>{{group.industrygroupname}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-11" title="Gh Competitors ">
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let ghCompetitor of competitor">
+                    <li>{{ghCompetitor.agencyname}} </li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-12" title="Process">
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let proces of process">
+                    <li>{{proces.processname}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-13" title="Brand">
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let brand of brands">
+                    <li>{{brand.brandname}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-14" title=" Alias">
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let aalia of alias">
+                    <li>{{aalia.aliseaccountname}}</li>
+
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-15" title="No Poach">
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let poach of noPoach">
+                    <li>{{poach.name}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-16" title="Blacklist">
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let black of blackList">
+                    <li>{{black.name}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion> -->
+
+    <ngb-accordion [closeOthers]="true">
+        <ngb-panel id="static-1">
+            <ng-template ngbPanelTitle>
+                <span> <b>Preference Account</b></span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left"
+                            (keyup)="accountPreference($event.target.value)" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="static-2">
+            <ng-template ngbPanelTitle>
+                <span> <b>Industry</b></span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" id="Referredby"
+                            (keyup)="accountIndustry($event.target.value)">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let indu of industry">
+                    <li> {{indu.industryname}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="static-3">
+            <ng-template ngbPanelTitle>
+                <span> <b>Industry Classification</b></span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" id="Referredby"
+                            (keyup)="accountClassification($event.target.value)">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let class of classification ">
+                    <li>{{class.classificationname}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="static-4">
+            <ng-template ngbPanelTitle>
+                <span><b>Industry Sub Classification</b></span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left"
+                            (keyup)="accountSubClassification($event.target.value)" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let sub of subClassification ">
+                    <li>{{sub.subclassificationname}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+
+        <ngb-panel id="static-5">
+            <ng-template ngbPanelTitle>
+                <span> <b>Industry Super Classification</b></span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left"
+                            (keyup)="accountSuperClassification($event.target.value)" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let super of superClassification">
+                    <li>{{super.superclassificationname}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="static-6">
+            <ng-template ngbPanelTitle>
+                <span> <b>Products</b></span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left"
+                            (keyup)="accountProduct($event.target.value)" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let pro of product">
+                    <li>{{pro.productname}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="static-7">
+            <ng-template ngbPanelTitle>
+                <span> <b>Tools & Technologies</b> </span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left"
+                            (keyup)="accountToolsAndTechnology($event.target.value)" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let tool of toolsAndTechnology">
+                    <li>{{tool.tooltechname}}</li>
+                </ul>
+
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="static-8">
+            <ng-template ngbPanelTitle>
+                <span><b>Services</b></span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left"
+                            (keyup)="accountService($event.target.value)" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let service of services">
+                    <li>{{service.servicename}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+
+        <ngb-panel id="static-9">
+            <ng-template ngbPanelTitle>
+                <span><b>Industry Group</b></span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left"
+                            (keyup)="accountIndustryGroup($event.target.value)" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let group of industryGroup">
+                    <li>{{group.industrygroupname}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="static-10">
+            <ng-template ngbPanelTitle>
+                <span><b>Gh Competitors</b></span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left"
+                            (keyup)="accountCompetitors($event.target.value)" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let ghCompetitor of competitor">
+                    <li>{{ghCompetitor.agencyname}} </li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+
+        <ngb-panel id="static-11">
+            <ng-template ngbPanelTitle>
+                <span><b>Process</b></span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left"
+                            (keyup)="accountProcess($event.target.value)" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let proces of process">
+                    <li>{{proces.processname}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+
+        <ngb-panel id="toggle-12">
+            <ng-template ngbPanelTitle>
+                <span> <b>Brand</b></span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" (keyup)="accountBrand($event.target.value)"
+                            id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let brand of brands">
+                    <li>{{brand.brandname}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-13">
+            <ng-template ngbPanelTitle>
+                <span> <b>Alias</b></span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left" (keyup)="accountAlias($event.target.value)"
+                            id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let aalia of alias">
+                    <li>{{aalia.aliseaccountname}}</li>
+
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-14">
+            <ng-template ngbPanelTitle>
+                <span> <b>No Poach</b></span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left"
+                            (keyup)="accountNoPoach($event.target.value)" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let poach of noPoach">
+                    <li>{{poach.name}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel id="toggle-1">
+            <ng-template ngbPanelTitle>
+                <span> <b>Blacklist</b></span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-md-12 text-right search-box-account my-1">
+                        <input type="text" class="form-control  float-left"
+                            (keyup)="accountBlackList($event.target.value)" id="Referredby">
+                        <fa-icon [icon]="faSearch" class="mb-4 pl-0"></fa-icon>
+                    </div>
+                </div>
+                <ul *ngFor="let black of blackList">
+                    <li>{{black.name}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+
+    </ngb-accordion>
+</div>

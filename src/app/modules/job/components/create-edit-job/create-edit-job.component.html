@@ -1,0 +1,1775 @@
+<div class="page-wrapper">
+    <div class="container-fluid pl-0 pr-0 ">
+        <div class="row page-titles margin-bottom mb-3">
+            <div class="col-sm-12 pr-0">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Create Job</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row  equal-height-cols" [ngClass]="[divShow? 'toggled':'']">
+            <!-- collapse Icon -->
+            <a id="show-sidebar" class="btn btn-sm btn-dark" (click)="divShow=!divShow"><span
+                    class="verticle-text">Auxiliary</span></a>
+            <!-- create lead form section start -->
+            <div class="lead-wrap job-details">
+                <div class="details-datagrid pl-3">
+                    <div class="bg-white shadow equal-height-coloum rounded mb-5">
+                        <div class="p-3">
+                            <div class="accordion" id="accordionSearch">
+                                <div class="card p-3 flex-row-reverse">
+                                    <div class="card-header compInfoSearch-header float-right" id="headingOne">
+                                        <ngb-tabset #t="ngbTabset">
+                                            <!-- Job Details tab start -->
+                                            <ngb-tab id="tab-selectbyid1" title="Job Details">
+                                                <ng-template ngbTabContent class="bg-light">
+                                                    <form [formGroup]="jobDetailsForm">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="dx-fieldset inner-client-wrap">
+                                                                    <div class="dx-field">
+                                                                        <div class="client-wrap ">
+                                                                            <label>Client Name</label>
+                                                                            <div
+                                                                                class="custom-control custom-checkbox col-md-8 float-right text-right">
+                                                                                <input type="checkbox"
+                                                                                    class="custom-control-input"
+                                                                                    id="customCheck" name="example1"
+                                                                                    formControlName="check"
+                                                                                    (click)="hideshow()">
+                                                                                <label class="custom-control-label"
+                                                                                    for="customCheck">Check
+                                                                                    MSP Client </label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="dx-field-value">
+                                                                            <dx-drop-down-box [(value)]="gridBoxValue"
+                                                                                valueExpr="id"
+                                                                                [displayExpr]="grid_BoxdisplayClientName"
+                                                                                placeholder="Select a value..."
+                                                                                [showClearButton]="true"
+                                                                                [dataSource]="gridDataSourceClient"
+                                                                                formControlName="clientName">
+                                                                                <div
+                                                                                    *dxTemplate="let data of 'content'">
+                                                                                    <dx-data-grid
+                                                                                        [dataSource]="gridDataSourceClient"
+                                                                                        [columns]="['name', 'fulladdress', 'qualificationweightage']"
+                                                                                        [selection]="{ mode: 'single' }"
+                                                                                        [hoverStateEnabled]="true"
+                                                                                        [paging]="{ enabled: true, pageSize: 10 }"
+                                                                                        [filterRow]="{ visible: true }"
+                                                                                        [scrolling]="{ mode: 'infinite' }"
+                                                                                        [height]="345"
+                                                                                        [(selectedRowKeys)]="gridBoxValue"
+                                                                                        (onSelectionChanged)="clientNameSelection($event)">
+                                                                                    </dx-data-grid>
+                                                                                </div>
+                                                                            </dx-drop-down-box>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="dx-fieldset">
+                                                                    <div class="dx-field">
+                                                                        <div class="dx-field-label">HR Requester</div>
+                                                                        <div class="dx-field-value">
+                                                                            <dx-drop-down-box [(value)]="gridBoxValue1"
+                                                                                valueExpr="id"
+                                                                                [displayExpr]="gridBoxHrRequester"
+                                                                                placeholder="Select a value..."
+                                                                                [showClearButton]="true"
+                                                                                [dataSource]="gridDataSourceHr"
+                                                                                formControlName="hrRequester">
+                                                                                <div
+                                                                                    *dxTemplate="let data of 'content'">
+                                                                                    <dx-data-grid
+                                                                                        [dataSource]="gridDataSourceHr"
+                                                                                        [columns]="['name', 'accountname', 'createddate']"
+                                                                                        [selection]="{ mode: 'single' }"
+                                                                                        [hoverStateEnabled]="true"
+                                                                                        [paging]="{ enabled: true, pageSize: 10 }"
+                                                                                        [filterRow]="{ visible: true }"
+                                                                                        [scrolling]="{ mode: 'infinite' }"
+                                                                                        [height]="345"
+                                                                                        [(selectedRowKeys)]="gridBoxValue1"
+                                                                                        (onSelectionChanged)="hrRequesterSelection($event)">
+                                                                                    </dx-data-grid>
+                                                                                </div>
+                                                                            </dx-drop-down-box>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="dx-fieldset">
+                                                                    <div class="dx-field">
+                                                                        <div class="dx-field-label">HM Requester</div>
+                                                                        <div class="dx-field-value">
+                                                                            <dx-drop-down-box [(value)]="gridBoxValue2"
+                                                                                valueExpr="id"
+                                                                                [displayExpr]="gridBoxHmRequester"
+                                                                                placeholder="Select a value..."
+                                                                                [showClearButton]="true"
+                                                                                [dataSource]="gridDataSourceHm"
+                                                                                formControlName="hmRequester">
+                                                                                <div
+                                                                                    *dxTemplate="let data of 'content'">
+                                                                                    <dx-data-grid
+                                                                                        [dataSource]="gridDataSourceHm"
+                                                                                        [columns]="['name', 'accountname', 'createddate']"
+                                                                                        [selection]="{ mode: 'single' }"
+                                                                                        [hoverStateEnabled]="true"
+                                                                                        [paging]="{ enabled: true, pageSize: 10 }"
+                                                                                        [filterRow]="{ visible: true }"
+                                                                                        [scrolling]="{ mode: 'infinite' }"
+                                                                                        [height]="345"
+                                                                                        [(selectedRowKeys)]="gridBoxValue2"
+                                                                                        (onSelectionChanged)="hmRequesterSelection($event)">
+                                                                                    </dx-data-grid>
+                                                                                </div>
+                                                                            </dx-drop-down-box>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div *ngIf="checked" class="row col-md-12">
+                                                                <div class="col-md-4">
+                                                                    <div class="dx-fieldset">
+                                                                        <div class="dx-field">
+                                                                            <div class="client-wrap inner-client-wrap">
+                                                                                <div class="form-group">
+                                                                                    <label class="mt-2">MSP Client
+                                                                                    </label>
+                                                                                    <div
+                                                                                        class="custom-control custom-checkbox col-md-8 float-right text-right">
+                                                                                        <input type="checkbox"
+                                                                                            class="custom-control-input"
+                                                                                            id="MSPContactCheck"
+                                                                                            name="example1"
+                                                                                            formControlName="checkClient">
+                                                                                        <label
+                                                                                            class="custom-control-label"
+                                                                                            for="MSPContactCheck">Check
+                                                                                            Only MSP Contact
+                                                                                        </label>
+                                                                                    </div>
+                                                                                    <div class="dx-field-value">
+                                                                                        <dx-drop-down-box
+                                                                                            [(value)]="gridBoxValue3"
+                                                                                            valueExpr="id"
+                                                                                            [displayExpr]="grid_BoxdisplayClientName"
+                                                                                            placeholder="Select a value..."
+                                                                                            [showClearButton]="true"
+                                                                                            [dataSource]="gridDataSource"
+                                                                                            formControlName="mspClient">
+                                                                                            <div
+                                                                                                *dxTemplate="let data of 'content'">
+                                                                                                <dx-data-grid
+                                                                                                    [dataSource]="gridDataSource"
+                                                                                                    [columns]="['name', 'fulladdress']"
+                                                                                                    [selection]="{ mode: 'single' }"
+                                                                                                    [hoverStateEnabled]="true"
+                                                                                                    [paging]="{ enabled: true, pageSize: 10 }"
+                                                                                                    [filterRow]="{ visible: true }"
+                                                                                                    [scrolling]="{ mode: 'infinite' }"
+                                                                                                    [height]="345"
+                                                                                                    [(selectedRowKeys)]="gridBoxValue3"
+                                                                                                    (onSelectionChanged)="mspClientSelection($event)">
+                                                                                                </dx-data-grid>
+                                                                                            </div>
+                                                                                        </dx-drop-down-box>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-6">
+                                                                            <label for="staff">Primary Account</label>
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <select
+                                                                                        formControlName="primaryAccount">
+                                                                                        <option value="msp" selected>
+                                                                                            MSP
+                                                                                        </option>
+                                                                                        <option value="client">Client
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="jobmname">Job Name</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="jobmname" formControlName="jobName">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="jobcode">Client Job Code</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="jobcode"
+                                                                                formControlName="clientJobCode">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="staff">Staffing Title</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="form-control"
+                                                                                formControlName="staffTitle">
+                                                                                <option value="Yet To Define" selected>
+                                                                                    Yet
+                                                                                    To Define</option>
+                                                                                <option value="Staffing">Staffing
+                                                                                </option>
+                                                                                <option value="Permanent">Permanent
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="dx-fieldset">
+                                                                                <div class="dx-field">
+                                                                                    <div class="dx-field-label">
+                                                                                        Job Grade</div>
+                                                                                    <div class="dx-field-value">
+                                                                                        <dx-drop-down-box
+                                                                                            [(value)]="gridBoxValue4"
+                                                                                            valueExpr="id"
+                                                                                            [displayExpr]="gridBoxJobGrade"
+                                                                                            placeholder="Select a value..."
+                                                                                            [showClearButton]="true"
+                                                                                            [dataSource]="gridDataSourceJobGrade"
+                                                                                            formControlName="jobGrade">
+                                                                                            <div
+                                                                                                *dxTemplate="let data of 'content'">
+                                                                                                <dx-data-grid
+                                                                                                    [dataSource]="gridDataSourceJobGrade"
+                                                                                                    [columns]="['jobgrade', 'ctccurrency', 'expfrom','expto']"
+                                                                                                    [selection]="{ mode: 'multiple' }"
+                                                                                                    [hoverStateEnabled]="true"
+                                                                                                    [paging]="{ enabled: true, pageSize: 10 }"
+                                                                                                    [filterRow]="{ visible: true }"
+                                                                                                    [scrolling]="{ mode: 'infinite' }"
+                                                                                                    [height]="345"
+                                                                                                    [(selectedRowKeys)]="gridBoxValue4"
+                                                                                                    (onSelectionChanged)="jobGradeSelection($event)">
+                                                                                                </dx-data-grid>
+                                                                                            </div>
+                                                                                        </dx-drop-down-box>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Jobgrade">CTC Range</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="custom-4">
+                                                                                <input type="text" class="form-control"
+                                                                                    id="ctcfrom"
+                                                                                    formControlName="ctcRange">
+                                                                            </div>
+                                                                            <div class="custom-4">
+                                                                                <input class="form-control"
+                                                                                    placeholder="From" id="ctcfrom"
+                                                                                    formControlName="ctcFrom">
+                                                                            </div>
+                                                                            <div class="custom-4">
+                                                                                <input class="form-control"
+                                                                                    placeholder="to" id="ctcto"
+                                                                                    formControlName="ctcTo">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="fromINR">CTC INR</label>
+                                                                            <input type="text" class="form-control"
+                                                                                placeholder="From" id="fromINR"
+                                                                                formControlName="ctcFromInr">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="toINR"></label>
+                                                                            <input type="text" class="form-control"
+                                                                                placeholder="to" id="toINR"
+                                                                                formControlName="ctcToInr">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="Experience">Experience</label>
+                                                                            <input type="text" class="form-control"
+                                                                                placeholder="From" id="Experience"
+                                                                                formControlName="experience">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="Exper"></label>
+                                                                            <input type="text" class="form-control"
+                                                                                placeholder="To" id="Exper"
+                                                                                formControlName="exp">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Opening">No. of Opening</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="Opening" min="1" max="5"
+                                                                        formControlName="noOfOpening">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Opening">Industry Group</label>
+                                                                    <ng-select [items]="industryGroup"
+                                                                        bindLabel="industrygroupname"
+                                                                        placeholder="Industry Group"
+                                                                        formControlName="industryGroup"
+                                                                        (keyup)="searchIndustryGroup($event.target.value)">
+                                                                    </ng-select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="jobfunct">Job Functional Group</label>
+                                                                    <ng-select [items]="functional" bindLabel="name"
+                                                                        placeholder="Select Job Functional Group"
+                                                                        formControlName="jobFunctionalGroup"
+                                                                        (keyup)="getJobFunctionalGroup($event.target.value)">
+                                                                    </ng-select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="jobfunct">Job Type</label>
+                                                                    <select class="form-control"
+                                                                        formControlName="jobType">
+                                                                        <option value="Yet To Define" selected3> Yet To
+                                                                            Define</option>
+                                                                        <option value="Cold Search">Cold Search</option>
+                                                                        <option value="Contigency">Contigency</option>
+                                                                        <option value="Exclusive">Exclusive</option>
+                                                                        <option value="On Going Recruitment Process">On
+                                                                            Going Recruitment Process</option>
+                                                                        <option value="Recruitment Drive">Recruitment
+                                                                            Drive</option>
+                                                                        <option value="Retainer">Retainer</option>
+                                                                        <option value="RPO">RPO</option>
+                                                                        <option value="Sample Resume">Sample Resume
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="DriveStartDate">Drive Start Date
+                                                                    </label>
+                                                                    <input formControlName="driveStartDate">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Grade">Grade
+                                                                    </label>
+                                                                    <select class="form-control"
+                                                                        formControlName="grade">
+                                                                        <option value="ASM">ASM</option>
+                                                                        <option value="CEO">CEO</option>
+                                                                        <option value="DGM">DGM</option>
+                                                                        <option value="Lead Developers" selected>Lead
+                                                                            Developer</option>
+                                                                        <option value="Manager">Manager</option>
+                                                                        <option value="Regional Head">Regional Head
+                                                                        </option>
+                                                                        <option value="Senior Associate">Senior
+                                                                            Associate</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Priority">Priority
+                                                                    </label>
+                                                                    <select class="form-control"
+                                                                        formControlName="priority">
+                                                                        <option value="Critical" selected>Critical
+                                                                        </option>
+                                                                        <option value="High">High</option>
+                                                                        <option value="Low">Low</option>
+                                                                        <option value="Critical">Normal</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="dx-fieldset">
+                                                                    <div class="dx-field">
+                                                                        <label for="Priority"
+                                                                            class="multi-select">Location
+                                                                        </label>
+                                                                        <div class="dx-field-value">
+                                                                            <dx-drop-down-box [(value)]="gridBoxValue5"
+                                                                                valueExpr="id"
+                                                                                [displayExpr]="gridBoxDisplaylocation"
+                                                                                placeholder="Select a value..."
+                                                                                [showClearButton]="true"
+                                                                                [dataSource]="gridDataSourcelocation"
+                                                                                formControlName="location">
+                                                                                <div
+                                                                                    *dxTemplate="let data of 'content'">
+                                                                                    <dx-data-grid
+                                                                                        [dataSource]="gridDataSourcelocation"
+                                                                                        [columns]="['fulladdress', 'cityname', 'statename']"
+                                                                                        [selection]="{ mode: 'multiple' }"
+                                                                                        [hoverStateEnabled]="true"
+                                                                                        [paging]="{ enabled: true, pageSize: 10 }"
+                                                                                        [filterRow]="{ visible: true }"
+                                                                                        [scrolling]="{ mode: 'infinite' }"
+                                                                                        [height]="345"
+                                                                                        [(selectedRowKeys)]="gridBoxValue5"
+                                                                                        (onSelectionChanged)="locationSelection($event)">
+                                                                                    </dx-data-grid>
+                                                                                </div>
+                                                                            </dx-drop-down-box>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Interview">Interview Address
+                                                                    </label>
+                                                                    <ng-select [items]="locationData"
+                                                                        bindLabel="fulladdress"
+                                                                        placeholder="Select Interview Address"
+                                                                        formControlName="interviewAddress">
+                                                                    </ng-select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group1">
+                                                                    <label for="HoursDays">Working Hours/Days
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <select class="form-control"
+                                                                                formControlName="workingDays">
+                                                                                <option value="8 hour" selected>8 hour
+                                                                                </option>
+                                                                                <option value="9 hour">9 hour</option>
+                                                                                <option value="12 hour">12 hour</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <select class="form-control"
+                                                                                formControlName="workingHours">
+                                                                                <option value="5 Days" selected>5 Days
+                                                                                </option>
+                                                                                <option value="6 Days">6 Days</option>
+                                                                                <option value="7 Days">7 Days</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="WorkingShifts">Working Shifts
+                                                                    </label>
+                                                                    <select class="form-control"
+                                                                        formControlName="WorkingShift">
+                                                                        <option value="Yet To Define" selected>Yet To
+                                                                            Define</option>
+                                                                        <option value="Morning">Morning</option>
+                                                                        <option value="Evening">Evening</option>
+                                                                        <option value="Night">Night</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="IndustrialDesignation">Industrial
+                                                                        Designation
+                                                                        Level
+                                                                    </label>
+                                                                    <input type="text" class="form-control"
+                                                                        id="IndustrialDesignation"
+                                                                        formControlName="industrialDesignation">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Assignment">Type of Assignment (For US
+                                                                        Staffing)
+                                                                    </label>
+                                                                    <select class="form-control"
+                                                                        formControlName="typeOfAssignment">
+                                                                        <option value="Yet To Define" selected>Yet To
+                                                                            Define</option>
+                                                                        <option value="W2">W2</option>
+                                                                        <option value="C2C">C2C</option>
+                                                                        <option value="1099">1099</option>
+                                                                        <option value="Direct Hire">Direct Hire</option>
+                                                                        <option value="Offshore RPO">Offshore RPO
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="JobOrder">Job Order (For US Staffing)
+                                                                    </label>
+                                                                    <select class="form-control"
+                                                                        formControlName="jobOrder">
+                                                                        <option value="Yet To Define" selected>Yet To
+                                                                            Define</option>
+                                                                        <option value="W2">W2</option>
+                                                                        <option value="C2C">C2C</option>
+                                                                        <option value="Direct Hire">Direct Hire</option>
+                                                                        <option value="Offshore RPO">Offshore RPO
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="ProjectDuration">Project Duration
+                                                                    </label>
+                                                                    <select class="form-control"
+                                                                        formControlName="projectDuration">
+                                                                        <option value="Yet To Define" selected>Yet To
+                                                                            Define</option>
+                                                                        <option value="3 months" selected>3 months
+                                                                        </option>
+                                                                        <option value="6 months" selected>6 months
+                                                                        </option>
+                                                                        <option value="1 year" selected>1 year</option>
+                                                                        <option value="1 year +" selected>1 year +
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="DeliveryAnchor">Delivery Anchor
+                                                                    </label>
+                                                                    <input formControlName="deliveryAnchor">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="BDAnchor">BD Anchor
+                                                                    </label>
+                                                                    <input type="text" class="form-control"
+                                                                        id="BD Anchor" formControlName="bdAnchor">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="Candidate">Candidate Age</label>
+                                                                            <input type="number" class="form-control"
+                                                                                id="Candidate" min="1" max="5"
+                                                                                formControlName="candidateAge">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="Candidate"></label>
+                                                                            <input type="number" class="form-control"
+                                                                                id="" min="1" max="5"
+                                                                                formControlName="candidate">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="DeliveryAnchor">Position Type
+                                                                    </label>
+                                                                    <select class="form-control"
+                                                                        formControlName="positionType">
+                                                                        <option value="Yet To Define" selected>Yet To
+                                                                            Define</option>
+                                                                        <option value="Confidential">Confidential
+                                                                        </option>
+                                                                        <option value="Non-Confidential" selected>
+                                                                            Non-Confidential</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="DeliveryAnchor">Position Status
+                                                                    </label>
+                                                                    <select class="form-control"
+                                                                        formControlName="positionStatus">
+                                                                        <option value="Active" selected>Active</option>
+                                                                        <option value="Inactive(sourcing hold/stop)">
+                                                                            Inactive(sourcing
+                                                                            hold/stop)
+                                                                        </option>
+                                                                        <option value="Hold">Hold</option>
+                                                                        <option value="Closed">Closed</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="SourcingStatus">Sourcing Status
+                                                                    </label>
+                                                                    <select class="form-control"
+                                                                        formControlName="sourcingStatus">
+                                                                        <option value="Open" selected>Open</option>
+                                                                        <option value="OnHold">OnHold</option>
+                                                                        <option value="Closed">Closed</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="SourceDifficulty">Source Difficulty
+                                                                    </label>
+                                                                    <select class="form-control"
+                                                                        formControlName="sourceDifficulty">
+                                                                        <option value="High">High</option>
+                                                                        <option value="Inactive(sourcing hold/stop)">
+                                                                            Inactive(sourcing
+                                                                            hold/stop)
+                                                                        </option>
+                                                                        <option value="Low">Low</option>
+                                                                        <option value="Medium" selected>Medium</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="BusinessStructure">Business Structure
+                                                                    </label>
+                                                                    <ng-select [items]="bussinessStructure"
+                                                                        bindLabel="division"
+                                                                        formControlName="businessStructure"
+                                                                        placeholder="Select BusinessStructure">
+                                                                    </ng-select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Gender">Gender
+                                                                    </label>
+                                                                    <select class="form-control" id="Gender"
+                                                                        formControlName="gender">
+                                                                        <option value="Male" selected>Male</option>
+                                                                        <option value="Female">Female</option>
+                                                                        <option value="LGBT">LGBT</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="PositionKey">Position Key Notes
+                                                                    </label>
+                                                                    <input type="text" class="form-control"
+                                                                        id="PositionKey"
+                                                                        formControlName="positionKeyNotes">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="float-right">
+
+                                                                    <button class="btn btn-primary" (click)="addJob()"
+                                                                        type="button" id="btnJobCancel"><i
+                                                                            class="fa fa-times"></i>
+                                                                        Next</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </ng-template>
+                                            </ngb-tab>
+                                            <!-- Job Details tab start -->
+                                            <!-- Industry Details tab start -->
+                                            <ngb-tab id="tab-selectbyid2">
+                                                <ng-template ngbTabTitle>Industry Details</ng-template>
+                                                <ng-template ngbTabContent class="bg-light">
+                                                    <form [formGroup]="industryDetailsForm">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Industry">Industry</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="industry"
+                                                                                bindLabel="industryname"
+                                                                                placeholder="Select Industry"
+                                                                                id="industry" formControlName="industry"
+                                                                                [multiple]="true"
+                                                                                (keyup)="searchIndustry($event.target.value)">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="jobcode">
+                                                                        Industry Classification</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select
+                                                                                [items]="allIndustryClassification"
+                                                                                bindLabel="classificationname"
+                                                                                formControlName="industryClassification"
+                                                                                placeholder="Select Industry Classification"
+                                                                                [multiple]="true"
+                                                                                (keyup)="searchIndustryClassification($event.target.value)">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="jobcode">Industry Sub Classification
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="subClassification"
+                                                                                bindLabel="subclassificationname"
+                                                                                placeholder="Select SubClassification"
+                                                                                formControlName="industrySub"
+                                                                                [multiple]="true"
+                                                                                (keyup)="searchIndustrySubClassification($event.target.value)">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="IndustrySuperClassification
+                                                                    ">Industry
+                                                                        Super Classification
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="industrySuper"
+                                                                                bindLabel="superclassificationname"
+                                                                                placeholder="Select Super Classification"
+                                                                                formControlName="industrySuper"
+                                                                                [multiple]="true"
+                                                                                (keyup)="searchIndustrySuperClassification($event.target.value)">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="FunctionalArea"> Functional Area</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="functionalArea"
+                                                                                bindLabel="name"
+                                                                                placeholder="Select Functional Area"
+                                                                                formControlName="functionalArea"
+                                                                                [multiple]="true"
+                                                                                (keyup)="searchFunctioanlArea($event.target.value)">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="SubFunctionalArea">Sub Functional Area
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="subFunctional"
+                                                                                bindLabel="name"
+                                                                                placeholder="Select Sub Functional Area"
+                                                                                formControlName="subFunctionalArea"
+                                                                                [multiple]="true">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="FunctionalArea">Super Functional Area
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="superFunctional"
+                                                                                placeholder="Select Super Functional Area"
+                                                                                bindLabel="supfunctionalname"
+                                                                                formControlName="supFunctionalArea"
+                                                                                [multiple]="true">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="jobcode">
+                                                                        Product</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="product"
+                                                                                bindLabel="productname"
+                                                                                placeholder="Select Product"
+                                                                                formControlName="product"
+                                                                                [multiple]="true"
+                                                                                (keyup)="searchProduct($event.target.value)">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Services">Services</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="service"
+                                                                                bindLabel="servicename"
+                                                                                placeholder="Select Service"
+                                                                                formControlName="services"
+                                                                                [multiple]="true"
+                                                                                (keyup)="searchServices($event.target.value)">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="ToolsTechnologies">Tools & Technologies
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="toolsAndTechnology"
+                                                                                bindLabel="tooltechname"
+                                                                                placeholder="Select Tools&Technologies"
+                                                                                formControlName="toolsTechnologies"
+                                                                                [multiple]="true">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="TargetEmployer">
+                                                                        Target Employer</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="targetEmp"
+                                                                                bindLabel="name"
+                                                                                placeholder="Select Target Employer"
+                                                                                formControlName="targetEmployer"
+                                                                                [multiple]="true">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="IndirectTarget">Indirect Target Employer
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="indirecttarget"
+                                                                                bindLabel="username"
+                                                                                placeholder="Select Indirect Target"
+                                                                                formControlName="indirectTarget"
+                                                                                [multiple]="true"
+                                                                                (keyup)="getIndirectTarget($event.target.value)">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="ClientPreferedCompanies">Client Prefered
+                                                                        Companies
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="" bindLabel="name"
+                                                                                placeholder="Select Client Prefered Companies"
+                                                                                formControlName="clientPrefered"
+                                                                                [multiple]="true">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="float-right">
+
+                                                                    <button class="btn btn-primary" type="button"
+                                                                        id="btnJobCancel"><i class="fa fa-times"></i>
+                                                                        Next</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </ng-template>
+                                            </ngb-tab>
+
+                                            <!-- Industry Details tab end -->
+                                            <!-- Other Details tab start -->
+
+                                            <ngb-tab id="tab-selectbyid3">
+                                                <ng-template ngbTabTitle>Other Details</ng-template>
+                                                <ng-template ngbTabContent>
+                                                    <form [formGroup]="otherDetailsForm">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="ClientSheet">Client Sheet</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select formControlName="clientSheet">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="ClientPortalID">
+                                                                        Client Portal ID</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="ClientPortalID"
+                                                                                formControlName="clientportalId">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="MailBodyTemplate">Mail Body Template
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select [items]="templateMailBody"
+                                                                                bindLabel="templatename"
+                                                                                formControlName="mailTemplate"
+                                                                                id="MailBodyTemplate"
+                                                                                placeholder="Mail Body Template"
+                                                                                (keyup)="mailBodyTemplate($event.target.value)">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="RecruitmentMailId
+                                                                            ">Recruitment
+                                                                        Mail Id
+                                                                    </label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <select class="form-control"
+                                                                                formControlName="recruitmentMail">
+                                                                                <option
+                                                                                    value="recruitment1@globalhunt.in"
+                                                                                    selected>recruitment1@globalhunt.in
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="PurchaseOrder">Purchase Order</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="PurchaseOrder"
+                                                                                formControlName="purchaseOrder">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Entity">Entity</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="Entity" formControlName="entity">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="ClientCC" placeholder="Client CC">Client
+                                                                        CC</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select formControlName="clientCc"
+                                                                                placeholder="Client BCC">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="ClientBCC">
+                                                                        Client BCC</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ng-select formControlName="clientBcc">
+                                                                            </ng-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="Services">GH CC</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="dx-field-value">
+                                                                                <dx-drop-down-box
+                                                                                    [(value)]="gridBoxValue"
+                                                                                    valueExpr="id"
+                                                                                    [displayExpr]="gHCCgridBox_displayExpr"
+                                                                                    placeholder="Select a value..."
+                                                                                    [showClearButton]="true"
+                                                                                    [dataSource]="gHCCgridDataSource"
+                                                                                    formControlName="ghCc">
+                                                                                    <div
+                                                                                        *dxTemplate="let data of 'content'">
+                                                                                        <dx-data-grid
+                                                                                            [dataSource]="gHCCgridDataSource"
+                                                                                            [columns]="['username', 'emailid']"
+                                                                                            [selection]="{ mode: 'multiple' }"
+                                                                                            [hoverStateEnabled]="true"
+                                                                                            [paging]="{ enabled: true, pageSize: 10 }"
+                                                                                            [filterRow]="{ visible: true }"
+                                                                                            [scrolling]="{ mode: 'infinite' }"
+                                                                                            height="100%"
+                                                                                            [(selectedRowKeys)]="gridBoxValue">
+                                                                                        </dx-data-grid>
+                                                                                    </div>
+                                                                                </dx-drop-down-box>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="GHBCC">GH BCC</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="dx-field-value">
+                                                                                <dx-drop-down-box valueExpr="id"
+                                                                                    [(value)]="gridBoxValue1"
+                                                                                    [displayExpr]="gHBCCgridBox_displayExpr"
+                                                                                    placeholder="Select a value..."
+                                                                                    [showClearButton]="true"
+                                                                                    [dataSource]="gHBCCgridDataSource"
+                                                                                    formControlName="ghBcc">
+                                                                                    <div
+                                                                                        *dxTemplate="let data of 'content'">
+                                                                                        <dx-data-grid
+                                                                                            [dataSource]="gHBCCgridDataSource"
+                                                                                            [columns]="['username', 'emailid']"
+                                                                                            [selection]="{ mode: 'multiple' }"
+                                                                                            [hoverStateEnabled]="true"
+                                                                                            [paging]="{ enabled: true, pageSize: 10 }"
+                                                                                            [filterRow]="{ visible: true }"
+                                                                                            [(selectedRowKeys)]="gridBoxValue1"
+                                                                                            [scrolling]="{ mode: 'infinite' }"
+                                                                                            height="100%">
+                                                                                        </dx-data-grid>
+                                                                                    </div>
+                                                                                </dx-drop-down-box>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="float-right">
+                                                                    <button class="btn btn-primary" type="button"
+                                                                        id="btnJobCancel"><i class="fa fa-times"></i>
+                                                                        Next</button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </ng-template>
+                                            </ngb-tab>
+
+                                            <!-- Other Details tab end -->
+                                            <!-- Search Keywords tab start -->
+
+                                            <ngb-tab id="tab-selectbyid4">
+                                                <ng-template ngbTabTitle>Search Keywords</ng-template>
+                                                <ng-template ngbTabContent>
+                                                    <form [formGroup]="searchKeywordsForm">
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label for="Skills">
+                                                                        Skills</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="Skills" formControlName="skills">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label for="MailBodyTemplate">Any</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="Any" formControlName="any">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label for="All">All</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="All" formControlName="all">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label for="Exclude">
+                                                                        Exclude</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <input type="text" class="form-control"
+                                                                                id="Exclude" formControlName="exclude">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="float-right">
+                                                                    <button class="btn btn-primary" type="button"
+                                                                        id="btnJobCancel"><i class="fa fa-times"></i>
+                                                                        Next</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </ng-template>
+                                            </ngb-tab>
+
+                                            <!-- Search Keywords tab end -->
+                                            <!-- Job Description tab start-->
+
+                                            <ngb-tab id="tab-selectbyid5">
+                                                <ng-template ngbTabTitle>Job Description</ng-template>
+                                                <ng-template ngbTabContent>
+                                                    <form [formGroup]="jobDescriptionForm">
+                                                        <div class="accordion accordian-job" id="accordionExample">
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingOne">
+                                                                    <h2 class="mb-0">
+                                                                        <button class="btn btn-link" type="button"
+                                                                            data-toggle="collapse"
+                                                                            data-target="#collapseOne"
+                                                                            aria-expanded="true"
+                                                                            aria-controls="collapseOne">
+                                                                            Description given by client
+                                                                        </button>
+                                                                    </h2>
+                                                                </div>
+                                                                <div id="collapseOne" class="collapse show"
+                                                                    aria-labelledby="headingOne"
+                                                                    data-parent="#accordionExample">
+                                                                    <div class="card-body">
+                                                                        <dx-html-editor valueType="html"
+                                                                            formControlName="descriptionClient">
+                                                                            <dxo-toolbar>
+                                                                                <dxi-item text="Html"></dxi-item>
+                                                                                <dxi-item formatName="undo"></dxi-item>
+                                                                                <dxi-item formatName="redo"></dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="size"
+                                                                                    [formatValues]="['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt']">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="font"
+                                                                                    [formatValues]="['Arial', 'Courier New', 'Georgia', 'Impact', 'Lucida Console', 'Tahoma', 'Times New Roman', 'Verdana']">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="bold"></dxi-item>
+                                                                                <dxi-item formatName="italic">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="strike">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="underline">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="alignLeft">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="alignCenter">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="alignRight">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="alignJustify">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="header"
+                                                                                    [formatValues]="[false, 1, 2, 3, 4, 5]">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="orderedList">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="bulletList">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="color"></dxi-item>
+                                                                                <dxi-item formatName="background">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="link"></dxi-item>
+                                                                                <dxi-item formatName="image"></dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="clear"></dxi-item>
+                                                                                <dxi-item formatName="codeBlock">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="blockquote">
+                                                                                </dxi-item>
+                                                                            </dxo-toolbar>
+                                                                            <dxo-media-resizing [enabled]=true>
+                                                                            </dxo-media-resizing>
+                                                                            <h2 class="float-left">
+                                                                                <img src="/assets/dev-extreme-img/HtmlEditor.svg"
+                                                                                    alt="HtmlEditor"> Formatted
+                                                                                Text Editor (HTML Editor)
+                                                                            </h2>
+                                                                        </dx-html-editor>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingTwo">
+                                                                    <h2 class="mb-0">
+                                                                        <button class="btn btn-link collapsed"
+                                                                            type="button" data-toggle="collapse"
+                                                                            data-target="#collapseTwo"
+                                                                            aria-expanded="false"
+                                                                            aria-controls="collapseTwo">
+                                                                            Description for Candidate
+                                                                        </button>
+                                                                    </h2>
+                                                                </div>
+                                                                <div id="collapseTwo" class="collapse"
+                                                                    aria-labelledby="headingTwo"
+                                                                    data-parent="#accordionExample">
+                                                                    <div class="card-body">
+                                                                        <dx-html-editor
+                                                                            formControlName="descriptionCandidate">
+                                                                            <dxo-toolbar>
+                                                                                <dxi-item formatName="undo"></dxi-item>
+                                                                                <dxi-item formatName="redo"></dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="size"
+                                                                                    [formatValues]="['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt']">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="font"
+                                                                                    [formatValues]="['Arial', 'Courier New', 'Georgia', 'Impact', 'Lucida Console', 'Tahoma', 'Times New Roman', 'Verdana']">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="bold"></dxi-item>
+                                                                                <dxi-item formatName="italic">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="strike">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="underline">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="alignLeft">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="alignCenter">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="alignRight">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="alignJustify">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="header"
+                                                                                    [formatValues]="[false, 1, 2, 3, 4, 5]">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="orderedList">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="bulletList">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="color"></dxi-item>
+                                                                                <dxi-item formatName="background">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="link"></dxi-item>
+                                                                                <dxi-item formatName="image"></dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="clear"></dxi-item>
+                                                                                <dxi-item formatName="codeBlock">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="blockquote">
+                                                                                </dxi-item>
+                                                                            </dxo-toolbar>
+                                                                            <dxo-media-resizing [enabled]=true>
+                                                                            </dxo-media-resizing>
+                                                                            <h2 class="float-left">
+                                                                                <img src="/assets/dev-extreme-img/HtmlEditor.svg"
+                                                                                    alt="HtmlEditor"> Formatted
+                                                                                Text Editor (HTML Editor)
+                                                                            </h2>
+                                                                        </dx-html-editor>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingThree">
+                                                                    <h2 class="mb-0">
+                                                                        <button class="btn btn-link collapsed"
+                                                                            type="button" data-toggle="collapse"
+                                                                            data-target="#collapseThree"
+                                                                            aria-expanded="false"
+                                                                            aria-controls="collapseThree">
+                                                                            Description For Job Posting
+                                                                        </button>
+                                                                    </h2>
+                                                                </div>
+                                                                <div id="collapseThree" class="collapse"
+                                                                    aria-labelledby="headingThree"
+                                                                    data-parent="#accordionExample">
+                                                                    <div class="card-body">
+                                                                        <dx-html-editor
+                                                                            formControlName="descriptionJobPosting">
+                                                                            <dxo-toolbar>
+                                                                                <dxi-item formatName="undo"></dxi-item>
+                                                                                <dxi-item formatName="redo"></dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="size"
+                                                                                    [formatValues]="['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt']">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="font"
+                                                                                    [formatValues]="['Arial', 'Courier New', 'Georgia', 'Impact', 'Lucida Console', 'Tahoma', 'Times New Roman', 'Verdana']">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="bold"></dxi-item>
+                                                                                <dxi-item formatName="italic">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="strike">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="underline">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="alignLeft">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="alignCenter">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="alignRight">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="alignJustify">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="header"
+                                                                                    [formatValues]="[false, 1, 2, 3, 4, 5]">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="orderedList">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="bulletList">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="color"></dxi-item>
+                                                                                <dxi-item formatName="background">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="link"></dxi-item>
+                                                                                <dxi-item formatName="image"></dxi-item>
+                                                                                <dxi-item formatName="separator">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="clear"></dxi-item>
+                                                                                <dxi-item formatName="codeBlock">
+                                                                                </dxi-item>
+                                                                                <dxi-item formatName="blockquote">
+                                                                                </dxi-item>
+
+                                                                            </dxo-toolbar>
+                                                                            <dxo-media-resizing [enabled]=true>
+                                                                            </dxo-media-resizing>
+                                                                            <h2 class="float-left">
+                                                                                <img src="/assets/dev-extreme-img/HtmlEditor.svg"
+                                                                                    alt="HtmlEditor"> Formatted
+                                                                                Text Editor (HTML Editor)
+                                                                            </h2>
+                                                                        </dx-html-editor>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="float-right mt-4">
+                                                                    <button class="btn btn-primary" type="button"
+                                                                        id="btnJobCancel" (click)="editor()"><i
+                                                                            class="fa fa-times"></i>
+                                                                        Next</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </ng-template>
+                                            </ngb-tab>
+
+                                            <!-- Job Description tab end-->
+                                            <!-- Education Details tab start-->
+
+                                            <!-- <ngb-tab id="tab-selectbyid6">
+                                                <ng-template ngbTabTitle>Education Details</ng-template>
+                                                <ng-template ngbTabContent>
+                                                    <form class="education-details-panel"
+                                                        [formGroup]="educationDetailsForm">
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <div class="dx-fieldset">
+                                                                    <div class="dx-field">
+                                                                        <div class="dx-field-label">Education</div>
+                                                                        <div class="dx-field-value">
+                                                                            <dx-drop-down-box [(value)]="eduGroupGridBoxValue"
+                                                                                valueExpr="id"
+                                                                                [displayExpr]="eduGroupdBox_displayExpr"
+                                                                                placeholder="Select a value..."
+                                                                                [showClearButton]="true"
+                                                                                [dataSource]="eduGroupDataSource"
+                                                                                (valueChange)="valueChange()"
+                                                                                formControlName="education">
+                                                                                <div
+                                                                                    *dxTemplate="let data of 'content'">
+                                                                                    <dx-data-grid 
+                                                                                        [dataSource]="eduGroupDataSource"
+                                                                                        [columns]="['groupTitle','educationGroupDescription']"
+                                                                                        [selection]="{ mode: 'multiple' }"
+                                                                                        [hoverStateEnabled]="true"
+                                                                                        [paging]="{ enabled: true, pageSize: 10 }"
+                                                                                        [filterRow]="{ visible: true }"
+                                                                                        [scrolling]="{ mode: 'infinite' }"
+                                                                                        [height]="345"
+                                                                                        [(selectedRowKeys)]="eduGroupGridBoxValue">
+                                                                                    </dx-data-grid>
+                                                                                </div>
+                                                                            </dx-drop-down-box>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="dx-fieldset">
+                                                                    <div class="dx-field">
+                                                                        <div class="dx-field-label">Specialization</div>
+                                                                        <div class="dx-field-value">
+                                                                            <dx-drop-down-box [(value)]="gridBoxValue"
+                                                                                valueExpr="ID" displayExpr="CompanyName"
+                                                                                placeholder="Select a value..."
+                                                                                [showClearButton]="true"
+                                                                                [dataSource]="gridDataSource"
+                                                                                (valueChange)="valueChange()"
+                                                                                formControlName="specialization">
+                                                                                <div
+                                                                                    *dxTemplate="let data of 'content'">
+                                                                                    <dx-data-grid
+                                                                                        [dataSource]="gridDataSource"
+                                                                                        [columns]="['CompanyName', 'City', 'Phone']"
+                                                                                        [selection]="{ mode: 'multiple' }"
+                                                                                        [hoverStateEnabled]="true"
+                                                                                        [paging]="{ enabled: true, pageSize: 10 }"
+                                                                                        [filterRow]="{ visible: true }"
+                                                                                        [scrolling]="{ mode: 'infinite' }"
+                                                                                        [height]="345"
+                                                                                        [(selectedRowKeys)]="gridBoxValue">
+                                                                                    </dx-data-grid>
+                                                                                </div>
+                                                                            </dx-drop-down-box>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label for="staff" class="title">Year of passing</label>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <ng-select [items]="Years" bindLabel="years"
+                                                                            formControlName="yearOfPassing"
+                                                                            placeholder="Passing Year">
+                                                                        </ng-select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label for="jobmname" class="title">Percentage</label>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <input type="text" class="form-control"
+                                                                            id="jobmname" formControlName="percentage"
+                                                                            placeholder="Percentage">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                             
+                                                                <div class="custom-scrollbar">
+                                                                    <table
+                                                                        class="table table-panel table-bordered table-responsive-md mt-3 table-striped text-center">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="text-center">Action</th>
+                                                                                <th class="text-center">S.No</th>
+                                                                                <th class="text-center">Specialization
+                                                                                </th>
+                                                                                <th class="text-center">Population</th>
+                                                                                <th class="text-center">Percentage</th>
+                                                                                <th class="text-center">Education</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <a href="#" class="mr-2">
+                                                                                        <fa-icon [icon]="faEdit"
+                                                                                            size="1x"></fa-icon>
+                                                                                    </a>
+                                                                                    <a href="#">
+                                                                                        <fa-icon [icon]="faTrashAlt"
+                                                                                            class="text-danger"
+                                                                                            size="1x">
+                                                                                        </fa-icon>
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td contenteditable="true">1</td>
+                                                                                <td contenteditable="true">Developement
+                                                                                </td>
+                                                                                <td contenteditable="true">100</td>
+                                                                                <td contenteditable="true">20</td>
+                                                                                <td contenteditable="true">MCA</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <a href="#" class="mr-2">
+                                                                                        <fa-icon [icon]="faEdit"
+                                                                                            size="1x"></fa-icon>
+                                                                                    </a>
+                                                                                    <a href="#">
+                                                                                        <fa-icon [icon]="faTrashAlt"
+                                                                                            class="text-danger"
+                                                                                            size="1x">
+                                                                                        </fa-icon>
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td contenteditable="true">1</td>
+                                                                                <td contenteditable="true">Developement
+                                                                                </td>
+                                                                                <td contenteditable="true">100</td>
+                                                                                <td contenteditable="true">20</td>
+                                                                                <td contenteditable="true">MCA</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <a href="#" class="mr-2">
+                                                                                        <fa-icon [icon]="faEdit"
+                                                                                            size="1x"></fa-icon>
+                                                                                    </a>
+                                                                                    <a href="#">
+                                                                                        <fa-icon [icon]="faTrashAlt"
+                                                                                            class="text-danger"
+                                                                                            size="1x">
+                                                                                        </fa-icon>
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td contenteditable="true">1</td>
+                                                                                <td contenteditable="true">Developement
+                                                                                </td>
+                                                                                <td contenteditable="true">100</td>
+                                                                                <td contenteditable="true">20</td>
+                                                                                <td contenteditable="true">MCA</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="float-right mt-3">
+                                                                    <button class="btn btn-primary mr-2 " type="button"
+                                                                        id="btnJobsubmit"><i class="fa fa-check"
+                                                                            (click)="addCreateEditJob()"></i>
+                                                                        Save</button>
+                                                                    <button class="btn btn-success mr-2 " type="button"
+                                                                        id="btnJobsubmit"><i class="fa fa-check"></i>
+                                                                        Reset</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </ng-template>
+                                            </ngb-tab> -->
+                                            <!-- Education Details tab end-->
+                                        </ngb-tabset>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- </div> -->
+
+                    <!-- Auxiliary Information section start -->
+                    <div class="sidebar-wrapper equal-height-coloum pl-0 pr-0 ">
+                        <div class="bg-white shadow rounded auxiliary-box"
+                            [ngClass]="[divShow?'display-show':'display-hide']">
+                            <!-- close Icon -->
+                            <div class="bg-white shadow rounded mb-5 ">
+                                <div class="p-3 ">
+                                    <div class="card  flex-row-reverse">
+                                        <div class="card-header">
+                                            <span id="close-sidebar" (click)="divShow=false">
+                                                <fa-icon [icon]="faTimesCircle" class="mb-4 pl-0"></fa-icon>
+                                            </span>
+                                            <div class=" text-primary pt-1 pb-0 pl-2">
+                                                <h5 class="text-primary pt-0 pl-0">Auxiliary Information</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

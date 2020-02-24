@@ -1,0 +1,466 @@
+<div class="page-wrapper">
+    <div class="container-fluid pl-0 pr-0 ">
+        <div class="row page-titles lied-view-panel margin-bottom mb-3 ml-0">
+            <div class="col-md-4 pr-0">
+                <ol class="breadcrumb ">
+                    <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Job View</li>
+                </ol>
+            </div>
+            <div class="col-md-3 text-center">
+                <!-- Icon list section-->
+                <ul class="icon-list">
+                    <li>
+                        <a href="#" placement="left" ngbTooltip="Schedule Meeting">
+                            <fa-icon [icon]="faClock"></fa-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" placement="left" ngbTooltip="Create Task">
+                            <fa-icon [icon]="faListAlt"></fa-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" placement="left" ngbTooltip="Compose Mail">
+                            <fa-icon [icon]="faEnvelope"></fa-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" placement="left" ngbTooltip="Assign Team Members">
+                            <fa-icon [icon]="faUsers"></fa-icon>
+                        </a>
+                    </li>
+                </ul>
+                <!-- Icon list section-->
+            </div>
+            <div class="col-md-5">
+                <!-- link list section-->
+                <ul class="link-list float-right">
+                    <li>
+                        <button class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faPenSquare" class="mr-1"></fa-icon>Edit
+                        </button>
+                    </li>
+                    <li>
+                        <button class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faRetweet" class="mr-1"></fa-icon>Copy Job
+                        </button>
+                    </li>
+                    <li>
+                        <button class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faTimes" class="mr-1"></fa-icon>Logs
+                        </button>
+                    </li>
+                    <li><button href="#" class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faList" class="mr-1"></fa-icon>Document
+                        </button></li>
+                    <li><button href="#" class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faStickyNote" class="mr-1"></fa-icon>Notes
+                        </button>
+                    </li>
+                    <li>
+                        <button href="#" class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faBadge" class="mr-1"></fa-icon>Similar Job
+                        </button>
+                    </li>
+                    <li>
+                        <button href="#" class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faStreetView" class="mr-1"></fa-icon>View Candidate
+                        </button>
+                    </li>
+                </ul>
+                <!-- link list section-->
+            </div>
+        </div>
+        <!-- Account details start-->
+        <div class=" view-details-panel mb-3">
+            <div class="row">
+                <div class="col-md-6 pr-1">
+                    <div class="d-flex border-box">
+                        <div class="col-md-2 img-box">
+                            <!-- <img src="" alt="responsive image" class="img-fluid"> -->
+                            <img src="/assets/dev-extreme-img/user-profile-pic.png" alt="pic" class="w-100 img-thumbnail">
+                        </div>
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="mb-1 w-100 title-bar">
+                                        <h4 placement="left" class="float-left" ngbTooltip="Job Name">DemoHitechCRMCoudAPI</h4>
+                                        <span class="job-active mx-1" placement="left" ngbTooltip="Job status">(Active)</span>
+                                    </div>
+                                    <ul class="recuitement-info">
+                                        <li>
+                                            <fa-icon [icon]="faBarcode" class="mr-2"></fa-icon>
+                                            <a placement="left" ngbTooltip="Job Code" href="#">JC//28012020//75184</a>
+                                        </li>
+                                        <li>
+                                            <fa-icon [icon]="faPlusSquare" class="mr-2"></fa-icon>
+                                            <a placement="left" ngbTooltip="Experience" href="#">1-3</a>
+                                        </li>
+                                        <li>
+                                            <fa-icon [icon]="faSortAmountDown" class="mr-2"></fa-icon>
+                                            <a placement="left" ngbTooltip="CTC Range" href="#"> 3443323-3443323
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <fa-icon [icon]="faSortAmountDownAlt" class="mr-2"></fa-icon>
+                                            <a placement="left" ngbTooltip="No. of Opening" href="#">10</a>
+                                        </li>
+                                        <li>
+                                            <fa-icon [icon]="faChartArea" class="mr-2"></fa-icon>
+                                            <a placement="left" ngbTooltip="Job Revenue" href="#"> 2868288.10</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="dropdown pull-right open float-right">
+                                        <a href="#" placement="left" ngbTooltip="No. of Opening">
+                                            <fa-icon [icon]="faEnvelope" class="mr-1"></fa-icon>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 pr-0">
+                    <div class="d-flex border-box">
+                        <div class="col-md-2 img-box">
+                            <!-- <img src="" alt="responsive image" class="img-fluid"> -->
+                            <img src="/assets/dev-extreme-img/user-profile-pic.png" class="w-100 img-thumbnail" alt="pic">
+                        </div>
+                        <div class="col-md-10">
+                            <h4 placement="left" ngbTooltip="Job Name">Dummy Dummy pvt ltd
+                                <a href="#"><img src="/assets/dev-extreme-img/Linkedin.png" alt="pic"></a>
+                            </h4>
+                            <ul class="recuitement-info">
+                                <li>
+                                    <fa-icon [icon]="faGlobe" class="mr-2"></fa-icon><a class="blue-link" placement="left"
+                                        ngbTooltip="Website" href="#">N/A</a>
+                                </li>
+                                <li>
+                                    <fa-icon [icon]="faPhoneAlt" class="mr-2"></fa-icon>
+                                    <a class="blue-link" placement="left" ngbTooltip="Board Number" href="tel: + 91 - 9999999999">+
+                                        91 - 9999999999</a>
+                                </li>
+                                <li>
+                                    <fa-icon [icon]="faMapMarkerAlt" class="mr-2"></fa-icon>
+                                    <a placement="left" ngbTooltip="Address" href="#">123 Bandra Mumbai India -131312</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Account details end-->
+        <div class="row equal-height-cols" [ngClass]="[divShow? 'toggled':'']">
+            <!-- collapse Icon -->
+            <a id="show-sidebar" class="btn btn-sm btn-dark" (click)="divShow=!divShow"><span class="verticle-text">Auxiliary</span></a>
+            <!-- create lead form section start -->
+            <div class="lead-wrap lead-view-panel">
+                <div class="details-datagrid pl-3">
+                    <div class="bg-white shadow equal-height-coloum w-100 rounded ">
+                        <div class="p-4 data-grid-wrap view-job-panel">
+                            <div class="row">
+                                <div class="card p-3 flex-row-reverse">
+                                    <div class="card-header compInfoSearch-header float-right" id="headingOne">
+                                        <ngb-tabset #t="ngbTabset">
+                                            <!-- Basic Information tab start -->
+                                            <ngb-tab id="tab-selectbyid1" title="Basic Information">
+                                                <ng-template ngbTabContent class="bg-light">
+                                                    <ngb-accordion [closeOthers]="true" activeIds="static-1">
+                                                        <ngb-panel id="static-1" title="Job Details">
+                                                            <ng-template ngbPanelContent>
+                                                             <app-job-view-basic></app-job-view-basic>
+                                                            </ng-template>
+                                                        </ngb-panel>
+                                                        <ngb-panel id="static-2">
+                                                            <ng-template ngbPanelTitle>
+                                                                <span>Communication</span>
+                                                            </ng-template>
+                                                            <ng-template ngbPanelContent>
+                                                                <form class="bg-white">
+                                                                    <div class="row">
+                                                                        <div class="col-md-2">
+                                                                            <ul class="title-coloum">
+                                                                                <li><strong>Global Email</strong></li>
+                                                                                <li><strong>Mail Body Template</strong></li>
+                                                                                <li><strong>Client CC</strong></li>
+                                                                                <li><strong> GH CC</strong></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="col-md-5">
+                                                                            <ul class="data-coloum">
+                                                                                <li>N/A</li>
+                                                                                <li>Telecom - Multiple Candidates</li>
+                                                                                <li>N/A</li>
+                                                                                <li>N/A
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <ul class="title-coloum">
+                                                                                <li><strong>Client Sheet</strong></li>
+                                                                                <li><strong>Client Portal Id</strong></li>
+                                                                                <li><strong>Client BCC</strong></li>
+                                                                                <li><strong>GH BCC</strong></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <ul class="data-coloum">
+                                                                                <li>RBS_Ref_Likhan</li>
+                                                                                <li>N/A</li>
+                                                                                <li>N/A</li>
+                                                                                <li>N/A</li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </ng-template>
+                                                        </ngb-panel>
+                                                        <ngb-panel id="static-3">
+                                                            <ng-template ngbPanelTitle>
+                                                                <span>Search Keywords</span>
+                                                            </ng-template>
+                                                            <ng-template ngbPanelContent>
+                                                                <form class="bg-white">
+                                                                    <div class="row">
+                                                                        <div class="col-md-2">
+                                                                            <ul class="title-coloum">
+                                                                                <li><strong>Skills</strong></li>
+                                                                                <li><strong>All</strong></li>
+
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="col-md-5">
+                                                                            <ul class="data-coloum">
+                                                                                <li>java</li>
+                                                                                <li>java</li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <ul class="title-coloum">
+                                                                                <li><strong>Any</strong></li>
+                                                                                <li><strong>Exclude</strong></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <ul class="data-coloum">
+                                                                                <li>java</li>
+                                                                                <li>java</li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </ng-template>
+                                                        </ngb-panel>
+                                                    </ngb-accordion>
+                                                </ng-template>
+                                            </ngb-tab>
+                                            <!-- Basic Information tab end -->
+
+                                            <!-- Education Details tab start -->
+                                            <ngb-tab id="tab-selectbyid2">
+                                                <ng-template ngbTabTitle>Education Details</ng-template>
+                                                <ng-template ngbTabContent class="bg-light">
+                                                    <app-job-view-education-detail></app-job-view-education-detail>
+                                                </ng-template>
+                                            </ngb-tab>
+                                            <!-- Education Details tab end -->
+
+                                            <!-- Location Address tab start -->
+                                            <ngb-tab id="tab-selectbyid3">
+                                                <ng-template ngbTabTitle>Location Address</ng-template>
+                                                <ng-template ngbTabContent class="bg-light">
+                                                   <app-job-view-location-address></app-job-view-location-address>
+                                                </ng-template>
+                                            </ngb-tab>
+                                            <!-- Location Address tab end -->
+
+                                            <!-- Job Description tab start -->
+                                            <ngb-tab id="tab-selectbyid4" title="Job Description">
+                                                <ng-template ngbTabContent class="bg-light">
+                                                    <app-job-view-job-description></app-job-view-job-description>
+                                                </ng-template>
+                                            </ngb-tab>
+                                            <!-- Job Description tab end -->
+
+                                            <!-- Work Flow tab start -->
+                                            <ngb-tab id="tab-selectbyid5">
+                                                <ng-template ngbTabTitle>Work Flow</ng-template>
+                                                <ng-template ngbTabContent class="bg-light">
+                                                    <ngb-tabset #t="ngbTabset">
+                                                        <!--Candidate tab start -->
+                                                        <ngb-tab id="tab-selectbyid1" title="Candidate">
+                                                            <ng-template ngbTabContent class="bg-light">
+                                                                <app-job-view-workflow></app-job-view-workflow>
+                                                            </ng-template>
+                                                        </ngb-tab>
+                                                        <!-- Candidate tab end -->
+
+                                                        <!-- External Candidate tab start -->
+                                                        <ngb-tab id="tab-selectbyid2">
+                                                            <ng-template ngbTabTitle>External Candidate</ng-template>
+                                                            <ng-template ngbTabContent class="bg-light">
+                                                                HASGFDSGHAD
+                                                            </ng-template>
+                                                        </ngb-tab>
+                                                        <!--  External Candidate tab end -->
+
+                                                        <!-- Interview tab start -->
+                                                        <ngb-tab id="tab-selectbyid3">
+                                                            <ng-template ngbTabTitle> Interview </ng-template>
+                                                            <ng-template ngbTabContent class="bg-light">
+                                                                ZCSDAF
+                                                            </ng-template>
+                                                        </ngb-tab>
+                                                        <!-- Interview tab end -->
+
+                                                        <!-- Offer tab start -->
+                                                        <ngb-tab id="tab-selectbyid4" title="Job Description">
+                                                            <ng-template ngbTabTitle> Offer </ng-template>
+                                                            <ng-template ngbTabContent class="bg-light">
+                                                                ZCSDAF
+                                                            </ng-template>
+                                                        </ngb-tab>
+                                                        <!-- Offer tab end -->
+
+                                                        <!-- Assigned User tab start -->
+                                                        <ngb-tab id="tab-selectbyid5">
+                                                            <ng-template ngbTabTitle>Assigned User</ng-template>
+                                                            <ng-template ngbTabContent class="bg-light">
+                                                                fdsfsdf
+                                                            </ng-template>
+                                                        </ngb-tab>
+                                                        <!--Assigned User tab end -->
+
+                                                    </ngb-tabset>
+                                                </ng-template>
+                                            </ngb-tab>
+                                            <!-- Work Flow tab end -->
+
+                                            <!--More Information tab start -->
+                                            <ngb-tab id="tab-selectbyid6">
+                                                <ng-template ngbTabTitle>
+                                                    <div ngbDropdown class="d-inline-block">
+                                                        <button class="btn more-info-link" id="dropdownBasic2" ngbDropdownToggle>More
+                                                            Information
+                                                        </button>
+                                                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                                            <button ngbDropdownItem ngbTabTitle>Job Reactive</button>
+                                                            <button ngbDropdownItem>Business Structure</button>
+                                                            <button ngbDropdownItem>Organization Structure</button>
+                                                            <button ngbDropdownItem>Basic Information</button>
+                                                            <button ngbDropdownItem>Job Weightage</button>
+                                                            <button ngbDropdownItem>Access Rights For E-Mail/SMS</button>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                                <ng-template ngbTabContent class="bg-light">
+                                                    <form class="mt-4">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <dx-data-grid id="gridContainer" [dataSource]="" [showBorders]="true" keyExpr="ID"
+                                                                    >
+                                                                    <dxo-filter-row [visible]="true" [applyFilter]="">
+                                                                    </dxo-filter-row>
+                                                                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                                                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[8, 12, 20]"></dxo-pager>
+                                                                    <dxo-selection mode="multiple"></dxo-selection>
+                                                                    <dxi-column dataField="Prefix" caption="Title">
+                                                                    </dxi-column>
+                                                                    <dxi-column dataField="FirstName"></dxi-column>
+                                                                    <dxi-column dataField="LastName"></dxi-column>
+                                                                    <dxi-column dataField="Position" [width]="130">
+                                                                    </dxi-column>
+                                                                    <dxi-column dataField="StateID" [width]="125" caption="State">
+                                                                        <dxo-lookup [dataSource]="" displayExpr="Name" valueExpr="ID"></dxo-lookup>
+                                                                    </dxi-column>
+                                                                    <dxi-column dataField="BirthDate" [width]="125">
+                                                                    </dxi-column>
+                                                                </dx-data-grid>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </ng-template>
+                                            </ngb-tab>
+                                            <!-- More Information tab end -->
+
+                                        </ngb-tabset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                    <!-- Auxiliary Information section start -->
+                    <div class="sidebar-wrapper equal-height-coloum pl-0 pr-0 ">
+                        <div class="bg-white shadow rounded auxiliary-box" [ngClass]="[divShow?'display-show':'display-hide']">
+                            <!-- close Icon -->
+                            <div class="bg-white shadow rounded mb-5">
+                                <div class="p-3 ">
+                                    <div class="card flex-row-reverse">
+                                        <div class="card-header">
+                                            <span id="close-sidebar" (click)="divShow=false">
+                                                <fa-icon [icon]="faTimesCircle" class="mb-4 pl-0"></fa-icon>
+                                            </span>
+                                            <div class=" text-primary pt-1 pb-0 pl-2">
+                                                <h5 class="text-primary pt-0 pl-0">Auxiliary Information</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #content let-modal>
+        <div class="modal-header bg-primary text-white">
+            <h4 class="modal-title" id="modal-basic-title">Qualification Parameter</h4>
+            <button type="button" class="close text-white" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="parameter">Parameters</label>
+                            <dx-drop-down-box [(value)]="gridBoxValue2" valueExpr="id" [deferRendering]="false" [displayExpr]=""
+                                placeholder="Select a value..." [showClearButton]="true" [dataSource]="" formControlName="parameter">
+                                <div *dxTemplate="let data of 'content'">
+                                    <dx-data-grid [columns]="['subParameters']" [grouping]="true" [selection]="{ mode: 'single' }" [hoverStateEnabled]="true"
+                                        [paging]="{ enabled: true, pageSize: 10 }" [filterRow]="{ visible: true }" [scrolling]="{ mode: 'infinite' }"
+                                        height="100%">
+                                    </dx-data-grid>
+                                </div>
+                            </dx-drop-down-box>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="scale">Scale</label>
+                            <dx-drop-down-box [(value)]="gridBoxValue2" valueExpr="id" [deferRendering]="false" [displayExpr]="" placeholder="Select a value..."
+                                [showClearButton]="true" formControlName="scale">
+                                <div>
+                                    <dx-data-grid [columns]="['scale','weightage']" [grouping]="true" [selection]="{ mode: 'single' }" [hoverStateEnabled]="true"
+                                        [paging]="{ enabled: true, pageSize: 10 }" [filterRow]="{ visible: true }" [scrolling]="{ mode: 'infinite' }"
+                                        height="100%" [(selectedRowKeys)]="gridBoxValue2">
+                                    </dx-data-grid>
+                                </div>
+                            </dx-drop-down-box>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button float-rigth" class="btn btn-outline-primary">Submit</button>
+        </div>
+    </ng-template>

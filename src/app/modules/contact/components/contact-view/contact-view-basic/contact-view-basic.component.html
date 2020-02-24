@@ -1,0 +1,78 @@
+<form class="mt-3 account-details-panel">
+    <div class="row border-bottom border-secondary">
+        <div class="col-md-2">
+            <ul class="title-coloum">
+                <li><strong>Designation</strong></li>
+                <li><strong>Level</strong></li>
+                <li><strong>Office Phone</strong></li>
+                <li><strong>Skype ID</strong></li>
+                <li><strong>Lead Source</strong></li>
+                <li><strong>Referred By</strong></li>
+                <li><strong>Date Created</strong></li>
+                <li><strong>Description</strong></li>
+                <li><strong>Mobile No.</strong></li>
+                <li><strong>Personal Email ID</strong></li>
+                <li><strong>Report To</strong></li>
+                <li><strong>Date Created</strong></li>
+                <li><strong>Industry</strong></li>
+            </ul>
+        </div>
+        <div class="col-md-5">
+            <ul class="data-coloum">
+                <li>{{contact[0].designation}}</li>
+                <li>{{contact[0].level}}</li>
+                <li>{{contact[0].personalmobilenumber}}</li>
+                <li>{{contact[0].skypid}}</li>
+                <li>{{contact[0].leadsource}}</li>
+                <li>{{contact[0].referedby}}</li>
+                <li>{{contact[0].createddate  | date:'medium'}}</li>
+                <li>{{contact[0].description}}</li>
+                <li>{{contact[0].personalmobilenumber}}</li>
+                <li>{{contact[0].personalmailid}}</li>
+                <li>{{contact[0].reporttoname}}</li>
+                <li>{{contact[0].createddate}}</li>
+                <li>{{contact[0].industriestext}}</li>
+            </ul>
+        </div>
+        <div class="col-md-2">
+            <ul class="title-coloum">
+                <li><strong>Department</strong></li>
+                <li><strong>Sub Title</strong></li>
+                <li><strong>Job Grade</strong></li>
+                <li><strong>Reporting To</strong></li>
+                <li><strong>Revenue Potential</strong></li>
+                <li><strong>Target</strong></li>
+                <li><strong>Campaign</strong></li>
+                <li><strong>Date Modified</strong></li>
+                <li><strong>Lead Anchor</strong> </li>
+                <li><strong>Lead Source</strong></li>
+                <li><strong>BD Anchor</strong></li>
+                <li><strong>Date Modified</strong></li>
+                <li><strong>Industry Group</strong></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <ul class="data-coloum">
+                <li>{{contact[0].department}}</li>
+                <li>{{contact[0].subtitle}}</li>
+                <li>{{contact[0].jobgrade}}</li>
+                <li>{{contact[0].reporttoname}}</li>
+                <li>{{contact[0].revenuepotential}}</li>
+                <li>N/A</li>
+                <li>N/A</li>
+                <li>{{contact[0].lastmodifieddate | date:'medium'}}</li>
+                <li>{{contact[0].leadanchor}}</li>
+                <li>{{contact[0].leadsource}}</li>
+                <li>N/A</li>
+                <li>{{contact[0].lastmodifieddate | date:'medium'}}</li>
+                <li>{{contact[0].industrygrouptext}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <ul class="description-title mt-2">
+            <li><strong>Notes</strong></li>
+            <li>N/A</li>
+        </ul>
+    </div>
+</form>

@@ -1,0 +1,86 @@
+<div class="page-wrapper">
+    <div class="container-fluid pl-0 pr-0 ">
+        <div class="row page-titles  margin-bottom mb-3">
+            <div class="col-sm-12 pr-0">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Lead Search</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row  equal-height-cols edit-account lead-wrapper ">
+            <!-- create lead form section start -->
+            <div class="lead-wrap d-inline-flex">
+                <div class="details-datagrid pl-3">
+                    <div class="bg-white shadow equal-height-coloum rounded">
+                        <div class="p-3 border-bottom">
+                            <dx-data-grid id="gridContainer" [dataSource]="dataSourceGrid" [showBorders]="true"
+                                [remoteOperations]="true">
+                                <dxo-scrolling mode="standard"> </dxo-scrolling>
+                                <dxi-column dataField="name" caption="Contact Name" cellTemplate="leadTemplate"
+                                    [width]="150">
+                                </dxi-column>
+                                <div *dxTemplate="let lead of 'leadTemplate'">
+                                    <a routerLink="/lead/lead-view/{{lead.data.id}}">{{lead.text}}</a>
+                                </div>
+                                <dxi-column dataField="mobile" caption="Mobile" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="accountname" caption="Account Name" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="createddate" caption="Created Date" dataType="datetime"
+                                    format="M/d/yyyy, HH:mm" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="createdusername" caption="Created UserName" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="modifiedusername" caption="Modified UserName" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="anchorname" caption="Anchor Name" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="status" caption="Status" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="officeNumber" caption="Office Phone" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="anchor" caption="anchor" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="accountShortName" caption="Account Short Name" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="description" caption="Description" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="designation" caption="Designation" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="department" caption="Department" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="empanelmentcycle" caption="Empanelment Cycle" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="leadcategory" caption="Lead Category" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="level" caption="Level" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="workingemailid" caption="Personal Email" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="accountQualificationWeightage"
+                                    caption="Account Qualification Weightage" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="contactQualificationWeightage"
+                                    caption="Contact Qualification Weightage" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="recruitmentTeam" caption="Recruitment Team" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="referredBy" caption="Referred By" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="reportto" caption="Report To" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="subtitle" caption="Subtitle" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="title" caption="Title" [width]="150">
+                                </dxi-column>
+                                <dxo-paging [pageSize]="10"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 15, 20]"></dxo-pager>
+                                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

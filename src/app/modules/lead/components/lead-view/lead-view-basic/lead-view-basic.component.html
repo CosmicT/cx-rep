@@ -1,0 +1,59 @@
+<div class="bg-white pt-3">
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="title-coloum">
+                <li><strong>Anchor</strong></li>
+                <li><strong>Designation</strong></li>
+                <li><strong>Level</strong></li>
+                <li><strong>Office Phone</strong></li>
+                <li><strong>Skype ID</strong></li>
+                <li><strong>Lead Source</strong></li>
+                <li><strong>Referred By</strong></li>
+                <li><strong>Date Created</strong></li>
+                <li><strong>Lead Anchor</strong></li>
+                <li><strong>Industry</strong></li>
+            </ul>
+        </div>
+        <div class="col-md-5">
+            <ul class="data-coloum">
+                <li><a href="#">{{contact.anchor.name}}</a></li>
+                <li>{{contact.designation}}</li>
+                <li>{{contact.level}}</li>
+                <li><a
+                        href="tel:{{contact.ofcphncountrycode}}{{contact.officephone}}">{{contact.ofcphncountrycode}}{{contact.officephone}}</a>
+                </li>
+                <li>{{contact.skypid}}</li>
+                <li>{{contact.leadsource}}</li>
+                <li>{{contact.referedby}}</li>
+                <li>{{contact.createddate | date:'medium'}}</li>
+                <li><a href="#">{{contact.leadanchor.name}}</a></li>
+                <li>{{contact.industry}}</li>
+            </ul>
+        </div>
+        <div class="col-md-2">
+            <ul class="title-coloum">
+                <li><strong>Department</strong></li>
+                <li><strong>Sub Title</strong></li>
+                <li><strong>Job Grade</strong></li>
+                <li><strong>Reporting To</strong></li>
+                <li><strong>Revenue Potential</strong></li>
+                <li><strong>Target</strong></li>
+                <li><strong>Date Modified</strong></li>
+                <li><strong>Industry Group</strong></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <ul class="data-coloum">
+                <li>{{contact.department}}</li>
+                <li>{{contact.subtitle}}</li>
+                <li>{{contact.jobgrade}}</li>
+                <li>{{contact.reportto.name}}</li>
+                <li>{{contact.revenuepotential}}</li>
+                <li>N/A</li>
+                <li>N/A</li>
+                <li>{{contact.lastmodifieddate}}</li>
+                <li>{{contact.industrygroup}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

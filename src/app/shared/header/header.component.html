@@ -1,0 +1,46 @@
+<header class="row">
+  <div class="col-sm-4">
+    <a class="btn btn-primary btn-create cursor-pointer" data-toggle="dropdown">
+      <fa-icon [icon]="faPlus" size="1px"></fa-icon>
+      Create
+    </a>
+    <div class="dropdown-menu create-dd animated slideInDown">
+      <a class="dropdown-item" routerLink="/lead/create-edit-lead/add">
+        <fa-icon [icon]="faInbox" size="1px"></fa-icon> Lead
+      </a>
+      <a class="dropdown-item" routerLink="/job/create-edit-job">
+        <fa-icon [icon]="faBriefcase" size="1px"></fa-icon> Job
+      </a>
+      <a class="dropdown-item" href="#">
+        <fa-icon [icon]="faClock" size="1px"></fa-icon> Meeting
+      </a>
+      <a class="dropdown-item" href="#">
+        <fa-icon [icon]="faEnvelope" size="1px"></fa-icon> Mail
+      </a>
+      <a class="dropdown-item" href="#">
+        <fa-icon [icon]="faList" size="1px"></fa-icon> Task
+      </a>
+    </div>
+    <button class="no-background border-0 notification-bell"><img src="assets/img/bell.png" alt="bell" /><span
+        class="noti-num">5</span></button>
+  </div>
+  <div class="col-sm-8 text-right mt-1 ">
+    <div class="search-box d-inline-block">
+      <input type="text" placeholder="Global Search" id="searchfield" autofocus />
+      <button class="btn-search" (click)="inputFocus()">
+        <fa-icon [icon]="faSearch" size="1px"></fa-icon>
+      </button>
+    </div>
+    <div class="user d-inline-block">
+      <a href="#" data-toggle="dropdown"><img src="assets/img/avatar.png" alt="avatar" /> {{userEmail}}
+        <fa-icon [icon]="faAngleDown" size="1px"></fa-icon></a>
+      <div class="dropdown-menu user-menu animated flipInY">
+        <a class="dropdown-item" href="#">View Profile</a>
+        <a class="dropdown-item" (click)="signOut()">Logout</a>
+      </div>
+    </div>
+    <div class="user d-inline-block ml-1 app-search">
+      <img src="assets/dev-extreme-img/shield.png" alt="avatar" />
+    </div>
+  </div>
+</header>

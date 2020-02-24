@@ -1,0 +1,948 @@
+<div class="page-wrapper">
+    <div class="container-fluid pl-0 pr-0">
+        <div class="row page-titles lied-view-panel margin-bottom mb-3 ml-0">
+            <div class="col-md-4 pr-0">
+                <ol class="breadcrumb ">
+                    <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active">View Account</li>
+                </ol>
+            </div>
+            <div class="col-md-4 text-center">
+                <!-- Icon list section-->
+                <ul class="icon-list">
+                    <li><a href="#" placement="left" ngbTooltip="Near By Account Address">
+                            <fa-icon [icon]="faGlobe"></fa-icon>
+                        </a></li>
+                    <li><a href="#" placement="left" ngbTooltip="Schedule Meeting">
+                            <fa-icon [icon]="faClock"></fa-icon>
+                        </a></li>
+                    <li><a href="#" placement="left" ngbTooltip="Create Task">
+                            <fa-icon [icon]="faListAlt"></fa-icon>
+                        </a></li>
+                    <li><a href="#" placement="left" ngbTooltip="Compose Mail">
+                            <fa-icon [icon]="faEnvelope"></fa-icon>
+                        </a></li>
+                    <li><a href="#" placement="left" ngbTooltip="Create Task">
+                            <fa-icon [icon]="faList"></fa-icon>
+                        </a></li>
+                    <li><a href="#" placement="left" ngbTooltip="Assign Team Members">
+                            <fa-icon [icon]="faUsers"></fa-icon>
+                        </a></li>
+                </ul>
+                <!-- Icon list section-->
+            </div>
+            <div class="col-md-4">
+                <!-- link list section-->
+                <ul class="link-list float-right">
+                    <li><a (click)="navigateToEditPage()" class="btn btn-primary custom-btn text-white">
+                            <fa-icon [icon]="faPenSquare" class="mr-1"></fa-icon>Edit
+                        </a></li>
+                    <li><a href="#" class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faList" class="mr-1"></fa-icon>Logs
+                        </a></li>
+                    <li><button href="#" class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faFileAlt" class="mr-1"></fa-icon>Document
+                        </button></li>
+                    <li><a href="#" class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faList" class="mr-1"></fa-icon>Notes
+                        </a></li>
+                </ul>
+                <!-- link list section-->
+            </div>
+        </div>
+        <!-- Account details start-->
+        <div class="view-details-panel view-account-wrap mb-3">
+            <div class="row mb-3">
+                <div class="col-md-12 pr-0">
+                    <div class="d-flex border-box">
+                        <div class="img-box">
+                            <!-- <img src="" alt="responsive image" class="img-fluid"> -->
+                            <img src="/assets/dev-extreme-img/user-profile-pic.png" alt="pic" class="img-thumbnail">
+                        </div>
+                        <div class="recuitement-wrap">
+                            <div class="row">
+                                <div class="col-md-6" *ngIf="!account">
+                                    <h5 class="mb-2 w-100 ml-3"><a href="#">{{account.name}}</a>`<a href="#"><img
+                                                src="/assets/dev-extreme-img/Linkedin.png" alt="pic"></a></h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="dropdown pull-right open float-right">
+                                        <button class="btn btn-default dropdown-toggle" type="button"
+                                            data-toggle="dropdown" data-hover="dropdown" aria-expanded="true">
+                                            Activities & History
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdownhover-bottom">
+                                            <li><a href="#" placement="left" ngbTooltip="Call">
+                                                    <fa-icon [icon]="faPhoneAlt" class="mr-1"></fa-icon>Call
+                                                </a></li>
+                                            <li><a href="#" placement="left" ngbTooltip="Meeting">
+                                                    <fa-icon [icon]="faClock"></fa-icon>Meeting
+                                                </a></li>
+                                            <li><a href="#" placement="left" ngbTooltip="Mail">
+                                                    <fa-icon [icon]="faEnvelope"></fa-icon>Mail
+                                                </a></li>
+                                            <li><a href="#" placement="left" ngbTooltip="Task">
+                                                    <fa-icon [icon]="faListAlt"></fa-icon>Task
+                                                </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="recuitement-info ml-3 mb-0">
+                                        <li>
+                                            <fa-icon [icon]="faBuilding" class="mr-1"></fa-icon><a
+                                                href="#">{{account.parentaccountname}}</a>
+                                        </li>
+                                        <li>
+                                            <fa-icon [icon]="faGlobe" class="mr-1"></fa-icon><a
+                                                href="www.testingdummy.com">{{account.websiteurl}}</a>
+                                        </li>
+                                        <li>
+                                            <fa-icon [icon]="faMapMarkerAlt" class="mr-1"></fa-icon>
+                                            <a class="more-btn">{{competition.fulladdress}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="recuitement-info mb-0">
+                                        <li>
+                                            <fa-icon [icon]="faBuilding" class="mr-1"></fa-icon><a
+                                                href="#">{{account.accountcategory}}</a>
+                                        </li>
+                                        <li>
+                                            <fa-icon [icon]="faMapMarkerAlt" class="mr-1"></fa-icon>
+                                            <a class="more-btn" href="#">{{account.boardnumberfull}}</a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Account details end-->
+            <div class="row equal-height-cols" [ngClass]="[divShow? 'toggled':'']">
+                <!-- collapse Icon -->
+                <a id="show-sidebar" class="btn btn-sm btn-dark" (click)="divShow=!divShow"><span
+                        class="verticle-text">Auxiliary</span></a>
+                <!-- create lead form section start -->
+                <div class="lead-wrap lead-view-panel">
+                    <div class="details-datagrid pl-3">
+                        <div class="bg-white shadow equal-height-coloum w-100 rounded mb-5 ">
+                            <div class="p-3 data-grid-wrap">
+                                <div class="row ">
+                                    <ngb-tabset #t="ngbTabset" class="px-3">
+                                        <!-- Basic Information tab start -->
+                                        <ngb-tab id="tab-selectbyid1" title="Basic Details">
+                                            <ng-template ngbTabContent class="bg-light ">
+                                                <form class="mt-2 account-details-panel">
+                                                    <div class="row border-bottom border-secondary">
+                                                        <div class="col-md-4">
+                                                            <ul class="title-coloum">
+                                                                <li><strong>Parent company</strong></li>
+                                                                <li><strong>Type</strong></li>
+                                                                <li><strong>Account Pancard No</strong></li>
+                                                                <li><strong>Empanelment Cycle</strong></li>
+                                                                <li><strong>Annual Revenue</strong></li>
+                                                                <li><strong>Member Of</strong></li>
+                                                                <li><strong>Revenue Potential</strong></li>
+                                                                <li><strong>Employees</strong></li>
+                                                                <li><strong>Status</strong></li>
+                                                                <li><strong>Date Created</strong></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <ul class="data-coloum">
+                                                                <li>{{account.parentaccountname}}</li>
+                                                                <li>{{account.accounttype}}</li>
+                                                                <li>{{account.pancardno}}</li>
+                                                                <li>{{account.empanelmentcycle}}</li>
+                                                                <li>{{account.totalrevenue}}</li>
+                                                                <li>{{account.memberof}}</li>
+                                                                <li>{{account.revenue}}</li>
+                                                                <li>{{account.employee}}</li>
+                                                                <li>{{account.status}}</li>
+                                                                <li>{{account.createddate}}</li>
+
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <ul class="title-coloum">
+                                                                <li><strong>GlobalHunt Client</strong></li>
+                                                                <li><strong>Account Stage</strong></li>
+                                                                <li><strong>Account Short Name</strong></li>
+                                                                <li><strong>Domain</strong></li>
+                                                                <li><strong>SIC Code</strong></li>
+                                                                <li><strong>Rating</strong></li>
+                                                                <li><strong>Revenue Potential Period</strong></li>
+                                                                <li><strong>Ownership</strong></li>
+                                                                <li><strong>Code</strong> </li>
+                                                                <li><strong>Anchor</strong></li>
+                                                                <li><strong>Date Modified</strong></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <ul class="data-coloum">
+                                                                <li>{{account.globalhuntclient}}</li>
+                                                                <li>Active</li>
+                                                                <li>{{account.shortname}}</li>
+                                                                <li>{{account.domainname}}</li>
+                                                                <li>{{account.siccode}}</li>
+                                                                <li>{{account.rating}}</li>
+                                                                <li>{{account.revenuefromdate | date : 'medium'}} to {{account.revenuetodate
+                                                                    | date : 'medium'}}</li>
+                                                                <li>{{account.ownership}}</li>
+                                                                <li>{{account.vendorcode}}</li>
+                                                                <li><a href="#">{{account.anchorname}}</a></li>
+                                                                <li>{{account.lastmodifieddate | date : 'medium'}}</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <ul class="description-title mt-2">
+                                                            <li>
+                                                                <strong>Description</strong>
+                                                            </li>
+                                                            <li>{{account.description}} </li>
+                                                        </ul>
+                                                    </div>
+                                                </form>
+                                            </ng-template>
+                                        </ngb-tab>
+                                        <!-- Basic Information tab end -->
+
+                                        <!-- Qualification History tab start -->
+                                        <ngb-tab id="tab-selectbyid2">
+                                            <ng-template ngbTabTitle>Qualification History</ng-template>
+                                            <ng-template ngbTabContent class="bg-light">
+                                                <form class="mt-2">
+
+                                                    <div class="row border-bottom border-secondary">
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <ul class="title-coloum">
+                                                                <li><strong>Global Turnover</strong></li>
+                                                                <li><strong>Stock</strong></li>
+                                                                <li><strong>Global Offices</strong></li>
+                                                                <li><strong>Recruitment Team Size</strong></li>
+                                                                <li><strong>Employees Globally</strong></li>
+                                                                <li><strong>Product Company or Service</strong></li>
+                                                                <li><strong>Location BO City Wise</strong></li>
+                                                                <li><strong>Total Mandates Closed</strong></li>
+                                                                <li><strong>No. of Vendors they work</strong></li>
+                                                                <li><strong>Infrastructure of Organization </strong>
+                                                                </li>
+                                                                <li><strong>Notice buy out</strong></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-2 col-lg-2">
+                                                            <ul class="data-coloum">
+                                                                <li>{{qualificationHistory.globalturnover}}</li>
+                                                                <li>{{qualificationHistory.stockexchangelisting}}</li>
+                                                                <li>{{qualificationHistory.globalofficess}}</li>
+                                                                <li>{{qualificationHistory.recruitmentteamsize}}</li>
+                                                                <li>{{qualificationHistory.globallyemployeeno}}</li>
+                                                                <li>{{qualificationHistory.productcompany}}</li>
+                                                                <li>{{qualificationHistory.locationbocitywise}}</li>
+                                                                <li>{{qualificationHistory.totalmendateclosed}}</li>
+                                                                <li>{{qualificationHistory.numberofvendor}}</li>
+                                                                <li>{{qualificationHistory.infrastructureoforganization}}
+                                                                </li>
+                                                                <li>{{qualificationHistory.noticebyout}}</li>
+
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <ul class="title-coloum">
+                                                                <li><strong>Using Portals</strong></li>
+                                                                <li><strong>Mode Of Business</strong></li>
+                                                                <li><strong>Live Position on Career.</strong></li>
+                                                                <li><strong>Sr. Opening Closed</strong></li>
+                                                                <li><strong>No. of Employees in India</strong></li>
+                                                                <li><strong>Proposed Service</strong></li>
+                                                                <li><strong>Qualification Weightage</strong></li>
+                                                                <li><strong>Inhouse Attrition Rate</strong></li>
+                                                                <li><strong>Culture of Organization</strong> </li>
+                                                                <li><strong>Application Tracking System</strong></li>
+                                                                <li><strong>Type of Companies</strong></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-2 col-lg-2">
+                                                            <ul class="data-coloum">
+                                                                <li>{{qualificationHistory.usingportal}}</li>
+                                                                <li>{{qualificationHistory.modeofbussiness}}</li>
+                                                                <li>{{qualificationHistory.liveposition}}</li>
+                                                                <li>{{qualificationHistory.senioopeningclosed}}</li>
+                                                                <li>{{qualificationHistory.employeeinindia}}</li>
+                                                                <li>{{qualificationHistory.proposedservice}}</li>
+                                                                <li>{{qualificationHistory.qualificationweightage}}</li>
+                                                                <li>{{qualificationHistory.inhouseattirationrate}}</li>
+                                                                <li>{{qualificationHistory.culteroforganization}}</li>
+                                                                <li>{{qualificationHistory.applicationtrackingsystem}}
+                                                                </li>
+                                                                <li>{{qualificationHistory.typeofcompany}}</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+                                            </ng-template>
+                                        </ngb-tab>
+
+                                        <!-- Qualification History tab end -->
+                                        <!-- Qualification Parameters tab start -->
+
+                                        <ngb-tab id="tab-selectbyid3">
+                                            <ng-template ngbTabTitle>Qualification Parameters</ng-template>
+                                            <ng-template ngbTabContent class="bg-light">
+
+                                                <form class="mt-4">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <button class="btn btn-primary mb-3 float-right"
+                                                                (click)="openQualificationParameter(qualificationPara)">Add</button>
+                                                            <dx-data-grid id="gridContainer" class="qualification-grid"
+                                                                [dataSource]="qualificationParameterDataSource"
+                                                                [showBorders]="true" keyExpr="id"
+                                                                (onRowValidating)="rowValidating($event)"
+                                                                (onEditorPreparing)="editorPreparing($event)"
+                                                                [showRowLines]="true"
+                                                                (onSelectionChanged)="selectionChanged($event)">
+                                                                <dxo-paging [pageSize]="5"></dxo-paging>
+                                                                <dxo-pager [showPageSizeSelector]="true"
+                                                                    [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                                                                </dxo-pager>
+                                                                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                                                <dxo-filter-row [visible]="true">
+                                                                </dxo-filter-row>
+                                                                <dxi-column caption="S.No" cellTemplate="NoTemplate">
+                                                                    <div *dxTemplate="let data of 'NoTemplate'">
+                                                                        {{data.rowIndex + 1}}
+                                                                    </div>
+                                                                </dxi-column>
+                                                                <dxi-column dataField="parametername"
+                                                                    caption="Qualification"></dxi-column>
+                                                                <dxi-column dataField="childparameter"
+                                                                    caption="Parameter"></dxi-column>
+                                                                <dxi-column dataField="scaletext" caption="Scale">
+                                                                </dxi-column>
+                                                                <dxi-column dataField="createdby" caption="Created By">
+                                                                </dxi-column>
+                                                                <dxi-column dataField="createddate"
+                                                                    caption="Created Date">
+                                                                </dxi-column>
+                                                                <dxi-column dataField="weightage" caption="Weightage">
+                                                                </dxi-column>
+                                                            </dx-data-grid>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </ng-template>
+                                        </ngb-tab>
+                                        <!-- Structure tab start -->
+
+                                        <ngb-tab id="tab-selectbyid4">
+                                            <ng-template ngbTabTitle>Structure</ng-template>
+                                            <ng-template ngbTabContent class="bg-light">
+
+                                                <form class="mt-2">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <!-- Account Info tab start -->
+                                                            <ngb-tabset #t="ngbTabset" class="px-3">
+                                                                <ngb-tab id="tab-selectbyid1"
+                                                                    title="Organization Structure">
+                                                                    <ng-template ngbTabContent class="bg-light">
+
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <button
+                                                                                    class="btn btn-primary my-3 float-right"
+                                                                                    (click)="openOrgStructure(OrgStructure)">Add</button>
+                                                                                <dx-data-grid id="gridContainer"
+                                                                                    class="structure-grid"
+                                                                                    [dataSource]="organizationStructureDataSource"
+                                                                                    [showBorders]="true" keyExpr="id"
+                                                                                    (onRowValidating)="rowValidating($event)"
+                                                                                    (onSelectionChanged)="selectionChanged($event)"
+                                                                                    [showRowLines]="true">
+                                                                                    <!-- <dxo-filter-row [visible]="true" [applyFilter]="">
+                                                                                    </dxo-filter-row> -->
+                                                                                    <dxo-row-dragging
+                                                                                        [allowReordering]="true"
+                                                                                        [onReorder]="onReorder"
+                                                                                        [showDragIcons]="true">
+                                                                                    </dxo-row-dragging>
+                                                                                    <dxo-header-filter [visible]="true">
+                                                                                    </dxo-header-filter>
+                                                                                    <dxo-paging [pageSize]="5">
+                                                                                    </dxo-paging>
+                                                                                    <dxo-pager
+                                                                                        [showPageSizeSelector]="true"
+                                                                                        [allowedPageSizes]="[5, 10, 20]"
+                                                                                        [showInfo]="true">
+                                                                                    </dxo-pager>
+                                                                                    <dxi-column dataField="level"
+                                                                                        caption="Level"></dxi-column>
+                                                                                    <dxi-column dataField="logs"
+                                                                                        caption="Logs">
+                                                                                    </dxi-column>
+                                                                                    <dxi-column dataField="jobgrade"
+                                                                                        caption="Job Grade">
+                                                                                    </dxi-column>
+                                                                                    <dxi-column dataField="designation"
+                                                                                        caption="Designation">
+                                                                                    </dxi-column>
+                                                                                    <dxi-column dataField="experience"
+                                                                                        caption="Experience">
+                                                                                    </dxi-column>
+                                                                                    <dxi-column
+                                                                                        dataField="industrydesignationlevel"
+                                                                                        caption="Industry Designation Level">
+                                                                                    </dxi-column>
+                                                                                    <dxi-column dataField="ctcrange"
+                                                                                        caption="CTC Range">
+                                                                                    </dxi-column>
+                                                                                    <dxi-column dataField="remarks"
+                                                                                        caption="Remarks"></dxi-column>
+                                                                                    <dxi-column dataField="createddate"
+                                                                                        caption="Created Date">
+                                                                                    </dxi-column>
+                                                                                    <dxi-column dataField="createdby"
+                                                                                        caption="Created By">
+                                                                                    </dxi-column>
+                                                                                    <dxi-column
+                                                                                        dataField="lastmodifieddate"
+                                                                                        caption="Modified Date">
+                                                                                    </dxi-column>
+                                                                                    <dxi-column dataField="modifiedby"
+                                                                                        caption="Modified By">
+                                                                                    </dxi-column>
+                                                                                </dx-data-grid>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ng-template>
+                                                                </ngb-tab>
+                                                                <!-- Account Info tab end -->
+                                                                <ngb-tab id="tab-selectbyid2">
+                                                                    <ng-template ngbTabTitle>Business Structure
+                                                                    </ng-template>
+                                                                    <ng-template ngbTabContent>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <button
+                                                                                    class="btn btn-primary my-3 float-right"
+                                                                                    (click)="openBusinessStructure(businessStructure)">Add</button>
+                                                                                <dx-data-grid id="gridContainer"
+                                                                                    [dataSource]="businessDataSource"
+                                                                                    [showBorders]="true" keyExpr="id"
+                                                                                    (onRowValidating)="rowValidating($event)"
+                                                                                    (onSelectionChanged)="selectionChanged($event)"
+                                                                                    [showRowLines]="true">
+                                                                                    <dxo-filter-row [visible]="true">
+                                                                                    </dxo-filter-row>
+                                                                                    <dxo-paging [pageSize]="5">
+                                                                                    </dxo-paging>
+                                                                                    <dxo-pager
+                                                                                        [showPageSizeSelector]="true"
+                                                                                        [allowedPageSizes]="[5, 10, 20]"
+                                                                                        [showInfo]="true">
+                                                                                    </dxo-pager>
+                                                                                    <dxi-column dataField="division"
+                                                                                        caption="Division"></dxi-column>
+                                                                                    <dxi-column dataField="createddate"
+                                                                                        caption="Created Date">
+                                                                                    </dxi-column>
+                                                                                    <dxi-column dataField="createdby"
+                                                                                        caption="Created By">
+                                                                                    </dxi-column>
+                                                                                    <dxi-column
+                                                                                        dataField="lastmodifieddate"
+                                                                                        caption="Modified Date">
+                                                                                    </dxi-column>
+                                                                                    <dxi-column dataField="modifiedby"
+                                                                                        caption="Modified By">
+                                                                                    </dxi-column>
+                                                                                </dx-data-grid>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ng-template>
+                                                                </ngb-tab>
+                                                                <!-- Other Details tab end -->
+                                                                <!-- Search Keywords tab start -->
+                                                            </ngb-tabset>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </ng-template>
+                                        </ngb-tab>
+
+                                        <!-- Structure  tab end -->
+                                        <!-- Leads tab start -->
+
+                                        <ngb-tab id="tab-selectbyid5">
+                                            <ng-template ngbTabTitle>Leads</ng-template>
+                                            <ng-template ngbTabContent class="bg-light">
+                                                <form class="mt-2">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <dx-data-grid id="gridContainer" [dataSource]=""
+                                                                [showBorders]="true" keyExpr="ID"
+                                                                (onRowValidating)="rowValidating($event)"
+                                                                (onEditorPreparing)="editorPreparing($event)"
+                                                                (onSelectionChanged)="selectionChanged($event)">
+                                                                <dxo-filter-row [visible]="true" [applyFilter]="">
+                                                                </dxo-filter-row>
+                                                                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                                                <dxo-paging [pageSize]="5"></dxo-paging>
+                                                                <dxo-pager [showPageSizeSelector]="true"
+                                                                    [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                                                                </dxo-pager>
+                                                                <dxo-selection mode="multiple"></dxo-selection>
+                                                                <dxi-column dataField="Prefix" caption="Title">
+                                                                </dxi-column>
+                                                                <dxi-column dataField="FirstName"></dxi-column>
+                                                                <dxi-column dataField="LastName"></dxi-column>
+                                                                <dxi-column dataField="Position" [width]="130">
+                                                                </dxi-column>
+                                                                <dxi-column dataField="StateID" [width]="125"
+                                                                    caption="State">
+                                                                    <dxo-lookup [dataSource]="" displayExpr="Name"
+                                                                        valueExpr="ID"></dxo-lookup>
+                                                                </dxi-column>
+                                                                <dxi-column dataField="BirthDate" [width]="125">
+                                                                </dxi-column>
+                                                            </dx-data-grid>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </ng-template>
+                                        </ngb-tab>
+
+                                        <!-- Leads  tab end -->
+                                        <!-- Contact tab start -->
+
+                                        <ngb-tab id="tab-selectbyid6">
+                                            <ng-template ngbTabTitle>Contact</ng-template>
+                                            <ng-template ngbTabContent class="bg-light">
+                                                <form class="mt-2">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <dx-data-grid id="gridContainer" [dataSource]=""
+                                                                [showBorders]="true" keyExpr="ID"
+                                                                (onRowValidating)="rowValidating($event)"
+                                                                (onEditorPreparing)="editorPreparing($event)"
+                                                                (onSelectionChanged)="selectionChanged($event)">
+                                                                <dxo-filter-row [visible]="true" [applyFilter]="">
+                                                                </dxo-filter-row>
+                                                                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                                                <dxo-paging [pageSize]="10"></dxo-paging>
+                                                                <dxo-pager [showPageSizeSelector]="true"
+                                                                    [allowedPageSizes]="[8, 12, 20]"></dxo-pager>
+                                                                <dxo-selection mode="multiple"></dxo-selection>
+                                                                <dxi-column dataField="Prefix" caption="Title">
+                                                                </dxi-column>
+                                                                <dxi-column dataField="FirstName"></dxi-column>
+                                                                <dxi-column dataField="LastName"></dxi-column>
+                                                                <dxi-column dataField="Position" [width]="130">
+                                                                </dxi-column>
+                                                                <dxi-column dataField="StateID" [width]="125"
+                                                                    caption="State">
+                                                                    <dxo-lookup [dataSource]="" displayExpr="Name"
+                                                                        valueExpr="ID"></dxo-lookup>
+                                                                </dxi-column>
+                                                                <dxi-column dataField="BirthDate" [width]="125">
+                                                                </dxi-column>
+                                                            </dx-data-grid>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </ng-template>
+                                        </ngb-tab>
+
+                                        <!-- Contact tab end -->
+                                        <!-- Job tab start -->
+
+                                        <ngb-tab id="tab-selectbyid7">
+                                            <ng-template ngbTabTitle>Jobs</ng-template>
+                                            <ng-template ngbTabContent class="bg-light">
+                                                <form class="mt-2">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <dx-data-grid id="gridContainer" [dataSource]=""
+                                                                [showBorders]="true" keyExpr="ID"
+                                                                (onRowValidating)="rowValidating($event)"
+                                                                (onEditorPreparing)="editorPreparing($event)"
+                                                                (onSelectionChanged)="selectionChanged($event)">
+                                                                <dxo-filter-row [visible]="true" [applyFilter]="">
+                                                                </dxo-filter-row>
+                                                                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                                                <dxo-paging [pageSize]="10"></dxo-paging>
+                                                                <dxo-pager [showPageSizeSelector]="true"
+                                                                    [allowedPageSizes]="[8, 12, 20]"></dxo-pager>
+                                                                <dxo-selection mode="multiple"></dxo-selection>
+                                                                <dxi-column dataField="Prefix" caption="Title">
+                                                                </dxi-column>
+                                                                <dxi-column dataField="FirstName"></dxi-column>
+                                                                <dxi-column dataField="LastName"></dxi-column>
+                                                                <dxi-column dataField="Position" [width]="130">
+                                                                </dxi-column>
+                                                                <dxi-column dataField="StateID" [width]="125"
+                                                                    caption="State">
+                                                                    <dxo-lookup [dataSource]="" displayExpr="Name"
+                                                                        valueExpr="ID"></dxo-lookup>
+                                                                </dxi-column>
+                                                                <dxi-column dataField="BirthDate" [width]="125">
+                                                                </dxi-column>
+                                                            </dx-data-grid>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </ng-template>
+                                        </ngb-tab>
+
+                                        <!-- Job tab end -->
+                                        <!-- Offer & Joined tab start -->
+
+                                        <ngb-tab id="tab-selectbyid8">
+                                            <ng-template ngbTabTitle> Offered & Joined</ng-template>
+                                            <ng-template ngbTabContent class="bg-light">
+                                                <form class="mt-2">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="OfferType">Offer Type</label>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <select class="custom-select" id="OfferType">
+                                                                            <option value="Permanent">Permanent</option>
+                                                                            <option value="Staffing">Staffing</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <dx-data-grid id="gridContainer" [dataSource]=""
+                                                                [showBorders]="true" keyExpr="ID"
+                                                                (onRowValidating)="rowValidating($event)"
+                                                                (onEditorPreparing)="editorPreparing($event)"
+                                                                (onSelectionChanged)="selectionChanged($event)">
+                                                                <dxo-filter-row [visible]="true" [applyFilter]="">
+                                                                </dxo-filter-row>
+                                                                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                                                <dxo-paging [pageSize]="10"></dxo-paging>
+                                                                <dxo-pager [showPageSizeSelector]="true"
+                                                                    [allowedPageSizes]="[8, 12, 20]"></dxo-pager>
+                                                                <dxo-selection mode="multiple"></dxo-selection>
+                                                                <dxi-column dataField="Prefix" caption="Title">
+                                                                </dxi-column>
+                                                                <dxi-column dataField="FirstName"></dxi-column>
+                                                                <dxi-column dataField="LastName"></dxi-column>
+                                                                <dxi-column dataField="Position" [width]="130">
+                                                                </dxi-column>
+                                                                <dxi-column dataField="StateID" [width]="125"
+                                                                    caption="State">
+                                                                    <dxo-lookup [dataSource]="" displayExpr="Name"
+                                                                        valueExpr="ID"></dxo-lookup>
+                                                                </dxi-column>
+                                                                <dxi-column dataField="BirthDate" [width]="125">
+                                                                </dxi-column>
+                                                            </dx-data-grid>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </ng-template>
+                                        </ngb-tab>
+
+                                        <!-- Offer & Joined tab end -->
+                                        <!-- More Inforamtion tab start -->
+
+                                        <ngb-tab id="tab-selectbyid9">
+                                            <ng-template ngbTabTitle>
+                                                <div ngbDropdown class="d-inline-block">
+                                                    <button class="btn" id="dropdownBasic1" ngbDropdownToggle>More
+                                                        Information
+                                                    </button>
+                                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                                        <button ngbDropdownItem ngbTabTitle>Invoice</button>
+                                                        <button ngbDropdownItem>Agreement</button>
+                                                        <button ngbDropdownItem>Client GSTIN Details</button>
+                                                        <button ngbDropdownItem>Address Details</button>
+                                                        <button ngbDropdownItem>Team Member</button>
+                                                        <button ngbDropdownItem>PO List</button>
+                                                        <button ngbDropdownItem>Account Domain</button>
+                                                        <button ngbDropdownItem>Basic Information</button>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                            <ng-template ngbTabContent class="bg-light">
+                                                <form class="mt-4">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <dx-data-grid id="gridContainer" [dataSource]=""
+                                                                [showBorders]="true" keyExpr="ID"
+                                                                (onRowValidating)="rowValidating($event)"
+                                                                (onSelectionChanged)="selectionChanged($event)">
+                                                                <dxo-filter-row [visible]="true" [applyFilter]="">
+                                                                </dxo-filter-row>
+                                                                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                                                <dxo-paging [pageSize]="10"></dxo-paging>
+                                                                <dxo-pager [showPageSizeSelector]="true"
+                                                                    [allowedPageSizes]="[8, 12, 20]"></dxo-pager>
+                                                                <dxo-selection mode="multiple"></dxo-selection>
+                                                                <dxi-column dataField="Prefix" caption="Title">
+                                                                </dxi-column>
+                                                                <dxi-column dataField="FirstName"></dxi-column>
+                                                                <dxi-column dataField="LastName"></dxi-column>
+                                                                <dxi-column dataField="Position" [width]="130">
+                                                                </dxi-column>
+                                                                <dxi-column dataField="StateID" [width]="125"
+                                                                    caption="State">
+                                                                    <dxo-lookup [dataSource]="" displayExpr="Name"
+                                                                        valueExpr="ID"></dxo-lookup>
+                                                                </dxi-column>
+                                                                <dxi-column dataField="BirthDate" [width]="125">
+                                                                </dxi-column>
+                                                            </dx-data-grid>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </ng-template>
+                                        </ngb-tab>
+                                        <!-- More Information tab end -->
+                                    </ngb-tabset>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Auxiliary Information section start -->
+                        <div class="sidebar-wrapper equal-height-coloum pl-0 pr-0 ">
+                            <div class="bg-white shadow rounded auxiliary-box"
+                                [ngClass]="[divShow?'display-show':'display-hide']">
+                                <!-- close Icon -->
+                                <div class="bg-white shadow rounded mb-5 ">
+                                    <div class="p-3">
+                                        <div class="card lead-view-information mb-3">
+                                            <div class="card-header">
+                                                <span id="close-sidebar" (click)="divShow=false">
+                                                    <fa-icon [icon]="faTimesCircle" class="mb-4 pl-0"></fa-icon>
+                                                </span>
+                                                <div class="text-primary pt-1 pb-0 pl-2">
+                                                    <h5 class="text-primary pt-0 pl-0">Auxiliary Information</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- basic-infpormation-list -->
+                                        <app-account-auxiliary></app-account-auxiliary>
+
+                                        <!-- basic-infpormation-list -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal Qualification start-->
+        <ng-template #qualificationPara let-modal>
+            <div class="modal-header bg-primary text-white">
+                <h4 class="modal-title" id="modal-basic-title">Qualification Parameter</h4>
+                <button type="button" class="close text-white" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="qualificationParamterForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="parameter">Parameters</label>
+                                <dx-drop-down-box [(value)]="gridBoxValuePara" valueExpr="id"
+                                    [displayExpr]="gridBox_displayExprPara" placeholder="Select a value..."
+                                    [showClearButton]="true" [dataSource]="gridDataSourcePara"
+                                    formControlName="parameter">
+                                    <div *dxTemplate="let data of 'content'">
+                                        <dx-data-grid [dataSource]="gridDataSourcePara" [columns]="['subParameters']"
+                                            [grouping]="true" [selection]="{ mode: 'single' }"
+                                            [hoverStateEnabled]="true" [paging]="{ enabled: true, pageSize: 10 }"
+                                            [filterRow]="{ visible: true }" [scrolling]="{ mode: 'infinite' }"
+                                            height="100%" (onSelectionChanged)="selectionPara($event)"
+                                            [(selectedRowKeys)]="gridBoxValuePara">
+                                        </dx-data-grid>
+                                    </div>
+                                </dx-drop-down-box>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="scale">Scale</label>
+                                <dx-drop-down-box [(value)]="gridBoxValue" valueExpr="id"
+                                    [displayExpr]="gridBox_displayExpr" placeholder="Select a value..."
+                                    [showClearButton]="true" [dataSource]="gridDataSource" formControlName="scale">
+                                    <div *dxTemplate="let data of 'content'">
+                                        <dx-data-grid [dataSource]="gridDataSource" [columns]="['scale','weightage']"
+                                            [grouping]="true" [selection]="{ mode: 'single' }"
+                                            [hoverStateEnabled]="true" [paging]="{ enabled: true, pageSize: 10 }"
+                                            [filterRow]="{ visible: true }" [scrolling]="{ mode: 'infinite' }"
+                                            height="100%" (onSelectionChanged)="selectionScale($event)"
+                                            [(selectedRowKeys)]="gridBoxValue">
+                                        </dx-data-grid>
+                                    </div>
+                                </dx-drop-down-box>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button float-rigth" class="btn btn-outline-primary"
+                    (click)="addQualificationParameter()">Submit</button>
+            </div>
+        </ng-template>
+        <!--Modal Qualification end-->
+
+        <!-- Qualification Parameters tab end -->
+        <!-- Orgnization Model Start -->
+        <ng-template #OrgStructure let-modal>
+            <div class="modal-header bg-primary text-white">
+                <h4 class="modal-title" id="modal-basic-title">Account Organization Structure</h4>
+                <button type="button" class="close text-white" aria-label="Close"
+                    (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="accountOrgStructureForm">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="JobGrade">Job Grade</label>
+                                <input type="text" class="form-control" id="JobGrade" placeholder="Enter Job Grade"
+                                    formControlName="jobgrade">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Designation">Designation</label>
+                                <input type="text" class="form-control" id="Designation" placeholder="Enter Designation"
+                                    formControlName="designation">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="Experience">Experience</label>
+                                        <input type="number" name="points" class=" w-100 form-control" step="3"
+                                            placeholder="From" formControlName="expfrom">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="Experience"></label>
+                                        <input type="number" name="points" class="w-100 form-control" step="3"
+                                            placeholder="To" formControlName="expto">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="IndustryDesignation">Industry Designation Level</label>
+                                <input type="text" class="form-control" id="IndustryDesignation"
+                                    placeholder="Enter Industry Designation Level"
+                                    formControlName="industrydesignationlevel">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <label for="CTCRange">CTC Range</label>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <ng-select [items]="currency" bindLabel="currency" placeholder="Select Currency"
+                                            formControlName="ctccurrency" (keyup)="searchCurrency($event.target.value)"
+                                            id="currency">
+                                        </ng-select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="number" name="points" placeholder="From" class="w-100 form-control"
+                                            step="3" formControlName="ctcfrom">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="number" name="points" placeholder="to" class="w-100 form-control"
+                                            step="3" formControlName="ctcto">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <label for="">INR</label>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input class="form-control mt-2" id="Designation1" formControlName="ctcrange"
+                                            readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input class="form-control mt-2" id="Designation2" formControlName="ctcfrominr"
+                                            readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input class="form-control mt-2" id="Designation3" formControlName="ctctoinr"
+                                            readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="Remarks">Remarks</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="remarks" placeholder="Enter Remarks"
+                                    formControlName="remarks">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button float-rigth" class="btn btn-outline-primary"
+                    (click)=" addOrgStructure()">Submit</button>
+            </div>
+        </ng-template>
+        <!-- Organization Structure  Model End -->
+        <!-- Business Structure  Model start -->
+        <ng-template #businessStructure let-moda>
+            <div class="modal-header bg-primary text-white">
+                <h4 class="modal-title" id="modal-basic-title">Account Business Structure</h4>
+                <button type="button" class="close text-white" aria-label="Close" (click)="moda.dismiss('Cross click')">
+
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="accountBusinessStructureForm">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="division">Division</label>
+                                <input type="text" class="form-control" id="JobGrade" placeholder="Enter Division"
+                                    formControlName="division">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button float-rigth" class="btn btn-outline-primary"
+                    (click)="addbusinessStructure()">Submit</button>
+            </div>
+        </ng-template>
+        <!-- Business Structure  Model End -->

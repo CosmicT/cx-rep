@@ -1,0 +1,233 @@
+<div class="page-wrapper">
+    <div class="container-fluid pl-0 pr-0 ">
+        <div class="row page-titles lied-view-panel margin-bottom mb-3 ml-0">
+            <div class="col-md-4 pr-0">
+                <ol class="breadcrumb ">
+                    <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active">View Lead</li>
+                </ol>
+            </div>
+            <div class="col-md-3 text-center">
+                <!-- Icon list section-->
+                <ul class="icon-list">
+                    <li><a href="#" placement="left" ngbTooltip="Schedule Meeting">
+                            <fa-icon [icon]="faClock"></fa-icon>
+                        </a></li>
+                    <li><a href="#" placement="left" ngbTooltip="Create Task">
+                            <fa-icon [icon]="faListAlt"></fa-icon>
+                        </a></li>
+                    <li><a href="#" placement="left" ngbTooltip="Compose Mail">
+                            <fa-icon [icon]="faEnvelope"></fa-icon>
+                        </a></li>
+                    <li><a href="#" placement="left" ngbTooltip="Assign Team Members">
+                            <fa-icon [icon]="faUsers"></fa-icon>
+                        </a></li>
+                </ul>
+                <!-- Icon list section-->
+            </div>
+            <div class="col-md-5">
+                <!-- link list section-->
+                <ul class="link-list float-right">
+                    <li><a routerLink="/lead/create-edit-lead/{{leadId}}" class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faPenSquare" class="mr-1"></fa-icon>Edit
+                        </a></li>
+                    <li><button (click)="openConfimationDialog('convert')" class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faRetweet" class="mr-1"></fa-icon>Convert Lead
+                        </button></li>
+                    <li><button (click)="openConfimationDialog('quit')" class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faTimes" class="mr-1"></fa-icon>Quit Lead
+                        </button></li>
+                    <li><button href="#" class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faList" class="mr-1"></fa-icon>Logs
+                        </button></li>
+                    <li><button href="#" class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faList" class="mr-1"></fa-icon>Notes
+                        </button></li>
+                </ul>
+                <!-- link list section-->
+            </div>
+        </div>
+        <!-- Account details start-->
+        <div class=" view-details-panel mb-3">
+            <div class="row">
+                <div class="col-md-6 pr-1">
+                    <div class="d-flex border-box">
+                        <div class="col-md-2 img-box">
+                            <!-- <img src="" alt="responsive image" class="img-fluid"> -->
+                            <img src="/assets/dev-extreme-img/user-profile-pic.png" alt="pic"
+                                class="w-100 img-thumbnail">
+                        </div>
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5 class="mb-1 w-100"><a href="#">{{contact.account.name}}</a><span
+                                            class="prosp-title mx-1">({{contact.status}})</span><a href="#"><img
+                                                src="/assets/dev-extreme-img/Linkedin.png" alt="pic"></a></h5>
+                                    <ul class="recuitement-info">
+                                        <li>
+                                            <fa-icon [icon]="faBriefcase" class="mr-1"></fa-icon><a placement="left"
+                                                ngbTooltip="Designation" href="#">{{contact.designation}}</a>
+                                        </li>
+                                        <li>
+                                            <fa-icon [icon]="faEnvelope" class="mr-1"></fa-icon><a placement="left"
+                                                ngbTooltip="Mail"
+                                                href="Mailto:{{contact.workingmailid}}">{{contact.workingmailid}}</a>
+                                        </li>
+                                        <li>
+                                            <fa-icon [icon]="faPhoneSquareAlt" class="mr-1"></fa-icon><a
+                                                placement="left" ngbTooltip="Mobile Phone"
+                                                href="#">+{{contact.personalmobilecountrycode}}{{contact.personalmobilenumber}}</a>
+                                        </li>
+                                        <li>
+                                            <fa-icon [icon]="faMapMarkerAlt" class="mr-1"></fa-icon><a placement="left"
+                                                ngbTooltip="Address" href="#">N/A</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="dropdown pull-right open float-right">
+                                        <button class="btn btn-default dropdown-toggle" type="button"
+                                            data-toggle="dropdown" data-hover="dropdown" aria-expanded="true">
+                                            Activities & History
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdownhover-bottom">
+                                            <li>
+                                                <a href="#" placement="left" ngbTooltip="Call">
+                                                    <fa-icon class="mr-2" [icon]="faPhoneAlt" class="mr-2"></fa-icon>
+                                                    Call
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" placement="left" ngbTooltip="Meeting">
+                                                    <fa-icon class="mr-2" [icon]="faClock"></fa-icon>Meeting
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" placement="left" ngbTooltip="Mail">
+                                                    <fa-icon class="mr-2" [icon]="faEnvelope"></fa-icon>Mail
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" placement="left" ngbTooltip="Task">
+                                                    <fa-icon class="mr-2" [icon]="faListAlt"></fa-icon>Task
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 pr-0">
+                    <div class="d-flex border-box">
+                        <div class="col-md-2 img-box">
+                            <!-- <img src="" alt="responsive image" class="img-fluid"> -->
+                            <img src="/assets/dev-extreme-img/user-profile-pic.png" class="w-100 img-thumbnail"
+                                alt="pic">
+                        </div>
+                        <div class="col-md-10" *ngIf="competition">
+                            <h5 class="mb-1 w-100"><a href="#">{{competition.name}}</a>
+                                <span class="prosp-title mx-1">(Prospecting)</span>
+                                <a href="#"><img src="/assets/dev-extreme-img/Linkedin.png" alt="pic"></a>
+                            </h5>
+                            <ul class="recuitement-info">
+                                <li>
+                                    <fa-icon [icon]="faBriefcase" class="mr-1"></fa-icon><a class="blue-link"
+                                        placement="left" ngbTooltip="Website"
+                                        href="https://{{competition.websiteurl}}">{{competition.websiteurl}}</a>
+                                </li>
+                                <li>
+                                    <fa-icon [icon]="faPhoneSquareAlt" class="mr-1"></fa-icon><a class="blue-link"
+                                        placement="left" ngbTooltip="Board Number"
+                                        href="tel:{{competition.boardnumber}}">{{competition.boardnumber}}</a>
+                                </li>
+                                <li>
+                                    <fa-icon [icon]="faMapMarkerAlt" class="mr-1"></fa-icon>
+                                    <a placement="left" ngbTooltip="Address" href="#">{{competition.fulladdress}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Account details end-->
+        <div class="row equal-height-cols" [ngClass]="[divShow? 'toggled':'']">
+            <!-- collapse Icon -->
+            <a id="show-sidebar" class="btn btn-sm btn-dark" (click)="divShow=!divShow"><span
+                    class="verticle-text">Auxiliary</span></a>
+            <!-- create lead form section start -->
+            <div class="lead-wrap lead-view-panel">
+                <div class="details-datagrid pl-3">
+                    <div class="bg-white shadow equal-height-coloum w-100 rounded ">
+                        <div class="p-4 data-grid-wrap">
+                            <div class="row">
+                                <div class="card p-3 flex-row-reverse">
+                                    <div class="card-header compInfoSearch-header float-right" id="headingOne">
+                                        <ngb-tabset #t="ngbTabset">
+                                            <!-- Basic Information tab start -->
+                                            <ngb-tab id="tab-selectbyid1" title="Basic Information">
+                                                <ng-template ngbTabContent class="bg-light">
+                                                    <app-lead-view-basic [contact]="contact"></app-lead-view-basic>                                                  
+                                                </ng-template>
+                                            </ngb-tab>
+                                            <!-- Basic Information tab end -->
+
+                                            <!-- Qualification Parameters tab start -->
+                                            <ngb-tab id="tab-selectbyid2">
+                                                <ng-template ngbTabTitle>Qualification Parameters</ng-template>
+                                                <ng-template ngbTabContent class="bg-light">
+                                                    <app-lead-view-qualification-parameter [leadId]="leadId">
+                                                    </app-lead-view-qualification-parameter>
+                                                </ng-template>
+                                            </ngb-tab>
+                                            <!-- Qualification Parameters tab end -->
+
+                                            <!-- Team Members tab start -->
+                                            <ngb-tab id="tab-selectbyid3">
+                                                <ng-template ngbTabTitle>Team Members</ng-template>
+                                                <ng-template ngbTabContent class="bg-light">
+                                                    <app-lead-view-team-member [competition]="competition">
+                                                    </app-lead-view-team-member>
+
+                                                </ng-template>
+                                            </ngb-tab>
+                                            <!-- Team Members tab end -->
+                                        </ngb-tabset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                    <!-- Auxiliary Information section start -->
+                    <div class="sidebar-wrapper equal-height-coloum pl-0 pr-0 ">
+                        <div class="bg-white shadow rounded auxiliary-box"
+                            [ngClass]="[divShow?'display-show':'display-hide']">
+                            <!-- close Icon -->
+                            <div class="bg-white shadow rounded mb-5">
+                                <div class="p-3 ">
+                                    <div class="card flex-row-reverse">
+                                        <div class="card-header">
+                                            <span id="close-sidebar" (click)="divShow=false">
+                                                <fa-icon [icon]="faTimesCircle" class="mb-4 pl-0"></fa-icon>
+                                            </span>
+                                            <div class=" text-primary pt-1 pb-0 pl-2">
+                                                <h5 class="text-primary pt-0 pl-0">Auxiliary Information</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #content let-modal>
+
+    </ng-template>

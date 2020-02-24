@@ -1,0 +1,312 @@
+<div class="page-wrapper">
+    <div class="container-fluid pl-0 pr-0 ">
+        <div class="row page-titles lied-view-panel mb-3">
+            <div class="col-md-4 pr-0">
+                <ol class="breadcrumb ">
+                    <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Contact View</li>
+                </ol>
+            </div>
+            <div class="col-md-3 text-center">
+                <!-- Icon list section-->
+                <ul class="icon-list">
+                    <li><a href="#" placement="left" ngbTooltip="Schedule Meeting">
+                            <fa-icon [icon]="faClock"></fa-icon>
+                        </a></li>
+                    <li><a href="#" placement="left" ngbTooltip="Create Task">
+                            <fa-icon [icon]="faListAlt"></fa-icon>
+                        </a></li>
+                    <li><a href="#" placement="left" ngbTooltip="Compose Mail">
+                            <fa-icon [icon]="faEnvelope"></fa-icon>
+                        </a></li>
+                    <li><a href="#" placement="left" ngbTooltip="Assign Team Members">
+                            <fa-icon [icon]="faUsers"></fa-icon>
+                        </a></li>
+                </ul>
+                <!-- Icon list section-->
+            </div>
+            <div class="col-md-5">
+                <!-- link list section-->
+                <ul class="link-list float-right">
+                    <li><a href="#" class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faPenSquare" class="mr-1"></fa-icon>Edit
+                        </a></li>
+                    <li><button href="#" class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faRetweet" class="mr-1"></fa-icon>Convert Lead
+                        </button></li>
+                    <li><a href="#" class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faTimes" class="mr-1"></fa-icon>Quick Lead
+                        </a></li>
+                    <li><a href="#" class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faList" class="mr-1"></fa-icon>Logs
+                        </a></li>
+                    <li><a href="#" class="btn btn-primary custom-btn">
+                            <fa-icon [icon]="faList" class="mr-1"></fa-icon>Notes
+                        </a></li>
+                </ul>
+                <!-- link list section-->
+            </div>
+        </div>
+
+        <!-- Account info start-->
+        <div class="view-details-panel mb-3">
+            <div class="row">
+                <div class="col-md-6 pr-1">
+                    <div class="d-flex border-box">
+                        <div class="col-md-2 img-box">
+                            <!-- <img src="" alt="responsive image" class="img-fluid"> -->
+                            <img src="/assets/dev-extreme-img/user-profile-pic.png" alt="pic"
+                                class="w-100 img-thumbnail">
+                        </div>
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5 class="mb-1 w-100">{{contact[0].salutation}} {{contact[0].firstname}}
+                                        {{contact[0].midlename}} {{contact[0].lastname}} <span
+                                            class="prosp-title mx-1">({{contact[0].status}})</span><a href="#"><img
+                                                src="/assets/dev-extreme-img/Linkedin.png" alt="pic"></a></h5>
+                                    <ul class="recuitement-info">
+                                        <li>
+                                            <fa-icon [icon]="faBriefcase " class="mr-1"></fa-icon>
+                                            {{contact[0].designation}}
+                                        </li>
+
+                                        <li>
+                                            <fa-icon [icon]="faPhoneSquareAlt" class="mr-1"></fa-icon>
+                                            {{contact[0].mobilenumber}}
+                                        </li>
+                                        <li>
+                                            <fa-icon [icon]="faMapMarkerAlt" class="mr-1"></fa-icon>
+                                            N/A
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="dropdown pull-right open float-right">
+                                        <button class="btn btn-default dropdown-toggle" type="button"
+                                            data-toggle="dropdown" data-hover="dropdown" aria-expanded="true">
+                                            Activities & History
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdownhover-bottom">
+                                            <li><a href="#" placement="left" ngbTooltip="Call">
+                                                    <fa-icon class="mr-2" [icon]="faPhoneAlt" class="mr-2"></fa-icon>
+                                                    Call
+                                                </a></li>
+                                            <li><a href="#" placement="left" ngbTooltip="Meeting">
+                                                    <fa-icon class="mr-2" [icon]="faClock"></fa-icon>Meeting
+                                                </a></li>
+                                            <li><a href="#" placement="left" ngbTooltip="Mail">
+                                                    <fa-icon class="mr-2" [icon]="faEnvelope"></fa-icon>Mail
+                                                </a></li>
+                                            <li><a href="#" placement="left" ngbTooltip="Task">
+                                                    <fa-icon class="mr-2" [icon]="faListAlt"></fa-icon>Task
+                                                </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex border-box">
+                        <div class="col-md-2 img-box">
+                            <!-- <img src="" alt="responsive image" class="img-fluid"> -->
+                            <img src="/assets/dev-extreme-img/user-profile-pic.png" class="w-100 img-thumbnail"
+                                alt="pic">
+                        </div>
+                        <div class="col-md-10">
+                            <h5 class="mb-1 w-100"><a href="#">{{accountAddress.name}} </a>
+                                <span class="prosp-title mx-1"></span>
+                                <a href="#"><img src="/assets/dev-extreme-img/Linkedin.png" alt="pic"></a>
+                            </h5>
+                            <ul class="recuitement-info">
+                                <li>
+                                    <fa-icon [icon]="faGlobeAsia" class="mr-1"></fa-icon>
+                                    {{accountAddress.websiteurl}}
+                                </li>
+                                <li>
+                                    <fa-icon [icon]="faPhoneSquareAlt" class="mr-1"></fa-icon>
+                                    {{accountAddress.boardnumber}}
+                                </li>
+                                <li>
+                                    <fa-icon [icon]="faMapMarkerAlt" class="mr-1"></fa-icon>
+                                    {{accountAddress.fulladdress}}<span class="view-more ml-2">More</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Account details end-->
+        <div class="row equal-height-cols" [ngClass]="[divShow? 'toggled':'']">
+            <!-- collapse Icon -->
+            <a id="show-sidebar" class="btn btn-sm btn-dark" (click)="divShow=!divShow"><span
+                    class="verticle-text">Auxiliary</span></a>
+            <!-- create lead form section start -->
+            <div class="lead-wrap lead-view-panel">
+                <div class="details-datagrid pl-3">
+                    <div class="bg-white shadow equal-height-coloum w-100 rounded mb-5 ">
+                        <div class="p-3 data-grid-wrap">
+                            <div class="row ">
+                                <ngb-tabset #t="ngbTabset" class="px-3">
+                                    <!-- Basic Information tab start -->
+                                    <ngb-tab id="tab-selectbyid1" title="Basic Details">
+                                        <ng-template ngbTabContent class="bg-light ">
+                                            <app-contact-view-basic [contact]="contact"></app-contact-view-basic>
+
+                                        </ng-template>
+                                    </ngb-tab>
+                                    <!-- Basic Information tab end -->
+
+                                    <ngb-tab id="tab-selectbyid3">
+                                        <ng-template ngbTabTitle>Qualification Parameters</ng-template>
+                                        <ng-template ngbTabContent class="bg-light">
+                                            <app-contact-view-qualification [contactId]="contact[0].id">
+                                            </app-contact-view-qualification>
+
+                                        </ng-template>
+                                    </ngb-tab>
+
+                                    <!-- Qualification Parameters tab end -->
+                                    <!-- Team members tab start -->
+
+                                    <ngb-tab id="tab-selectbyid4">
+                                        <ng-template ngbTabTitle>Team Members</ng-template>
+                                        <ng-template ngbTabContent class="bg-light">
+                                            <app-contact-view-team-member></app-contact-view-team-member>
+
+                                        </ng-template>
+                                    </ngb-tab>
+
+                                    <!-- Structure  tab end -->
+                                    <!-- Job tab start -->
+
+                                    <ngb-tab id="tab-selectbyid5">
+                                        <ng-template ngbTabTitle>Job</ng-template>
+                                        <ng-template ngbTabContent class="bg-light">
+                                            <form class="mt-3">
+                                                <div class="row">
+                                                    <dx-data-grid id="gridContainer" class="data-grid-panel">
+                                                        <dxo-filter-row [visible]="true">
+                                                        </dxo-filter-row>
+                                                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                                        <dxo-paging [pageSize]="10"></dxo-paging>
+                                                        <dxo-pager [showPageSizeSelector]="true"
+                                                            [allowedPageSizes]="[8, 12, 20]"></dxo-pager>
+                                                        <dxo-selection mode="multiple"></dxo-selection>
+                                                        <dxi-column dataField="Prefix" caption="Title"></dxi-column>
+                                                        <dxi-column dataField="FirstName"></dxi-column>
+                                                        <dxi-column dataField="LastName"></dxi-column>
+                                                        <dxi-column dataField="Position" [width]="130"></dxi-column>
+                                                        <dxi-column dataField="StateID" [width]="125" caption="State">
+                                                            <dxo-lookup [dataSource]="" displayExpr="Name"
+                                                                valueExpr="ID"></dxo-lookup>
+                                                        </dxi-column>
+                                                        <dxi-column dataField="BirthDate" [width]="125">
+                                                        </dxi-column>
+                                                    </dx-data-grid>
+                                                </div>
+                                            </form>
+                                        </ng-template>
+                                    </ngb-tab>
+
+                                    <!-- Job tab end -->
+                                    <!-- Previous Company History tab start -->
+
+                                    <ngb-tab id="tab-selectbyid6">
+                                        <ng-template ngbTabTitle>Previous Company History</ng-template>
+                                        <ng-template ngbTabContent class="bg-light">
+                                            <form class="mt-3">
+                                                <div class="row">
+                                                    <dx-data-grid id="gridContainer" class="data-grid-panel">
+                                                        <dxo-filter-row [visible]="true">
+                                                        </dxo-filter-row>
+                                                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                                        <dxo-paging [pageSize]="10"></dxo-paging>
+                                                        <dxo-pager [showPageSizeSelector]="true"
+                                                            [allowedPageSizes]="[8, 12, 20]"></dxo-pager>
+                                                        <dxo-selection mode="multiple"></dxo-selection>
+                                                        <dxi-column dataField="Prefix" caption="Title"></dxi-column>
+                                                        <dxi-column dataField="FirstName"></dxi-column>
+                                                        <dxi-column dataField="LastName"></dxi-column>
+                                                        <dxi-column dataField="Position" [width]="130"></dxi-column>
+                                                        <dxi-column dataField="StateID" [width]="125" caption="State">
+                                                            <dxo-lookup [dataSource]="" displayExpr="Name"
+                                                                valueExpr="ID"></dxo-lookup>
+                                                        </dxi-column>
+                                                        <dxi-column dataField="BirthDate" [width]="125">
+                                                        </dxi-column>
+                                                    </dx-data-grid>
+                                                </div>
+                                            </form>
+                                        </ng-template>
+                                    </ngb-tab>
+
+                                    <!-- Previous Company History tab start -->
+                                    <!-- Communication tab start -->
+
+                                    <ngb-tab id="tab-selectbyid7">
+                                        <ng-template ngbTabTitle>Communication</ng-template>
+                                        <ng-template ngbTabContent class="bg-light">
+                                            <form class="mt-3">
+                                                <div class="row">
+                                                    <dx-data-grid id="gridContainer" class="data-grid-panel">
+                                                        <dxo-filter-row [visible]="true">
+                                                        </dxo-filter-row>
+                                                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                                        <dxo-paging [pageSize]="10"></dxo-paging>
+                                                        <dxo-pager [showPageSizeSelector]="true"
+                                                            [allowedPageSizes]="[8, 12, 20]"></dxo-pager>
+                                                        <dxo-selection mode="multiple"></dxo-selection>
+                                                        <dxi-column dataField="Prefix" caption="Title"></dxi-column>
+                                                        <dxi-column dataField="FirstName"></dxi-column>
+                                                        <dxi-column dataField="LastName"></dxi-column>
+                                                        <dxi-column dataField="Position" [width]="130"></dxi-column>
+                                                        <dxi-column dataField="StateID" [width]="125" caption="State">
+                                                            <dxo-lookup [dataSource]="" displayExpr="Name"
+                                                                valueExpr="ID"></dxo-lookup>
+                                                        </dxi-column>
+                                                        <dxi-column dataField="BirthDate" [width]="125">
+                                                        </dxi-column>
+                                                    </dx-data-grid>
+                                                </div>
+                                            </form>
+                                        </ng-template>
+                                    </ngb-tab>
+
+                                    <!-- Communication tab start -->
+                                </ngb-tabset>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                    <!-- Auxiliary Information section start -->
+                    <div class="sidebar-wrapper equal-height-coloum pl-0 pr-0 ">
+                        <div class="bg-white shadow rounded auxiliary-box"
+                            [ngClass]="[divShow?'display-show':'display-hide']">
+                            <!-- close Icon -->
+                            <div class="bg-white shadow rounded mb-5 ">
+                                <div class="p-3 ">
+                                    <div class="card  flex-row-reverse">
+                                        <div class="card-header">
+                                            <span id="close-sidebar" (click)="divShow=false">
+                                                <fa-icon [icon]="faTimesCircle" class="mb-4 pl-0"></fa-icon>
+                                            </span>
+                                            <div class=" text-primary pt-1 pb-0 pl-2">
+                                                <h5 class="text-primary pt-0 pl-0">Auxiliary Information</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Account info end-->
+    </div>
+</div>

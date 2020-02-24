@@ -1,0 +1,130 @@
+<div class="page-wrapper">
+    <div class="container-fluid pl-0 pr-0 ">
+        <div class="row page-titles margin-bottom mb-3">
+            <div class="col-md-12 pr-0">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Account Search</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row  equal-height-cols edit-account lead-wrapper">
+            <div class="lead-wrap d-inline-flex">
+                <div class="details-datagrid pl-3">
+                    <div class="bg-white shadow equal-height-coloum rounded">
+                        <div class="p-3 border-bottom">
+                            <dx-data-grid id="gridContainer" [dataSource]="dataSourceGrid" [showBorders]="true"
+                                [remoteOperations]="true">
+                                <dxo-scrolling columnRenderingMode="virtual"></dxo-scrolling>
+                                <dxi-column dataField="name" caption="Account Name" cellTemplate="accountTemplate"
+                                    [width]="150"></dxi-column>
+                                <div *dxTemplate="let account of 'accountTemplate'">
+                                    <a routerLink="/account/account-view/{{account.data.id}}">{{account.text}}</a>
+                                </div>
+                                <dxi-column dataField="createddate" caption="Created Date" dataType="datetime"
+                                    format="M/d/yyyy, HH:mm" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="createdby" caption="Created By" [width]="150"></dxi-column>
+                                <dxi-column dataField="lastmodifieddate" caption="Modified Date" dataType="date"
+                                    format="M/d/yyyy, HH:mm" [width]="150"></dxi-column>
+                                <dxi-column dataField="modifiedby" caption="Modified By" [width]="150"></dxi-column>
+                                <dxi-column dataField="address" caption="Address" [width]="150"></dxi-column>
+                                <dxi-column dataField="anchorname" caption="Anchor" [width]="150"></dxi-column>
+                                <dxi-column dataField="totaljobs" caption="No. Of Jobs" [width]="150"></dxi-column>
+                                <dxi-column dataField="liveposition" caption="Live Positions" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="type" caption="Type" [width]="150"></dxi-column>
+                                <dxi-column dataField="industry" caption="Industries" [width]="150"></dxi-column>
+                                <dxi-column dataField="industryclassification" caption="Industry Classification">
+                                </dxi-column>
+                                <dxi-column dataField="industrysubclassification" caption="Industry SubClassification">
+                                </dxi-column>
+                                <dxi-column dataField="industrysuperclassification"
+                                    caption="Industry SuperClassification" [width]="150"></dxi-column>
+                                <dxi-column dataField="annualrevenuepotential" caption="Annual Revenue Potential ">
+                                </dxi-column>
+                                <dxi-column dataField="currency" caption="Currency Revenue Potential" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="annualrevenuepotentialinr"
+                                    caption="Annual Revenue Potential(INR)" [width]="150"></dxi-column>
+                                <dxi-column dataField="Total Revenue" caption="totalrevenue" [width]="150"></dxi-column>
+                                <dxi-column dataField="applicationtracking" caption="Application Tracking System">
+                                </dxi-column>
+                                <dxi-column dataField="boardnumber" caption="Board Number" [width]="150"></dxi-column>
+                                <dxi-column dataField="cultureoforganisation" caption="Culture Of Organisation">
+                                </dxi-column>
+                                <dxi-column dataField="description" caption="Description" [width]="150"></dxi-column>
+                                <dxi-column dataField="Domain Name" caption="domain" [width]="150"></dxi-column>
+                                <dxi-column dataField="empanelmentcycle" caption="Empanelment Cycle" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="stock" caption="Stock" [width]="150"></dxi-column>
+                                <dxi-column dataField="employeeglobalhunt" caption="Employee Globalhunt" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="employees" caption="Employees" [width]="150"></dxi-column>
+                                <dxi-column dataField="noofemployees" caption="No. Of Employees" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="founded" caption="Founded" [width]="150"></dxi-column>
+                                <dxi-column dataField="ghcompetitor" caption="GH Competitor" [width]="150"></dxi-column>
+                                <dxi-column dataField="ghclient" caption="GH Client" [width]="150"></dxi-column>
+                                <dxi-column dataField="globaloffices" caption="Global Offices" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="assignuser" caption="AssignUsers" [width]="150"></dxi-column>
+                                <dxi-column dataField="globalturnover" caption="Global Turn Over" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="accountshortname" caption="Account Short Name" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="industrygroup" caption="Industry Group" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="infrastructureoforganization"
+                                    caption="Infrastructure Of Organization" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="inhouseattritionrate" caption="InHouse Attrition Rate">
+                                </dxi-column>
+                                <dxi-column dataField="invoicegenerationdays" caption="Invoice Generation Days">
+                                </dxi-column>
+                                <dxi-column dataField="modeofbusiness" caption="Mode Of Business" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="moredetails" caption="More Details" [width]="150"></dxi-column>
+                                <dxi-column dataField="nofovendors" caption="No Of Vendors That Work" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="noticebuyout" caption="Notice Buyout" [width]="150"></dxi-column>
+                                <dxi-column dataField="ownership" caption="Ownership" [width]="150"></dxi-column>
+                                <dxi-column dataField="parentaccountname" caption="Parent Company" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="productservice" caption="Product/Service Company" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="proposedservices" caption="Proposed Services" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="accountcategory" caption="Account Category" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="qualificationweightage" caption="Qualification Weightage"
+                                    [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="rating" caption="Rating" [width]="150"></dxi-column>
+                                <dxi-column dataField="Recruitmentteamsize" caption="Recruitment Team Size"
+                                    [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="revenueperiod" caption="Revenue Period" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="specialty" caption="Specialty" [width]="150"></dxi-column>
+                                <dxi-column dataField="sropeningclosed" caption="Sr. Opening Closed" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="status" caption="Status" [width]="150"></dxi-column>
+                                <dxi-column dataField="typeofcompanies" caption="Type Of Companies" [width]="150">
+                                </dxi-column>
+                                <dxi-column dataField="vendorcode" caption="Vendor Code" [width]="150"></dxi-column>
+                                <dxi-column dataField="agreementstartdate" caption="Agreement Start Date"
+                                    dataType="datetime" format="M/d/yyyy, HH:mm" [width]="150"></dxi-column>
+                                <dxi-column dataField="agreementenddate" caption="Agreement End Date"
+                                    dataType="datetime" format="M/d/yyyy, HH:mm" [width]="150"></dxi-column>
+                                <dxo-paging [pageSize]="10"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10,15, 20]"></dxo-pager>
+                                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

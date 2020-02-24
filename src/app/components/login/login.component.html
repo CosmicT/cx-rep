@@ -1,0 +1,262 @@
+<div class="background">
+    <div class="mh-100vh d-flex justify-content-center align-items-center p-4">
+        <div class="bg-white rounded w-cxs-75 w-25 w-lg-25 shadow p-3 p-xl-4 mt-5"
+            [ngClass]="{'dynamic-height':styleChange,'dynamic-height-increase':signUpFormSubmitted}">
+            <!-- ,'dynamic-height-increase':forgotPwdNextFormSubmitted -->
+            <img src="/assets/logo.png" class="img-fluid mb-3 w-100 bg-gradient-primary p-2 rounded">
+            <div class="position-relative">
+                <form [formGroup]="loginForm" (submit)="loginFormSubmit()">
+                    <div class="form-group">
+                        <label for="inputusername" class="font-weight-600 mb-1">Email</label>
+                        <input type="text" class="form-control" id="inputusername" formControlName="email"
+                            placeholder="Email">
+                        <small class="text-danger"
+                            *ngIf="!!loginForm.controls['email'].invalid && (loginFormSubmitted || !!loginForm.controls['email'].touched)">
+                            <span *ngIf="!!loginForm.controls['email'].errors['required']">Required</span>
+                            <span *ngIf="!!loginForm.controls['email'].errors['pattern']">Invalid Email</span>
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="font-weight-600 mb-1">Password</label>
+                        <div class="input-group">
+                            <input [type]="togglePasswordDisplay?'text':'password'" class="form-control"
+                                id="inputPassword" formControlName="password" placeholder="Password">
+                            <div class="input-group-prepend" (click)="togglePasswordDisplay=!togglePasswordDisplay">
+                                <button class="btn btn-outline" for="inputPassword" type="button">
+                                    <fa-icon [icon]="togglePasswordDisplay?faEyeSlash:faEye"></fa-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <small class="text-danger"
+                            *ngIf="!!loginForm.controls['password'].invalid && (loginFormSubmitted || !!loginForm.controls['password'].touched)">Required</small>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <a class="text-primary cursor-pointer" (click)="toggleForgotPwd()">Forgot Password?</a>
+                        <a class="text-primary cursor-pointer" (click)="toggleSignUpPwd()">Sign Up?</a>
+                    </div>
+                    <button class="btn btn-primary btn-block" type="submit" [disabled]="loginFormSubmitting">
+                        <ng-container *ngIf="loginFormSubmitting; else formSubmittingDone">
+                            <fa-icon [icon]="faSpinner" [pulse]="true"></fa-icon>
+                            Signing In...
+                        </ng-container>
+                        <ng-template #formSubmittingDone>
+                            Sign In
+                            <fa-icon [icon]="faArrowRight"></fa-icon>
+                        </ng-template>
+                    </button>
+                </form>
+                <div [@forgotPwdState]="forgotPwdState" class="position-absolute w-100 h-100 bg-white"
+                    style="top: 0; left: 0;">
+                    <p class="text-center mb-0">
+                        You will receive a code in your mail box.
+                    </p>
+                    <hr />
+                    <form [formGroup]="forgotPwdForm" (submit)="forgotPwdFormSubmit()">
+                        <div class="form-group">
+                            <label for="forgotPwdEmail" class="font-weight-600 mb-1">Email</label>
+                            <input type="email" id="forgotPwdEmail" class="form-control" placeholder="Email"
+                                formControlName="email" />
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <span class="text-danger"
+                                *ngIf="!!forgotPwdForm.controls['email'].invalid && (forgotPwdFormSubmitted || !!forgotPwdForm.controls['email'].touched); else blankSpan">
+                                <small *ngIf="!!forgotPwdForm.controls['email'].errors['required']">Required</small>
+                                <small *ngIf="!!forgotPwdForm.controls['email'].errors['pattern']">Invalid Email</small>
+                            </span>
+                            <ng-template #blankSpan>
+                                <span></span>
+                            </ng-template>
+                            <a class="text-primary cursor-pointer" (click)="toggleForgotPwd()">Back to login?</a>
+                        </div>
+                        <button class="btn btn-primary btn-block" type="submit" [disabled]="forgotPwdFormSubmitting">
+                            <ng-container *ngIf="forgotPwdFormSubmitting; else forgotPwdFormSubmittingDone">
+                                <fa-icon [icon]="faSpinner" [pulse]="true"></fa-icon>
+                                Sending...
+                            </ng-container>
+                            <ng-template #forgotPwdFormSubmittingDone>
+                                Send Mail
+                                <fa-icon [icon]="faArrowRight"></fa-icon>
+                            </ng-template>
+                        </button>
+                    </form>
+                </div>
+                <div [@forgotPwdNextState]="forgotPwdNextState" class="position-absolute w-100 h-100 bg-white"
+                    style="top: 0; left: 0;">
+                    <form [formGroup]="forgotPwdNextForm" (submit)="forgotPwdNextFormSubmit()">
+                        <div class="form-group">
+                            <label for="forgotPwdNextCode" class="font-weight-400">Code</label>
+                            <input type="email" id="forgotPwdNextCode" class="form-control" placeholder="Code"
+                                formControlName="code" />
+                            <span class="text-danger"
+                                *ngIf="!!forgotPwdNextForm.controls['code'].invalid && (forgotPwdNextFormSubmitted || !!forgotPwdNextForm.controls['code'].touched)">
+                                <small *ngIf="!!forgotPwdNextForm.controls['code'].errors['required']">Required</small>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="forgotPwdNextPassword" class="font-weight-400">Password</label>
+                            <div class="input-group">
+                                <input [type]="togglePasswordDisplay?'text':'password'" class="form-control"
+                                    id="forgotPwdNextPassword" formControlName="password" placeholder="Password">
+                                <div class="input-group-prepend" (click)="togglePasswordDisplay=!togglePasswordDisplay">
+                                    <button class="btn btn-outline" for="forgotPwdNextPassword" type="button">
+                                        <fa-icon [icon]="togglePasswordDisplay?faEyeSlash:faEye"></fa-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <span class="text-danger"
+                                *ngIf="!!forgotPwdNextForm.controls['password'].invalid && (forgotPwdNextFormSubmitted || !!forgotPwdNextForm.controls['password'].touched)">
+                                <small
+                                    *ngIf="!!forgotPwdNextForm.controls['password'].errors['required']">Required</small>
+                                <small *ngIf="!!forgotPwdNextForm.controls['password'].errors['pattern']">Password have
+                                    atleast 1
+                                    uppercase, atleast 1 character and atleast 1 numeric.</small>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="forgotPwdNextConfirmPassword" class="font-weight-400">Confirm Password</label>
+                            <div class="input-group">
+                                <input [type]="toggleConfirmPasswordDisplay?'text':'password'" class="form-control"
+                                    id="forgotPwdNextConfirmPassword" formControlName="confirmPassword"
+                                    placeholder="Confirm Password">
+                                <div class="input-group-prepend"
+                                    (click)="toggleConfirmPasswordDisplay=!toggleConfirmPasswordDisplay">
+                                    <button class="btn btn-outline" for="forgotPwdNextConfirmPassword" type="button">
+                                        <fa-icon [icon]="toggleConfirmPasswordDisplay?faEyeSlash:faEye"></fa-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <span class="text-danger"
+                                *ngIf="!!forgotPwdNextForm.controls['confirmPassword'].invalid && (forgotPwdNextFormSubmitted || !!forgotPwdNextForm.controls['confirmPassword'].touched)">
+                                <small
+                                    *ngIf="!!forgotPwdNextForm.controls['confirmPassword'].errors['required']">Required</small>
+                                <small
+                                    *ngIf="!!forgotPwdNextForm.controls['confirmPassword'].errors['notSame']">Password
+                                    not match</small>
+
+                            </span>
+                        </div>
+                        <button class="btn btn-primary btn-block" type="submit"
+                            [disabled]="forgotPwdNextFormSubmitting">
+                            <ng-container *ngIf="forgotPwdNextFormSubmitting; else forgotPwdNextFormSubmittingDone">
+                                <fa-icon [icon]="faSpinner" [pulse]="true"></fa-icon>
+                                Resetting...
+                            </ng-container>
+                            <ng-template #forgotPwdNextFormSubmittingDone>
+                                Reset Password
+                                <fa-icon [icon]="faArrowRight"></fa-icon>
+                            </ng-template>
+                        </button>
+                    </form>
+                </div>
+                <div [@signUpState]="signUpState" class="position-absolute w-100 h-100 bg-white"
+                    style="top: 0; left: 0;">
+                    <form [formGroup]="signUpForm" (submit)="signUpFormSubmit()">
+                        <div class="form-group">
+                            <label for="signUpEmail" class="font-weight-400">Email</label>
+                            <input type="email" id="signUpEmail" class="form-control" placeholder="Email"
+                                formControlName="email" />
+                            <span class="text-danger"
+                                *ngIf="!!signUpForm.controls['email'].invalid && (signUpFormSubmitted || !!signUpForm.controls['email'].touched)">
+                                <small *ngIf="!!signUpForm.controls['email'].errors['required']">Required</small>
+                                <small *ngIf="!!signUpForm.controls['email'].errors['pattern']">Invalid Email</small>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signUpPassword" class="font-weight-400">Password</label>
+                            <!-- <input type="password" id="signUpPassword" class="form-control" placeholder="Password"
+                                                                formControlName="password" /> -->
+                            <div class="input-group">
+                                <input [type]="togglePasswordDisplay?'text':'password'" class="form-control"
+                                    id="signUpPassword" formControlName="password" placeholder="Password">
+                                <div class="input-group-prepend" (click)="togglePasswordDisplay=!togglePasswordDisplay">
+                                    <button class="btn btn-outline" for="signUpPassword" type="button">
+                                        <fa-icon [icon]="togglePasswordDisplay?faEyeSlash:faEye"></fa-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <span class="text-danger"
+                                *ngIf="!!signUpForm.controls['password'].invalid && (signUpFormSubmitted || !!signUpForm.controls['password'].touched)">
+                                <small *ngIf="!!signUpForm.controls['password'].errors['required']">Required</small>
+                                <small *ngIf="!!signUpForm.controls['password'].errors['pattern']">Password have atleast
+                                    1
+                                    uppercase, atleast 1 character and atleast 1 numeric.</small>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signUpConfirmPassword" class="font-weight-400">Confirm Password</label>
+                            <div class="input-group">
+                                <input [type]="toggleConfirmPasswordDisplay?'text':'password'" class="form-control"
+                                    id="signUpConfirmPassword" formControlName="confirmPassword"
+                                    placeholder="Confirm Password">
+                                <div class="input-group-prepend"
+                                    (click)="toggleConfirmPasswordDisplay=!toggleConfirmPasswordDisplay">
+                                    <button class="btn btn-outline" for="signUpConfirmPassword" type="button">
+                                        <fa-icon [icon]="toggleConfirmPasswordDisplay?faEyeSlash:faEye"></fa-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <span class="text-danger"
+                                *ngIf="!!signUpForm.controls['confirmPassword'].invalid && (signUpFormSubmitted || !!signUpForm.controls['confirmPassword'].touched)">
+                                <span
+                                    *ngIf="!!signUpForm.controls['confirmPassword'].errors['required']">Required</span>
+                                <span *ngIf="!!signUpForm.controls['confirmPassword'].errors['notSame']">Password not
+                                    match</span>
+                            </span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-end">
+                            <a class="text-primary cursor-pointer" (click)="toggleSignUpPwd()">Back to login?</a>
+                        </div>
+                        <button class="btn btn-primary btn-block" type="submit" [disabled]="signUpFormSubmitting">
+                            <ng-container *ngIf="signUpFormSubmitting; else signUpFormSubmittingDone">
+                                <fa-icon [icon]="faSpinner" [pulse]="true"></fa-icon>
+                                Signing Up...
+                            </ng-container>
+                            <ng-template #signUpFormSubmittingDone>
+                                Sign Up
+                                <fa-icon [icon]="faArrowRight"></fa-icon>
+                            </ng-template>
+                        </button>
+                    </form>
+                </div>
+                <div [@signUpNextState]="signUpNextState" class="position-absolute w-100 h-100 bg-white"
+                    style="top: 0; left: 0;">
+                    <p class="text-center mb-0">
+                        Enter the received code.
+                    </p>
+                    <hr />
+                    <form [formGroup]="signUpNextForm" (submit)="signUpNextFormSubmit()">
+                        <div class="form-group">
+                            <label for="signUpNextFormCode" class="font-weight-600 mb-1">Code</label>
+                            <input type="text" id="signUpNextFormCode" class="form-control" placeholder="Code"
+                                formControlName="code" />
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <span class="text-danger"
+                                *ngIf="!!signUpNextForm.controls['code'].invalid && (signUpNextFormSubmitted || !!signUpNextForm.controls['code'].touched); else blankSpan">
+                                <small *ngIf="!!signUpNextForm.controls['code'].errors['required']">Required</small>
+                            </span>
+                            <ng-template #blankSpan>
+                                <span></span>
+                            </ng-template>
+                        </div>
+                        <button class="btn btn-primary btn-block" type="submit" [disabled]="signUpNextFormSubmitting">
+                            <ng-container *ngIf="signUpNextFormSubmitting; else signUpNextFormSubmittingDone">
+                                <fa-icon [icon]="faSpinner" [pulse]="true"></fa-icon>
+                                Verifying...
+                            </ng-container>
+                            <ng-template #signUpNextFormSubmittingDone>
+                                Verify
+                                <fa-icon [icon]="faArrowRight"></fa-icon>
+                            </ng-template>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <p class="mt-4 mb-0 text-muted text-center"
+                [ngClass]="{'footer-text-align':styleChange,'footer-text-align-increase':signUpFormSubmitted}">
+                &copy;
+                HiTechPeopleInc- 2020</p>
+            <!-- ,'footer-text-align-increase':forgotPwdNextFormSubmitted -->
+        </div>
+    </div>
+</div>

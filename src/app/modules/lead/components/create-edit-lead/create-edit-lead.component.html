@@ -1,0 +1,531 @@
+<div class="page-wrapper">
+  <div class="container-fluid pl-0 pr-0 ">
+    <div class="row page-titles margin-bottom mb-3">
+      <div class="col-sm-12 pr-0">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
+          <li class="breadcrumb-item active">Create Lead</li>
+        </ol>
+      </div>
+    </div>
+    <!-- Account start-->
+    <ng-container *ngIf="editMode">
+      <div class="row">
+        <div class="col-md-12 pr-0">
+          <div class="account-info lead-info d-flex">
+            <div class="col-md-2">
+              <!-- <img src="" alt="responsive image" class="img-fluid"> -->
+              <img src="/assets/dev-extreme-img/user-img.jpg" class="img-thumbnail w-75" alt="HtmlEditor">
+            </div>
+            <div class="col-md-10">
+              <h3 class="mb-2">{{accountName}}</h3>
+              <ul>
+                <li>
+                  <fa-icon [icon]="faPhoneAlt"></fa-icon><a href="Tel:4504999876">{{mobileNo}}</a>
+                </li>
+                <li>
+                  <fa-icon [icon]="faGlobe"></fa-icon><a href="http://www.nokia.com">N/A</a>
+                </li>
+                <li>
+                  <fa-icon [icon]="faMapMarkerAlt"></fa-icon><a href="#">N/A</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <!-- Account end-->
+    <div class="row equal-height-cols edit-account lead-wrapper " [ngClass]="[divShow? 'toggled':'']">
+      <!-- collapse Icon -->
+      <a id="show-sidebar" class="btn btn-sm btn-dark" (click)="divShow=!divShow"><span
+          class="verticle-text">Auxiliary</span></a>
+      <!-- create lead form section start -->
+      <div class="lead-wrap d-inline-flex">
+        <div class="details-datagrid pl-3">
+          <div class="bg-white shadow equal-height-coloum rounded">
+            <div class="p-3 border-bottom">
+              <div class="accordion editleadpanel" id="accordionSearch">
+                <div class="card flex-row-reverse">
+                  <div class="card-header compInfoSearch-header col-md-6 float-right" id="headingOne">
+                    <ng-container *ngIf="!editMode">
+                      <select class="custom-select mt-2" id="Company">
+                        <option selected value="email">Email</option>
+                        <option value="mobile">Mobile</option>
+                        <option value="name">Name</option>
+                        <option value="boardnumber">Board number</option>
+                      </select>
+                      <div class="p-1 mb-2 mt-2 border lead-serch-box">
+                        <div class="input-group">
+                          <input type="search" placeholder="Search" aria-describedby="button-addon1"
+                            class="form-control border-0 bg-light ml-2 bg-white h-25 mt-n1">
+                          <div class="input-group-prepend border-0">
+                            <button id="button-addon1" type="submit" class="btn btn-link text-primary mt-n1">
+                              <fa-icon [icon]="faSearch" size="1px"></fa-icon>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion" id="accordionMain">
+                <form [formGroup]="createLeadForm" class="create-lead">
+                  <div class="card border-bottom">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="account" class="float-left">Create Lead Behalf on</label>
+                            <fa-icon
+                              *ngIf="!!createLeadForm.controls.leadType.invalid && (createdLeadFormSubmitted || !!createLeadForm.controls.leadType.touched)"
+                              class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                              ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                            <select class="custom-select" id="account" formControlName="leadType">
+                              <option selected value="Company">Company</option>
+                              <option value="Account">Account</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="accountName">{{createLeadForm.get('leadType').value}} Name*
+                              <button class="compAddButton" (click)="openAddCompanyAccountModal()"
+                                *ngIf="!isAuxiliaryInfo" title="Add {{createLeadForm.get('leadType').value}} Details">
+                                <fa-icon [icon]="faPlusCircle"></fa-icon>
+                              </button>
+                            </label>
+                            <fa-icon
+                              *ngIf="!!createLeadForm.controls.account.invalid && (createdLeadFormSubmitted || !!createLeadForm.controls.account.touched)"
+                              class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                              ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                            <ng-select [items]="contactModel" id="accountName" formControlName="account"
+                              bindLabel="name" (keyup)="searchCompany($event.target.value)" [disabled]="editMode">
+                            </ng-select>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-6 pr-0">
+                                <label for="first">First Name*</label>
+                                <fa-icon
+                                  *ngIf="!!createLeadForm.controls.salutation.invalid && (createdLeadFormSubmitted || !!createLeadForm.controls.salutation.touched)"
+                                  class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                                  ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                <select class="custom-select" id="first" formControlName="salutation">
+                                  <option selected value="Mr">Mr</option>
+                                  <option value="Mrs">Mrs</option>
+                                  <option value="Miss">Miss</option>
+                                </select>
+                              </div>
+                              <div class="col-md-6">
+                                <label for="first"></label>
+                                <fa-icon
+                                  *ngIf="!!createLeadForm.controls.firstname.invalid && (createdLeadFormSubmitted || !!createLeadForm.controls.firstname.touched)"
+                                  class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                                  ngbTooltip="Required" tooltipClass="tooltip-background-colortooltip-background-color">
+                                </fa-icon>
+                                <input type="text" class="form-control" formControlName="firstname">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="middleName">Middle Name</label>
+                            <input type="text" class="form-control" id="middleName" formControlName="midlename">
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="lastName">Last Name*</label>
+                            <fa-icon
+                              *ngIf="!!createLeadForm.controls.lastname.invalid && (createdLeadFormSubmitted || !!createLeadForm.controls.lastname.touched)"
+                              class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                              ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                            <input type="text" class="form-control" id="lastName" formControlName="lastname">
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="anchor">Anchor</label>
+                            <ng-select [items]="users" formControlName="anchor" bindLabel="name" bindLabel="name"
+                              placeholder="Select Anchor" title="Select Anchor"
+                              (keyup)="searchUser($event.target.value)"></ng-select>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="email">Email*</label>
+                            <span
+                              *ngIf="!!createLeadForm.controls.workingmailid.invalid && (createdLeadFormSubmitted || !!createLeadForm.controls.workingmailid.touched)">
+                              <fa-icon *ngIf="!!createLeadForm.controls.workingmailid.errors.required"
+                                class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                                ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                              <fa-icon *ngIf="!!createLeadForm.controls.workingmailid.errors.pattern"
+                                class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                                ngbTooltip="Provide Valid Email Id" tooltipClass="tooltip-background-color"></fa-icon>
+                            </span>
+                            <input type="email" class="form-control" id="email" formControlName="workingmailid">
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="job">Job Grade*</label>
+                            <fa-icon
+                              *ngIf="!!createLeadForm.controls.jobgrade.invalid && (createdLeadFormSubmitted || !!createLeadForm.controls.jobgrade.touched)"
+                              class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                              ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                            <select class="custom-select form-control" id="job" formControlName="jobgrade">
+                              <option selected value="a">A</option>
+                              <option value="b">B</option>
+                              <option value="c">C</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-6 pr-0">
+                                <label for="mobile">Office Mobile*</label>
+                                <fa-icon
+                                  *ngIf="!!createLeadForm.controls.personalmobilecountrycode.invalid && (createdLeadFormSubmitted || !!createLeadForm.controls.personalmobilecountrycode.touched)"
+                                  class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                                  ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                <ng-select [items]="country" bindValue="countrycode" bindLabel="countrycode"
+                                  placeholder="code" formControlName="personalmobilecountrycode"></ng-select>
+                              </div>
+                              <div class="col-md-6">
+                                <label for="mobile"></label>
+                                <span
+                                  *ngIf="!!createLeadForm.controls.mobilenumber.invalid && (createdLeadFormSubmitted || !!createLeadForm.controls.mobilenumber.touched)">
+                                  <fa-icon *ngIf="!!createLeadForm.controls.mobilenumber.errors.required"
+                                    class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                                    ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                  <fa-icon *ngIf="!!createLeadForm.controls.mobilenumber.errors.maxlength"
+                                    class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                                    ngbTooltip="Maximum 10 digits" tooltipClass="tooltip-background-color"></fa-icon>
+                                  <fa-icon *ngIf="!!createLeadForm.controls.mobilenumber.errors.minlength"
+                                    class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                                    ngbTooltip="minimum 11 digits" tooltipClass="tooltip-background-color"></fa-icon>
+                                </span>
+                                <input type="text" class="form-control" formControlName="mobile" appNumberOnly
+                                  formControlName="mobilenumber" placeholder="Office mobile">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+
+                            <div class="row">
+                              <div class="col-md-6">
+                                <label for="OfficePhone">Office Phone*</label>
+                                <fa-icon
+                                  *ngIf="!!createLeadForm.controls.ofcphncountrycode.invalid && (createdLeadFormSubmitted || !!createLeadForm.controls.ofcphncountrycode.touched)"
+                                  class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                                  ngbTooltip="Required" tooltipClass="tooltip-background-color">
+                                </fa-icon>
+                                <ng-select [items]="country" bindValue="countrycode" bindLabel="countrycode"
+                                  id="OfficeCode" formControlName="ofcphncountrycode" placeholder="Country Code">
+                                </ng-select>
+                              </div>
+                              <div class="col-md-6">
+                                <label for="OfficePhone"></label>
+                                <span
+                                  *ngIf="!!createLeadForm.controls.officephone.invalid && (createdLeadFormSubmitted || !!createLeadForm.controls.officephone.touched)">
+                                  <fa-icon *ngIf="!!createLeadForm.controls.officephone.errors.required"
+                                    class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                                    ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                                  <fa-icon *ngIf="!!createLeadForm.controls.officephone.errors.maxlength"
+                                    class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                                    ngbTooltip="Maximum 10 digits" tooltipClass="tooltip-background-color"></fa-icon>
+                                  <fa-icon *ngIf="!!createLeadForm.controls.officephone.errors.minlength"
+                                    class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                                    ngbTooltip="minimum 10 digits" tooltipClass="tooltip-background-color"></fa-icon>
+                                </span>
+                                <input type="text" class="form-control" id="OfficePhone" formControlName="officephone"
+                                  placeholder="Office Phone">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="Department">Department*</label>
+                            <fa-icon
+                              *ngIf="!!createLeadForm.controls.department.invalid && (createdLeadFormSubmitted || !!createLeadForm.controls.department.touched)"
+                              class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                              ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                            <ng-select [items]="departments" bindValue="name" bindLabel="name"
+                              formControlName="department" placeholder="Select Department"
+                              (keyup)="searchDepartment($event.target.value)">
+                            </ng-select>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="Designation">Designation*</label>
+                            <fa-icon
+                              *ngIf="!!createLeadForm.controls.designation.invalid && (createdLeadFormSubmitted || !!createLeadForm.controls.designation.touched)"
+                              class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                              ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                            <input class="form-control" id="designation" formControlName="designation">
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="skypeid">SkypeID</label>
+                            <input type="text" class="form-control" id="skypeid" formControlName="skypid">
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="LeadCategory">LeadCategory</label>
+                            <select class="custom-select" id="LeadCategory" formControlName="leadcategory">
+                              <option selected value="define">To Be Define</option>
+                              <option value="ColdCall">Must to Have</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div>
+                            <label for="contactaddress">Contact Address*</label>
+                            <fa-icon
+                              *ngIf="!!createLeadForm.controls.addressid.invalid && (createdLeadFormSubmitted || !!createLeadForm.controls.addressid.touched)"
+                              class="float-right text-danger" [icon]="faInfoCircle" size="1px" placement="top"
+                              ngbTooltip="Required" tooltipClass="tooltip-background-color"></fa-icon>
+                            <ng-select [items]="accountAddress" bindLabel="fulladdress" bindValue="id" appgoogleplaces
+                              id="contactaddress" formControlName="addressid" [disabled]="editMode"></ng-select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <ng-container *ngIf="editMode">
+                  <form [formGroup]="editLeadForm">
+                    <div class="card border-top">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="LeadSource">Lead Source</label>
+                              <select class="custom-select" id="LeadSource" formControlName="leadsource">
+                                <option selected value="define">To Be Define</option>
+                                <option value="ColdCall">Cold Call</option>
+                                <option value="Conference">Conference</option>
+                                <option value="DirectMail">Direct Mail</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="Target">Target</label>
+                              <select class="custom-select" id="Target" formControlName="istargeted">
+                                <option selected value="define">To Be Define</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="Title">Title</label>
+                              <input type="text" class="form-control" id="Title" formControlName="title">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="SubTitle">Sub Title</label>
+                              <input type="text" class="form-control" id="SubTitle" formControlName="subtitle">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="Level">Level</label>
+                              <select class="custom-select form-control" id="Level" formControlName="level">
+                                <option selected value="All">Yet to define</option>
+                                <option value="CXO">CXO</option>
+                                <option value="Senior">Senior</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="dx-fieldset">
+                              <div class="dx-field">
+                                <label>Reporting to</label>
+                                <div class="dx-field-value">
+                                  <dx-drop-down-box [(value)]="gridBoxValue" valueExpr="id" [deferRendering]="false"
+                                    [displayExpr]="gridBox_displayExpr" placeholder="Select a value..."
+                                    [showClearButton]="true" [dataSource]="gridDataSource" formControlName="reportto">
+                                    <div *dxTemplate="let data of 'content'">
+                                      <dx-data-grid [dataSource]="gridDataSource"
+                                        [columns]="['name', 'accountname', 'status']" [selection]="{ mode: 'single' }"
+                                        [hoverStateEnabled]="true" [paging]="{ enabled: true, pageSize: 10 }"
+                                        [filterRow]="{ visible: true }" [scrolling]="{ mode: 'infinite' }" height="100%"
+                                        [(selectedRowKeys)]="gridBoxValue">
+                                      </dx-data-grid>
+                                    </div>
+                                  </dx-drop-down-box>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="Revenue">Revenue Potential</label>
+                              <input type="text" class="form-control" id="Revenue" formControlName="revenuepotential">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="rev"></label>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <ng-select [items]="currency" bindValue="currency" bindLabel="currency" id=""
+                                    formControlName="revenuecurrency">
+                                  </ng-select>
+                                </div>
+                                <div class="col-md-6">
+                                  <input type="text" class="form-control" id="Revenuepotential"
+                                    formControlName="revenuepotentialinr">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="RevenuePotentialPeriod">Revenue Potential Period</label>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="input-group">
+                                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker
+                                      #d="ngbDatepicker" formControlName="revenuetenurefrom">
+                                    <div class="input-group-append">
+                                      <button class="btn btn-outline-secondary calendar" (click)="d.toggle()"
+                                        type="button">
+                                        <fa-icon [icon]="faCalendar"></fa-icon>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="input-group">
+                                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker
+                                      #e="ngbDatepicker" formControlName="revenuetenureto">
+                                    <div class="input-group-append">
+                                      <button class="btn btn-outline-secondary calendar" (click)="e.toggle()"
+                                        type="button">
+                                        <fa-icon [icon]="faCalendar"></fa-icon>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="Referred by">Referred by</label>
+                              <input type="text" class="form-control" id="Referredby" formControlName="referedby">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="dx-fieldset">
+                              <div class="dx-field">
+                                <label>Lead Anchor</label>
+                                <ng-select [items]="users" formControlName="anchor" bindLabel="name"
+                                  (keyup)="searchUser($event.target.value)" formControlName="leadanchor"></ng-select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="industry">Industry</label>
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <ng-select [items]="industry" bindLabel="industry" [multiple]="true"
+                                    formControlName="industry" formControlName="industry" (keyup)="getIndustry($event.target.value)">
+                                  </ng-select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="IndustryGroup">Industry Group</label>
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <ng-select [items]="industryGroup" bindLabel="industryGroup" [multiple]="true"
+                                    formControlName="industrygroup" (keyup)="getIndustryGroup($event.target.value)"> </ng-select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="Description">Description</label>
+                              <input class="form-control" id="Description" formControlName="description">
+                            </div>
+                          </div>
+                        </div>
+                        <hr>
+                      </div>
+                    </div>
+                  </form>
+                </ng-container>
+                <button class="btn btn-primary float-right my-4" type="submit" [disabled]="leadSubmitting"
+                  (click)="createLeadFormSubmit()">
+                  <ng-container *ngIf="leadSubmitting; else leadSubmittingDone">
+                    <fa-icon [icon]="faSpinner" [pulse]="true"></fa-icon>
+                    Submitting....
+                  </ng-container>
+                  <ng-template #leadSubmittingDone>
+                    Submit
+                    <fa-icon [icon]="faArrowRight"></fa-icon>
+                  </ng-template>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- </div> -->
+
+          <!-- Auxiliary Information section start -->
+          <div class="sidebar-wrapper equal-height-coloum pl-0 pr-0 ">
+            <div class="bg-white shadow rounded auxiliary-box" [ngClass]="[divShow?'display-show':'display-hide']">
+              <!-- close Icon -->
+              <div class="bg-white shadow rounded mb-5 ">
+                <div class="p-3 border-bottom">
+                  <div class="card flex-row-reverse">
+                    <div class="card-header">
+                      <span id="close-sidebar" (click)="divShow=false">
+                        <fa-icon [icon]="faTimesCircle" class="mb-4 pl-0"></fa-icon>
+                      </span>
+                      <div class=" text-primary pt-1 pb-0 pl-2">
+                        <h5 class="text-primary pt-0 pl-0">Auxiliary Information</h5>
+                      </div>
+                    </div>
+                  </div>
+                  <ng-container *ngIf="isAuxiliaryInfo">
+                    <div class="card auxilary-list mt-3">
+                      <h5 class="card-header">{{auxiliaryInfo.name}}</h5>
+                      <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">{{auxiliaryInfo.boardnumberfull}}</li>
+                          <li class="list-group-item">{{auxiliaryInfo.websiteurl}}</li>
+                          <li class="list-group-item">{{auxiliaryInfo.description}}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

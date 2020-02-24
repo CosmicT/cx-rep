@@ -1,0 +1,38 @@
+<div class="pb-3">
+    <div class="row">
+        <div class="container-fluid pl-0 pr-0">
+            <dx-data-grid id="gridContainer"
+                class="data-grid-panel mt-3"
+                [dataSource]="teamMembersDataSource"
+                [showBorders]="true" [showRowLines]="true"
+                keyExpr="id">
+                <dxo-scrolling mode="virtual"></dxo-scrolling>
+                <dxo-sorting mode="multiple"></dxo-sorting>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
+                <dxo-paging [pageSize]="5"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true"
+                    [allowedPageSizes]="[8, 12, 20]"></dxo-pager>
+                <dxi-column caption="S.No"
+                    cellTemplate="NoTemplate">
+                    <div *dxTemplate="let data of 'NoTemplate'">
+                        {{data.rowIndex + 1}}
+                    </div>
+                </dxi-column>
+                <dxi-column dataField="username" caption="UserName">
+                </dxi-column>
+                <dxi-column dataField="datefrom"
+                    caption="Assign Start Date"></dxi-column>
+                <dxi-column dataField="dateto"
+                    caption="Assign End Date">
+                </dxi-column>
+                <dxi-column dataField="createddate"
+                    caption="Created Date">
+                </dxi-column>
+                <dxi-column dataField="modifiedby"
+                    caption="Assigned By">
+                </dxi-column>
+            </dx-data-grid>
+        </div>
+    </div>
+</div>
